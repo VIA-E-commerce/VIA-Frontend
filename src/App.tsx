@@ -1,7 +1,9 @@
 import React from 'react';
 
+import { RootRouter } from '@/routes';
+
 const App = () => {
-  return <div>React Start</div>;
+  return <RootRouter />;
 };
 
 export default App;
