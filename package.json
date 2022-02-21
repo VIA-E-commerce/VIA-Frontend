@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/VIA-E-commerce/VIA-Frontend#readme",
   "dependencies": {
+    "@emotion/react": "^11.8.1",
+    "@emotion/styled": "^11.8.1",
     "@types/webpack-dev-server": "^4.7.2",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.0",
@@ -31,6 +33,7 @@
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
+    "@emotion/babel-plugin": "^11.7.2",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.4",
     "@types/fork-ts-checker-webpack-plugin": "^0.4.5",
     "@types/webpack": "^5.28.0",
