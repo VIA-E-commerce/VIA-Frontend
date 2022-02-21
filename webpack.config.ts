@@ -11,7 +11,9 @@ import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 
 dotenv.config();
 
-const PORT = process.env.PORT;
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+const API_PREFIX: string = process.env.REACT_APP_API_PREFIX || '/';
+const PORT = process.env.REACT_APP_PORT;
 
 const DEV_ENV = 'development';
 const PROD_ENV = 'production';
@@ -23,6 +25,15 @@ const OUTPUT_DIR = 'dist';
 
 interface Configuration extends WebpackConfig {
   devServer?: DevServerConfig;
+}
+const ENV: { [x: string]: string } = {
+  NODE_ENV: isDevMode ? DEV_ENV : PROD_ENV,
+};
+
+for (const key in process.env) {
+  if (key && key.startsWith('REACT_APP_')) {
+    ENV[key] = process.env[key] || '';
+  }
 }
 
 const config: Configuration = {
@@ -78,7 +89,7 @@ const config: Configuration = {
     new ForkTsCheckerWebpackPlugin({
       async: false,
     }),
-    new webpack.EnvironmentPlugin({ NODE_ENV: isDevMode ? DEV_ENV : PROD_ENV }),
+    new webpack.EnvironmentPlugin(ENV),
     new HtmlWebpackPlugin({
       template: `./${PUBLIC_DIR}/index.html`,
     }),
@@ -94,6 +105,13 @@ const config: Configuration = {
     static: { directory: path.resolve(__dirname, PUBLIC_DIR) },
     open: true,
     hot: true,
+    proxy: {
+      [API_PREFIX]: {
+        target: API_BASE_URL,
+        changeOrigin: true,
+        ws: true,
+      },
+    },
   },
 };
 
