@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom';
 import App from '@/App';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from '@emotion/react';
-import { theme } from '@/styles';
+import { GlobalStyles, theme } from '@/styles';
 
 ReactDOM.render(
   <BrowserRouter>
     <ThemeProvider theme={theme}>
+      <GlobalStyles />
       <App />
     </ThemeProvider>
   </BrowserRouter>,
