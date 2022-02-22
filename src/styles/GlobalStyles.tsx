@@ -16,7 +16,6 @@ export const GlobalStyles = () => {
 
         body {
           margin: 0;
-          font-family: 'Noto Sans KR';
           font-size: 160%;
           letter-spacing: 0.05em;
           line-height: 1.8;
@@ -32,6 +31,14 @@ export const GlobalStyles = () => {
           &:after {
             box-sizing: border-box;
           }
+        }
+
+        body,
+        button,
+        input,
+        textarea,
+        select {
+          font-family: 'Noto Sans KR';
         }
 
         a {
