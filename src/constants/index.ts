@@ -17,3 +17,8 @@ export const URLS = {
     },
   },
 };
+
+export const APP = {
+  SITE_NAME: 'VIA',
+  COPYRIGHT: '© 2022 Kyeongho Yang. All rights reserved.',
+};
