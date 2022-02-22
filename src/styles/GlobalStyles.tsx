@@ -22,7 +22,7 @@ export const GlobalStyles = () => {
           line-height: 1.8;
         }
 
-        #__next {
+        #root {
           min-height: 100vh;
         }
 

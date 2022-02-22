@@ -12,7 +12,7 @@ export const breakpoint = {
   [BREAKPOINT_NAME.MOBILE]: 36,
 };
 
-export const maxWidth = breakpoint[breakpoint[BREAKPOINT_NAME.DESKTOP]];
+export const maxWidth = breakpoint[BREAKPOINT_NAME.DESKTOP];
 
 // Desktop First
 export const responsive = {
