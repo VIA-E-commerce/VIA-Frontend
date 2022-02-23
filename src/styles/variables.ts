@@ -32,6 +32,11 @@ export const grid = {
   rowGap: 6.4,
 };
 
+export const fontFamily = {
+  kor: 'Noto Sans KR',
+  eng: 'Playfair Display',
+};
+
 export const fontSize = {
   h1: 4.8,
   h2: 4,

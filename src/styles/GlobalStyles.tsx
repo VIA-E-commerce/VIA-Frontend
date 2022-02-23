@@ -38,7 +38,7 @@ export const GlobalStyles = () => {
         input,
         textarea,
         select {
-          font-family: 'Noto Sans KR';
+          font-family: ${styles.fontFamily.kor};
         }
 
         a {
