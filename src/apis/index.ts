@@ -4,3 +4,5 @@ import { URLS } from '@/constants';
 export const client = axios.create({
   baseURL: URLS.API.PREFIX,
 });
+
+export * from './userApi';

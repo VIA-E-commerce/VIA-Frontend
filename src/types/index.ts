@@ -30,6 +30,12 @@ export interface Validation {
 
 export type AuthType = 'join' | 'login';
 
+export interface JoinForm {
+  email: string;
+  name: string;
+  password: string;
+}
+
 export interface ResponseEntity {
   success: boolean;
   statusCode: number;

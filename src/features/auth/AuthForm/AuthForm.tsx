@@ -1,14 +1,16 @@
-import React, { ReactNode } from 'react';
+import React, { FormEventHandler, ReactNode } from 'react';
+import { AuthType } from '@/types';
 import { Form, AuthTitle } from './AuthForm.styles';
 
 interface Props {
-  title: 'join' | 'login';
+  title: AuthType;
   children: ReactNode;
+  onSubmit: FormEventHandler<HTMLFormElement>;
 }
 
-const AuthForm = ({ title, children }: Props) => {
+const AuthForm = ({ title, children, onSubmit }: Props) => {
   return (
-    <Form>
+    <Form onSubmit={onSubmit}>
       <AuthTitle>
         <span>{title}</span>
       </AuthTitle>

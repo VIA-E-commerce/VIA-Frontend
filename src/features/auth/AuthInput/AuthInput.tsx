@@ -1,21 +1,23 @@
-import React from 'react';
-import { Field } from '@/types';
-import { StyledInput } from './AuthInput.styles';
+import React, { forwardRef, InputHTMLAttributes, Ref } from 'react';
+import { FormErrors } from '@/hooks';
+import { StyledInput, ErrorMessage } from './AuthInput.styles';
 
-interface Props {
-  field: Field;
+interface Props extends InputHTMLAttributes<HTMLInputElement> {
+  errors: FormErrors;
 }
 
-const AuthInput = ({ field }: Props) => {
+const AuthInput = (
+  { errors, name, ...rest }: Props,
+  ref: Ref<HTMLInputElement>,
+) => {
+  const errorMessage = name && errors[name];
+
   return (
     <div>
-      <StyledInput
-        name={field.name}
-        type={field.type}
-        placeholder={field.placeholder}
-      />
+      <StyledInput ref={ref} name={name} {...rest} error={!!errorMessage} />
+      <ErrorMessage>{errorMessage}</ErrorMessage>
     </div>
   );
 };
 
-export default AuthInput;
+export default forwardRef(AuthInput);

@@ -1,5 +1,4 @@
-import React from 'react';
-import { CheckBox } from '@/types';
+import React, { forwardRef, Ref } from 'react';
 import {
   Wrapper,
   CheckBox as StyledCheckBox,
@@ -7,16 +6,19 @@ import {
 } from './AuthCheckBox.styles';
 
 interface Props {
-  checkBox: CheckBox;
+  label: string;
 }
 
-const AuthCheckBox = ({ checkBox }: Props) => {
+const AuthCheckBox = (
+  { label, ...rest }: Props,
+  ref: Ref<HTMLInputElement>,
+) => {
   return (
     <Wrapper>
-      <StyledCheckBox type="checkbox" name={checkBox.name} />
-      <Label>{checkBox.label}</Label>
+      <StyledCheckBox ref={ref} type="checkbox" {...rest} />
+      <Label>{label}</Label>
     </Wrapper>
   );
 };
 
-export default AuthCheckBox;
+export default forwardRef(AuthCheckBox);
