@@ -13,7 +13,7 @@ export const useJoin = () => {
       alert('회원이 되신 것을 축하드립니다!');
       navigate(URLS.CLIENT.HOME);
     },
-    onError: (data: AxiosError<ResponseEntity>) => {
+    onError: (data: AxiosError<ResponseEntity<any>>) => {
       const errorMessage =
         data.response?.data.data || '회원가입 중 오류가 발생했습니다.';
       alert(errorMessage);

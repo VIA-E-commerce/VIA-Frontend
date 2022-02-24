@@ -1,5 +1,7 @@
 import { HTMLInputTypeAttribute } from 'react';
 
+export * from './api.types';
+
 export interface Provider {
   name: string;
   color: string;
@@ -29,15 +31,3 @@ export interface Validation {
 }
 
 export type AuthType = 'join' | 'login';
-
-export interface JoinForm {
-  email: string;
-  name: string;
-  password: string;
-}
-
-export interface ResponseEntity {
-  success: boolean;
-  statusCode: number;
-  data: any;
-}

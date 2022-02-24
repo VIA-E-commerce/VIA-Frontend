@@ -1,6 +1,7 @@
 import { client } from '@/apis';
 import { URLS } from '@/constants';
-import { JoinForm } from '@/types';
 
-export const join = async (joinForm: JoinForm) =>
-  client.post(URLS.API.AUTH.JOIN, joinForm);
+export const fetchMe = async () => {
+  const response = await client.get(URLS.API.USER.ME);
+  return response.data;
+};

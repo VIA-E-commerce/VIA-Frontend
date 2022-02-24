@@ -5,8 +5,12 @@ export const URLS = {
     PREFIX: process.env.REACT_APP_API_PREFIX || '/',
     AUTH: {
       JOIN: '/auth/join',
+      LOGIN: '/auth/login',
       KAKAO: '/auth/kakao',
       NAVER: '/auth/naver',
+    },
+    USER: {
+      ME: '/users/me',
     },
   },
   CLIENT: {
@@ -27,4 +31,10 @@ export const URLS = {
 export const APP = {
   SITE_NAME: 'VIA',
   COPYRIGHT: '© 2022 Kyeongho Yang. All rights reserved.',
+};
+
+export const QUERY = {
+  AUTH: {
+    ME: 'me',
+  },
 };
