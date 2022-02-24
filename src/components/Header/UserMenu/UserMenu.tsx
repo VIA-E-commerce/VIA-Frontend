@@ -1,12 +1,17 @@
 import React, { memo } from 'react';
-import { MdSearch, MdShoppingCart } from 'react-icons/md';
+import { MdPersonOutline, MdSearch, MdShoppingCart } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
 import { URLS } from '@/constants';
+import { UserSummary } from '@/types';
 
 import { Menu, MenuItem } from './UserMenu.styles';
 
-const UserMenu = () => {
+interface Props {
+  user?: UserSummary;
+}
+
+const UserMenu = ({ user }: Props) => {
   return (
     <Menu>
       <MenuItem>
@@ -15,12 +20,21 @@ const UserMenu = () => {
       <MenuItem>
         <MdShoppingCart />
       </MenuItem>
-      <MenuItem>
-        <Link to={URLS.CLIENT.LOGIN}>로그인</Link>
-      </MenuItem>
-      <MenuItem>
-        <Link to={URLS.CLIENT.JOIN}>회원가입</Link>
-      </MenuItem>
+
+      {user ? (
+        <MenuItem>
+          <MdPersonOutline />
+        </MenuItem>
+      ) : (
+        <>
+          <MenuItem>
+            <Link to={URLS.CLIENT.LOGIN}>로그인</Link>
+          </MenuItem>
+          <MenuItem>
+            <Link to={URLS.CLIENT.JOIN}>회원가입</Link>
+          </MenuItem>
+        </>
+      )}
     </Menu>
   );
 };

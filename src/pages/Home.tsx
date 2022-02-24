@@ -1,12 +1,8 @@
 import React from 'react';
-import { GridSection, Layout } from '@/components';
+import { GridSection } from '@/components';
 
 const Home = () => {
-  return (
-    <Layout>
-      <GridSection>홈</GridSection>
-    </Layout>
-  );
+  return <GridSection>홈</GridSection>;
 };
 
 export default Home;

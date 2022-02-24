@@ -5,8 +5,13 @@ import { NavBar } from './NavBar';
 import { UserMenu } from './UserMenu';
 
 import { HeaderInner, Logo } from './Header.styles';
+import { UserSummary } from '@/types';
 
-const Header = () => {
+interface Props {
+  user?: UserSummary;
+}
+
+const Header = ({ user }: Props) => {
   return (
     <header>
       <HeaderInner>
@@ -16,7 +21,7 @@ const Header = () => {
           </Link>
         </Logo>
         <NavBar />
-        <UserMenu />
+        <UserMenu user={user} />
       </HeaderInner>
     </header>
   );
