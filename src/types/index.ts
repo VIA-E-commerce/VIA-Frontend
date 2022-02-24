@@ -11,12 +11,21 @@ export interface Provider {
 export interface Field {
   name: string;
   type: HTMLInputTypeAttribute;
-  placeholder: string;
+  placeholder?: string;
+  validation?: Validation;
 }
 
-export interface CheckBox {
-  name: string;
-  label: string;
+export type ValidationRuleWithMessage<T> = {
+  value: T;
+  message: string;
+};
+export type ValidationRule<T> = T | ValidationRuleWithMessage<T>;
+export interface Validation {
+  required?: string | ValidationRule<boolean>;
+  minLength?: ValidationRule<number>;
+  maxLength?: ValidationRule<number>;
+  pattern?: ValidationRule<RegExp>;
+  match?: ValidationRule<string>;
 }
 
 export type AuthType = 'join' | 'login';
