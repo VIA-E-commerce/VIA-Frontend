@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router';
 
 import { Home, Join, Login } from '@/pages';
 import { URLS } from '@/constants';
+import { OAuthRedirect } from './OAuthRedirect';
 
 export const RootRouter = () => {
   return (
@@ -10,6 +11,7 @@ export const RootRouter = () => {
       <Route path={URLS.CLIENT.HOME} element={<Home />} />
       <Route path={URLS.CLIENT.JOIN} element={<Join />} />
       <Route path={URLS.CLIENT.LOGIN} element={<Login />} />
+      <Route path={URLS.CLIENT.OAUTH} element={<OAuthRedirect />} />
     </Routes>
   );
 };

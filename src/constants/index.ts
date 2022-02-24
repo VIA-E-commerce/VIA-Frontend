@@ -17,6 +17,7 @@ export const URLS = {
     HOME: '/',
     LOGIN: '/login',
     JOIN: '/join',
+    OAUTH: '/oauth',
     PRODUCT: {
       NEW: getProductUrl('new'),
       SALE: getProductUrl('sale'),
