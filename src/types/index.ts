@@ -29,3 +29,9 @@ export interface Validation {
 }
 
 export type AuthType = 'join' | 'login';
+
+export interface ResponseEntity {
+  success: boolean;
+  statusCode: number;
+  data: any;
+}
