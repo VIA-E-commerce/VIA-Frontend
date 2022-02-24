@@ -100,7 +100,7 @@ const config: Configuration = {
     filename: '[name].js',
   },
   devServer: {
-    historyApiFallback: false,
+    historyApiFallback: true,
     port: PORT,
     static: { directory: path.resolve(__dirname, PUBLIC_DIR) },
     open: true,
