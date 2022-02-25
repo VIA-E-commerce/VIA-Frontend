@@ -11,6 +11,7 @@ export const useMe = () => {
     {
       retry: false,
       refetchOnWindowFocus: false,
+      cacheTime: 0,
     },
   );
 
