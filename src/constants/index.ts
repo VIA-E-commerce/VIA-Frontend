@@ -6,6 +6,7 @@ export const URLS = {
     AUTH: {
       JOIN: '/auth/join',
       LOGIN: '/auth/login',
+      LOGOUT: '/auth/logout',
       KAKAO: '/auth/kakao',
       NAVER: '/auth/naver',
       REFRESH: '/auth/refresh',

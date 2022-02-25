@@ -9,9 +9,10 @@ import { UserSummary } from '@/types';
 
 interface Props {
   user?: UserSummary;
+  onClickLogout: () => void;
 }
 
-const Header = ({ user }: Props) => {
+const Header = ({ user, onClickLogout }: Props) => {
   return (
     <header>
       <HeaderInner>
@@ -21,7 +22,7 @@ const Header = ({ user }: Props) => {
           </Link>
         </Logo>
         <NavBar />
-        <UserMenu user={user} />
+        <UserMenu user={user} onClickLogout={onClickLogout} />
       </HeaderInner>
     </header>
   );

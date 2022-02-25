@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { MdPersonOutline, MdSearch, MdShoppingCart } from 'react-icons/md';
+import { MdPerson, MdSearch, MdShoppingCart } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
 import { URLS } from '@/constants';
@@ -9,32 +9,37 @@ import { Menu, MenuItem } from './UserMenu.styles';
 
 interface Props {
   user?: UserSummary;
+  onClickLogout: () => void;
 }
 
-const UserMenu = ({ user }: Props) => {
+const UserMenu = ({ user, onClickLogout }: Props) => {
   return (
     <Menu>
       <MenuItem>
         <MdSearch />
       </MenuItem>
-      <MenuItem>
-        <MdShoppingCart />
-      </MenuItem>
 
       {user ? (
-        <MenuItem>
-          <MdPersonOutline />
-        </MenuItem>
+        <>
+          <MenuItem onClick={onClickLogout}>LOGOUT</MenuItem>
+          <MenuItem>
+            <MdPerson />
+          </MenuItem>
+        </>
       ) : (
         <>
           <MenuItem>
-            <Link to={URLS.CLIENT.LOGIN}>로그인</Link>
+            <Link to={URLS.CLIENT.LOGIN}>LOGIN</Link>
           </MenuItem>
           <MenuItem>
-            <Link to={URLS.CLIENT.JOIN}>회원가입</Link>
+            <Link to={URLS.CLIENT.JOIN}>JOIN</Link>
           </MenuItem>
         </>
       )}
+
+      <MenuItem>
+        <MdShoppingCart />
+      </MenuItem>
     </Menu>
   );
 };

@@ -8,13 +8,14 @@ import { Wrapper, Main } from './Layout.styles';
 
 interface Props {
   user?: UserSummary;
+  onClickLogout: () => void;
   children: ReactNode;
 }
 
-const Layout = ({ user, children }: Props) => {
+const Layout = ({ user, onClickLogout, children }: Props) => {
   return (
     <Wrapper>
-      <Header user={user} />
+      <Header user={user} onClickLogout={onClickLogout} />
       <Main>{children}</Main>
       <Footer />
     </Wrapper>

@@ -19,6 +19,12 @@ export const MenuItem = styled.li`
   flex-shrink: 0;
   cursor: pointer;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-transform: uppercase;
+
   svg {
     font-size: 2.4rem;
   }
