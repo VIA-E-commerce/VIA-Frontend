@@ -4,23 +4,30 @@ import { Link } from 'react-router-dom';
 import { NavBar } from './NavBar';
 import { UserMenu } from './UserMenu';
 
-import { HeaderInner, Logo } from './Header.styles';
+import { HeaderInner, Logo as LogoWrapper } from './Header.styles';
 import { UserSummary } from '@/types';
+import { URLS } from '@/constants';
 
 interface Props {
   user?: UserSummary;
   onClickLogout: () => void;
 }
 
+const Logo = memo(function Logo() {
+  return (
+    <LogoWrapper>
+      <img src="/images/logo.png" />
+    </LogoWrapper>
+  );
+});
+
 const Header = ({ user, onClickLogout }: Props) => {
   return (
     <header>
       <HeaderInner>
-        <Logo>
-          <Link to="/">
-            <img src="/images/logo.png" />
-          </Link>
-        </Logo>
+        <Link to={URLS.CLIENT.HOME}>
+          <Logo />
+        </Link>
         <NavBar />
         <UserMenu user={user} onClickLogout={onClickLogout} />
       </HeaderInner>

@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 import { styles } from '@/styles';
 
 export const Nav = styled.nav`
@@ -17,12 +18,29 @@ export const Menu = styled.ul`
   list-style: none;
 `;
 
-export const MenuItem = styled.li`
+export interface MenuItemStyleProps {
+  active: boolean;
+}
+
+const activeStyle = css`
+  font-weight: ${styles.fontWeight.black};
+`;
+
+export const MenuItem = styled.li<MenuItemStyleProps>`
   width: 9.6rem;
+  height: 100%;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
   cursor: pointer;
+
+  ${({ active }) => active && activeStyle}
+
+  &:hover {
+    ${activeStyle}
+  }
+
+  transition: font-weight 0.1s ease-out;
 `;

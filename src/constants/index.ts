@@ -1,4 +1,4 @@
-const getProductUrl = (category: string) => `/product?category=${category}`;
+import { Dictionary } from '@/types';
 
 export const URLS = {
   API: {
@@ -20,14 +20,10 @@ export const URLS = {
     LOGIN: '/login',
     JOIN: '/join',
     OAUTH: '/oauth',
-    PRODUCT: {
-      NEW: getProductUrl('new'),
-      SALE: getProductUrl('sale'),
-      OUTER: getProductUrl('outer'),
-      TOP: getProductUrl('top'),
-      BOTTOM: getProductUrl('bottom'),
-      BAG_ACC: getProductUrl('bag-acc'),
-    },
+    PRODUCT: '/product',
+  },
+  PARAM: {
+    CATEGORY: 'category',
   },
 };
 
@@ -40,4 +36,13 @@ export const QUERY = {
   AUTH: {
     ME: 'me',
   },
+};
+
+export const CATEGORY: Dictionary<string> = {
+  new: 'NEW',
+  sale: 'SALE',
+  outer: 'OUTER',
+  top: 'TOP',
+  bottom: 'BOTTOM',
+  ['bag-acc']: 'BAG/ACC',
 };

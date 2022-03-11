@@ -53,6 +53,7 @@ export const fontWeight = {
   light: 300,
   regular: 400,
   bold: 700,
+  black: 900,
 };
 export const lineHeight = {
   normal: 1.8,

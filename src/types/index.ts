@@ -2,6 +2,10 @@ import { HTMLInputTypeAttribute } from 'react';
 
 export * from './api.types';
 
+export interface Dictionary<T> {
+  [x: string]: T;
+}
+
 export interface Provider {
   name: string;
   color: string;
