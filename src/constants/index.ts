@@ -24,6 +24,7 @@ export const URLS = {
   },
   PARAM: {
     CATEGORY: 'category',
+    SORT: 'sort',
   },
 };
 
