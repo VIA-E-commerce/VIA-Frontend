@@ -11,7 +11,7 @@ export const grid = (
   margin: 0 auto;
 
   display: grid;
-  grid-template-columns: repeat(${cols}, 1fr);
+  grid-template-columns: repeat(${cols}, minmax(0, 1fr));
   row-gap: ${rowGap}rem;
   column-gap: ${colGap}rem;
 `;
