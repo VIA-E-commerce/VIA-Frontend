@@ -35,3 +35,30 @@ export interface UserSummary {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface CategoryResponse {
+  id: number;
+  name: string;
+  code: string;
+}
+
+export interface ProductCardResponse {
+  id: number;
+
+  name: string;
+  thumbnail: string;
+  retailPrice?: number;
+  sellingPrice: number;
+
+  salesVolume: number;
+  reviewCount: number;
+  wishCount: number;
+
+  display: boolean;
+  onSale: boolean;
+
+  createdAt: Date;
+  updatedAt: Date;
+
+  category?: CategoryResponse;
+}
