@@ -98,6 +98,7 @@ const config: Configuration = {
   output: {
     path: path.join(__dirname, OUTPUT_DIR),
     filename: '[name].js',
+    publicPath: '/',
   },
   devServer: {
     historyApiFallback: true,
