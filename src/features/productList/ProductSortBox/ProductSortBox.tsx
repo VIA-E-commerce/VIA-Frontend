@@ -1,37 +1,33 @@
 import { URLS } from '@/constants';
 import React, { memo, useEffect, useState } from 'react';
-import { useLocation } from 'react-router';
 import { Link, useSearchParams } from 'react-router-dom';
 
 import { Wrapper, SortMenu, SortMenuItem } from './ProductSortBox.styles';
 
-const sortMethods = [
+interface SortMethod {
+  label: string;
+  sort?: string;
+}
+
+const sortMethods: SortMethod[] = [
   {
     label: '신상품',
   },
   {
     label: '판매량순',
-    query: {
-      sort: 'best-selling',
-    },
+    sort: 'best-selling',
   },
   {
     label: '낮은 가격순',
-    query: {
-      sort: 'price-asc',
-    },
+    sort: 'price-asc',
   },
   {
     label: '높은 가격순',
-    query: {
-      sort: 'price-desc',
-    },
+    sort: 'price-desc',
   },
   {
     label: '리뷰 많은 순',
-    query: {
-      sort: 'review-desc',
-    },
+    sort: 'review-desc',
   },
 ];
 
@@ -69,8 +65,6 @@ const SortButton = memo(function SortButton({
 
 const ProductSortBox = () => {
   const [searchParams] = useSearchParams();
-  const location = useLocation();
-  console.log(location.pathname, location.search);
   const currentSort = searchParams.get(URLS.PARAM.SORT) || undefined;
 
   return (
@@ -80,8 +74,8 @@ const ProductSortBox = () => {
           <SortButton
             key={method.label}
             label={method.label}
-            sortMethod={method.query?.sort}
-            active={currentSort === method.query?.sort}
+            sortMethod={method.sort}
+            active={currentSort === method.sort}
             defaultSearchParams={searchParams}
           />
         ))}
@@ -90,4 +84,4 @@ const ProductSortBox = () => {
   );
 };
 
-export default memo(ProductSortBox);
+export default ProductSortBox;
