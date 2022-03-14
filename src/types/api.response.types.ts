@@ -18,17 +18,6 @@ export interface Pagination<T> {
   list: T[];
 }
 
-export interface JoinForm {
-  email: string;
-  name: string;
-  password: string;
-}
-
-export interface LoginForm {
-  email: string;
-  password: string;
-}
-
 export interface LoginResponse {
   accessToken: string;
 }
