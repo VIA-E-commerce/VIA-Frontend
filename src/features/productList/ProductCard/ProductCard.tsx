@@ -27,9 +27,7 @@ const ProductCard = ({ card }: ProductCardProps) => {
       <CardBody>
         <CardTitle>{card.name}</CardTitle>
         <CardPrice>
-          <SellingPrice>
-            <span>{formatPrice(card.sellingPrice)}</span>원
-          </SellingPrice>
+          <SellingPrice>{formatPrice(card.sellingPrice)}원</SellingPrice>
           {card.retailPrice && (
             <OriginalPrice>{formatPrice(card.retailPrice)}</OriginalPrice>
           )}
