@@ -41,6 +41,9 @@ export const QUERY = {
   AUTH: {
     ME: 'me',
   },
+  PRODUCT: {
+    LIST: 'product-list',
+  },
 };
 
 export const CATEGORY: Dictionary<string> = {
