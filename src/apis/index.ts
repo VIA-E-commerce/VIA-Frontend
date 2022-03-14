@@ -55,4 +55,5 @@ const setBearerPrefix = (accessToken: string) => {
 };
 
 export * from './authApi';
+export * from './productApi';
 export * from './userApi';

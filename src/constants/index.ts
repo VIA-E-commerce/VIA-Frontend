@@ -11,6 +11,9 @@ export const URLS = {
       NAVER: '/auth/naver',
       REFRESH: '/auth/refresh',
     },
+    PRODUCT: {
+      LIST: '/products',
+    },
     USER: {
       ME: '/users/me',
     },

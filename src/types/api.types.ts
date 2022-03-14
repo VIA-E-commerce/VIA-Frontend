@@ -10,6 +10,14 @@ export interface ErrorResponse {
   message: string | string[];
 }
 
+export interface Pagination<T> {
+  totalElements: number;
+  totalPages: number;
+  isFirst: boolean;
+  isLast: boolean;
+  list: T[];
+}
+
 export interface JoinForm {
   email: string;
   name: string;
