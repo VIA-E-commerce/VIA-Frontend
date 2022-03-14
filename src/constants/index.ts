@@ -23,11 +23,12 @@ export const URLS = {
     LOGIN: '/login',
     JOIN: '/join',
     OAUTH: '/oauth',
-    PRODUCT: '/product',
+    CATEGORY: '/category',
   },
   PARAM: {
     CATEGORY: 'category',
     SORT: 'sort',
+    PAGE: 'page',
   },
 };
 
