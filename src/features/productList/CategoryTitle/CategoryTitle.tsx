@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { CategoryTitleWrapper } from './CategoryTitle.styles';
 
 interface Props {
-  title: string;
+  title?: string;
 }
 
 const CategoryTitle = ({ title }: Props) => {
