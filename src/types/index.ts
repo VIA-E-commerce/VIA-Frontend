@@ -1,6 +1,7 @@
 import { HTMLInputTypeAttribute } from 'react';
 
 export * from './api.types';
+export * from './client.types';
 
 export interface Dictionary<T> {
   [x: string]: T;
