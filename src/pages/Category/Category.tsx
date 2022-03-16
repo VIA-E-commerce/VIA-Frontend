@@ -10,6 +10,7 @@ import {
   ProductCard,
   useProductList,
 } from '@/features/productList';
+import { Link } from 'react-router-dom';
 
 const PRODUCT_GRID_COLUMNS = 4;
 const PAGE_SIZE = PRODUCT_GRID_COLUMNS * 4;
@@ -59,7 +60,9 @@ const Category = () => {
       </GridSection>
       <GridSection cols={PRODUCT_GRID_COLUMNS}>
         {productList.map((card) => (
-          <ProductCard key={card.id} card={card} />
+          <Link key={card.id} to={`${URLS.CLIENT.PRODUCT}/${card.id}`}>
+            <ProductCard card={card} />
+          </Link>
         ))}
       </GridSection>
       <GridSection cols={1}>

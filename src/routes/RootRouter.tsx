@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router';
 
-import { Home, Join, Login, Category } from '@/pages';
+import { Home, Join, Login, Category, ProductDetail } from '@/pages';
 import { URLS } from '@/constants';
 import { OAuthRedirect } from './OAuthRedirect';
 
@@ -13,6 +13,10 @@ export const RootRouter = () => {
       <Route path={URLS.CLIENT.LOGIN} element={<Login />} />
       <Route path={URLS.CLIENT.OAUTH} element={<OAuthRedirect />} />
       <Route path={URLS.CLIENT.CATEGORY} element={<Category />} />
+      <Route
+        path={`${URLS.CLIENT.PRODUCT}/:productId`}
+        element={<ProductDetail />}
+      />
     </Routes>
   );
 };

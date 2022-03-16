@@ -22,6 +22,7 @@ export const URLS = {
     JOIN: '/join',
     OAUTH: '/oauth',
     CATEGORY: '/category',
+    PRODUCT: '/product',
   },
   PARAM: {
     CATEGORY: 'category',
