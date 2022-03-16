@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, Link } from 'react-router-dom';
 import { BsCaretLeftFill, BsCaretRightFill } from 'react-icons/bs';
 
 import { URLS } from '@/constants';
@@ -26,15 +26,19 @@ const Pagination = ({
 
   searchParams.set(URLS.PARAM.PAGE, (start - 1).toString());
   const prevButton = (
-    <PageButton to={{ search: searchParams.toString() }} disabled={!hasPrev}>
-      <BsCaretLeftFill />
+    <PageButton disabled={!hasPrev}>
+      <Link to={{ search: searchParams.toString() }}>
+        <BsCaretLeftFill />
+      </Link>
     </PageButton>
   );
 
   searchParams.set(URLS.PARAM.PAGE, (end + 1).toString());
   const nextButton = (
-    <PageButton to={{ search: searchParams.toString() }} disabled={!hasNext}>
-      <BsCaretRightFill />
+    <PageButton disabled={!hasNext}>
+      <Link to={{ search: searchParams.toString() }}>
+        <BsCaretRightFill />
+      </Link>
     </PageButton>
   );
 
@@ -45,23 +49,17 @@ const Pagination = ({
     searchParams.set(URLS.PARAM.PAGE, page.toString());
 
     pageButtons.push(
-      <li>
-        <PageButton
-          key={page}
-          to={{ search: searchParams.toString() }}
-          active={active}
-        >
-          {page}
-        </PageButton>
-      </li>,
+      <PageButton key={page} active={active}>
+        <Link to={{ search: searchParams.toString() }}>{page}</Link>
+      </PageButton>,
     );
   }
 
   return (
     <PaginationMenu>
-      <li>{prevButton}</li>
+      {prevButton}
       {pageButtons}
-      <li>{nextButton}</li>
+      {nextButton}
     </PaginationMenu>
   );
 };

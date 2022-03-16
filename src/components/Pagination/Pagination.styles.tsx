@@ -1,7 +1,6 @@
 import { styles, Theme } from '@/styles';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { Link } from 'react-router-dom';
 
 export const PaginationMenu = styled.ul`
   margin: ${styles.space.level8}rem 0;
@@ -21,7 +20,7 @@ interface PageButtonStyleProps {
 
 const getPageButtonActiveStyle = (theme: Theme) => css`
   background: ${theme.color.font};
-  color: ${theme.color.reverseFont};
+  color: ${theme.color.fontReverse};
   border-color: ${theme.color.font};
 `;
 
@@ -30,16 +29,13 @@ const getPageButtonDisabledStyle = (theme: Theme) => css`
   pointer-events: none;
 `;
 
-export const PageButton = styled(Link)<PageButtonStyleProps>`
+export const PageButton = styled.li<PageButtonStyleProps>`
   width: 4rem;
   height: 4rem;
 
   border: ${styles.border.level1}rem solid ${({ theme }) => theme.color.gray};
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
+  transition: all 0.3s ease;
   ${({ active, theme }) => active && getPageButtonActiveStyle(theme)}
   ${({ disabled, theme }) => disabled && getPageButtonDisabledStyle(theme)}
 
@@ -47,5 +43,13 @@ export const PageButton = styled(Link)<PageButtonStyleProps>`
     ${({ theme }) => getPageButtonActiveStyle(theme)}
   }
 
-  transition: all 0.3s ease;
+  a {
+    width: 100%;
+    height: 100%;
+    color: inherit;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;

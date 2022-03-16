@@ -3,28 +3,28 @@ import styled from '@emotion/styled';
 
 import { styles, Theme } from '@/styles';
 
-import {
-  SquareButtonStyleProps,
-  ButtonVariant,
-  ButtonGrid,
-} from './SquareButton';
+type ButtonVariant = 'primary' | 'outline';
+export type ButtonSize = 'small' | 'normal';
+type ButtonGrid = {
+  colNum: number;
+  span: number;
+};
 
-export const StyledButton = styled.button<SquareButtonStyleProps>`
-  ${({ theme, variant, disabled }) => setButtonStyle(theme, variant, disabled)}
-
-  ${({ grid }) => grid && setButtonGrid(grid)}
-
-  ${({ size }) => setButtonSize(size)}
-  ${({ wide }) => wide && 'width: 100%'};
-
-  cursor: pointer;
-`;
+export interface SquareStyleProps {
+  wide?: boolean;
+  variant: ButtonVariant;
+  disabled?: boolean;
+  active?: boolean;
+  grid?: ButtonGrid;
+  size: ButtonSize;
+}
 
 interface ButtonStyle {
   [x: string]: {
     background: string;
     fontColor: string;
     borderColor: string;
+    activeColor?: string;
   };
 }
 
@@ -36,13 +36,15 @@ const setButtonStyle = (
   const buttonStyle: ButtonStyle = {
     primary: {
       background: theme.color.font,
-      fontColor: theme.color.reverseFont,
+      fontColor: theme.color.fontReverse,
       borderColor: theme.color.font,
+      activeColor: theme.color.buttonActive,
     },
     outline: {
-      background: theme.color.reverseFont,
+      background: theme.color.fontReverse,
       fontColor: theme.color.font,
-      borderColor: theme.color.darkGray,
+      borderColor: theme.color.lightGray,
+      activeColor: theme.color.buttonActiveReverse,
     },
     disabled: {
       background: theme.color.gray,
@@ -64,9 +66,14 @@ const setButtonStyle = (
   return css`
     background: ${currentStyle.background};
     color: ${currentStyle.fontColor};
-    border: ${styles.border.level1}rem solid ${currentStyle.borderColor};
+    border: ${styles.border.level2}rem solid ${currentStyle.borderColor};
 
     ${hover}
+
+    &:active {
+      background: ${currentStyle.activeColor};
+      border-color: ${currentStyle.borderColor};
+    }
   `;
 };
 
@@ -75,8 +82,6 @@ function setButtonGrid(grid: ButtonGrid) {
     grid-column: ${grid.colNum} / span ${grid.span};
   `;
 }
-
-type ButtonSize = 'small' | 'normal';
 
 function setButtonSize(size: ButtonSize) {
   const buttonSize = {
@@ -97,3 +102,30 @@ function setButtonSize(size: ButtonSize) {
     font-size: ${currentSize.fontSize}rem;
   `;
 }
+
+export const setButtonActiveStyle = (theme: Theme, variant: ButtonVariant) => {
+  if (variant === 'primary') {
+    return setButtonStyle(theme, 'outline');
+  }
+  return setButtonStyle(theme, 'primary');
+};
+export const StyledButton = styled.button<SquareStyleProps>`
+  ${({ theme, variant, disabled, active }) =>
+    active
+      ? setButtonActiveStyle(theme, variant)
+      : setButtonStyle(theme, variant, disabled)}
+
+  ${({ grid }) => grid && setButtonGrid(grid)}
+
+  ${({ size }) => setButtonSize(size)}
+  ${({ wide }) => wide && 'width: 100%'};
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  cursor: pointer;
+
+  ${styles.transition.button}
+`;

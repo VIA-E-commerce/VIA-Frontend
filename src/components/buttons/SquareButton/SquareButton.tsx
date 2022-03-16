@@ -1,30 +1,17 @@
 import React, { ButtonHTMLAttributes, memo, ReactNode } from 'react';
-import { StyledButton } from './SquareButton.styles';
 
-export type ButtonVariant = 'primary' | 'outline';
-export type ButtonGrid = {
-  colNum: number;
-  span: number;
-};
-export type ButtonSize = 'small' | 'normal';
-
-export interface SquareButtonStyleProps {
-  wide?: boolean;
-  variant: ButtonVariant;
-  disabled?: boolean;
-  grid?: ButtonGrid;
-  size: ButtonSize;
-}
+import { StyledButton, SquareStyleProps } from './SquareButton.styles';
 
 interface Props
   extends ButtonHTMLAttributes<HTMLButtonElement>,
-    SquareButtonStyleProps {
+    SquareStyleProps {
   children: ReactNode;
 }
 
 const SquareButton = ({
   variant,
   disabled,
+  active,
   size,
   children,
   ...rest
@@ -35,6 +22,7 @@ const SquareButton = ({
       variant={buttonVariant}
       size={size}
       disabled={disabled}
+      active={active}
       {...rest}
     >
       {children}

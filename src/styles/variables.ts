@@ -1,4 +1,5 @@
-const remToPx = 10;
+export const remToPx = 10;
+export const pxToRem = 1 / remToPx;
 
 export const BREAKPOINT_NAME = {
   DESKTOP: 'desktop',
@@ -63,6 +64,7 @@ export const letterSpacing = 0.05;
 
 export const border = {
   level1: 0.1,
+  level2: 0.2,
 };
 export const shadow = {};
 export const space = {
@@ -75,4 +77,8 @@ export const space = {
   level7: 3.2,
   level8: 3.6,
   level9: 4,
+};
+
+export const transition = {
+  button: 'transition: all 0.15s ease-out;',
 };
