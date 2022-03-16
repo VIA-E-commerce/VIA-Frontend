@@ -41,9 +41,9 @@ export interface CategoryResponse {
 
 export interface ProductCardResponse {
   id: number;
-
   name: string;
   thumbnail: string;
+
   retailPrice?: number;
   sellingPrice: number;
 
@@ -58,4 +58,35 @@ export interface ProductCardResponse {
   updatedAt: Date;
 
   category?: CategoryResponse;
+}
+
+export interface ColorResponse {
+  id: number;
+  label: string;
+  hexCode: string;
+}
+
+export interface SizeValueResponse {
+  id: number;
+  label: string;
+  order: number;
+}
+
+export interface ProductDetailResponse {
+  id: number;
+  name: string;
+  images: string[];
+
+  retailPrice: number;
+  sellingPrice: number;
+
+  salesVolume: number;
+  reviewCount: number;
+  wishCount: number;
+
+  display: boolean;
+  onSale: boolean;
+
+  colors: ColorResponse[];
+  sizes: SizeValueResponse[];
 }

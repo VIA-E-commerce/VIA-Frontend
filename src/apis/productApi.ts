@@ -1,6 +1,11 @@
 import { client } from '@/apis';
 import { URLS } from '@/constants';
-import { ProductCardResponse, ResponseEntity, Pagination } from '@/types';
+import {
+  ProductCardResponse,
+  ResponseEntity,
+  Pagination,
+  ProductDetailResponse,
+} from '@/types';
 
 export interface FetchProductsProps {
   pageNum: number;
@@ -17,7 +22,7 @@ export const fetchProducts = async ({
 }: FetchProductsProps): Promise<
   ResponseEntity<Pagination<ProductCardResponse>>
 > => {
-  const response = await client.get(URLS.API.PRODUCT.LIST, {
+  const response = await client.get(URLS.API.PRODUCT, {
     params: {
       pageNum,
       pageSize,
@@ -25,6 +30,16 @@ export const fetchProducts = async ({
       sort,
     },
   });
+
+  return response.data;
+};
+
+export const fetchProduct = async (
+  productId: number,
+): Promise<ResponseEntity<ProductDetailResponse>> => {
+  const response = await client.get<ResponseEntity<ProductDetailResponse>>(
+    `${URLS.API.PRODUCT}/${productId}`,
+  );
 
   return response.data;
 };
