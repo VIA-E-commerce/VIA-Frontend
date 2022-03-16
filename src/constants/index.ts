@@ -41,6 +41,7 @@ export const QUERY = {
   },
   PRODUCT: {
     LIST: 'product-list',
+    DETAIL: 'product-detail',
   },
 };
 
