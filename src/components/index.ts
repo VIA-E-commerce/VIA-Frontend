@@ -1,3 +1,4 @@
+export * from './LabelField';
 export * from './Pagination';
 
 export * from './buttons';
