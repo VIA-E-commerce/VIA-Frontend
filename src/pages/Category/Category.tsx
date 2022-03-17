@@ -39,10 +39,13 @@ const Category = () => {
       const newSearchParams = new URLSearchParams(searchParams);
       newSearchParams.set(URLS.PARAM.PAGE, pagination.totalPages.toString());
 
-      navigate({
-        pathname: location.pathname,
-        search: newSearchParams.toString(),
-      });
+      navigate(
+        {
+          pathname: location.pathname,
+          search: newSearchParams.toString(),
+        },
+        { replace: true },
+      );
     }
   }, [location, pagination, page]);
 
