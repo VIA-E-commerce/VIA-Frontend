@@ -1,11 +1,11 @@
 import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import cx from 'classnames';
 
 import { URLS } from '@/constants';
 import { useDocumentScroll } from '@/hooks';
-import { headerHideState } from '@/state';
+import { headerBorderState, headerHideState } from '@/state';
 import { UserSummary } from '@/types';
 
 import { NavBar } from './NavBar';
@@ -31,8 +31,9 @@ const Logo = memo(function Logo() {
 
 const Header = ({ user, onClickLogout }: Props) => {
   const [hide, setHide] = useRecoilState(headerHideState);
+  const border = useRecoilValue(headerBorderState);
 
-  const className = cx({ hide });
+  const className = cx({ hide, border });
 
   let prevPageY = 0;
   useDocumentScroll(() => {

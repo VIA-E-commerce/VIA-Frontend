@@ -39,3 +39,8 @@ export interface Validation {
 }
 
 export type AuthType = 'join' | 'login';
+
+export interface ProductDetailTabItem {
+  id: string;
+  label: string;
+}
