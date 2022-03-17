@@ -14,6 +14,7 @@ export const theme = {
     font: color.black,
     fontReverse: color.white,
     error: color.red,
+    background: color.white,
 
     buttonActive: color.dark,
     buttonActiveReverse: color.dimGray,

@@ -1,12 +1,12 @@
 import React, { memo } from 'react';
 import { APP } from '@/constants';
-import { FooterInner } from './Footer.styles';
+import { StyledFooter, FooterInner } from './Footer.styles';
 
 const Footer = () => {
   return (
-    <footer>
+    <StyledFooter>
       <FooterInner>{APP.COPYRIGHT}</FooterInner>
-    </footer>
+    </StyledFooter>
   );
 };
 

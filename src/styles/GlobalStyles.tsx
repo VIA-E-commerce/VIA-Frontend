@@ -11,6 +11,7 @@ export const GlobalStyles = () => {
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
 
         html {
+          display: grid;
           font-size: 62.5%;
         }
 

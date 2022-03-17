@@ -82,3 +82,10 @@ export const space = {
 export const transition = {
   button: 'transition: all 0.15s ease-out;',
 };
+
+export const component = {
+  header: {
+    height: 5.6,
+    topTransition: 'transition: top 0.3s ease;',
+  },
+};
