@@ -6,11 +6,13 @@ interface ColorInputProps
   extends LabelStyleProps,
     InputHTMLAttributes<HTMLInputElement> {}
 
-const ColorInput = ({ id, hexCode, ...rest }: ColorInputProps) => {
+const ColorInput = ({ id, hexCode, disabled, ...rest }: ColorInputProps) => {
   return (
     <>
-      <StyledInput {...rest} id={id} type="radio" />
-      <Label htmlFor={id} hexCode={hexCode} />
+      <StyledInput {...rest} id={id} type="radio" disabled={disabled} />
+      <Label htmlFor={id} hexCode={hexCode} disabled={disabled}>
+        <span className="sold-out">품절</span>
+      </Label>
     </>
   );
 };

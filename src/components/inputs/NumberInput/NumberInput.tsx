@@ -20,11 +20,17 @@ const NumberInput = ({
   min,
   max,
   onClickSpinButton,
+  disabled,
   ...rest
 }: NumberInputProps) => {
   return (
     <Wrapper>
-      <PlusMinusButton onClick={() => onClickSpinButton(-1)}>-</PlusMinusButton>
+      <PlusMinusButton
+        disabled={disabled}
+        onClick={() => onClickSpinButton(-1)}
+      >
+        -
+      </PlusMinusButton>
       <StyledInput
         {...rest}
         type="number"
@@ -32,8 +38,11 @@ const NumberInput = ({
         value={value}
         min={min}
         max={max}
+        readOnly={disabled}
       />
-      <PlusMinusButton onClick={() => onClickSpinButton(1)}>+</PlusMinusButton>
+      <PlusMinusButton disabled={disabled} onClick={() => onClickSpinButton(1)}>
+        +
+      </PlusMinusButton>
     </Wrapper>
   );
 };

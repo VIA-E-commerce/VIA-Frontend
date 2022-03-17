@@ -8,6 +8,8 @@ interface NumberValidation {
 
 interface NumberInputHookProps {
   defaultValue?: number;
+  disabled?: boolean;
+  disabledMessage?: string;
   min?: number;
   max?: number;
   handleExcessMin?: ({ input, min }: NumberValidation) => void;
@@ -16,6 +18,8 @@ interface NumberInputHookProps {
 
 export const useNumberInput = ({
   defaultValue = 0,
+  disabled,
+  disabledMessage,
   min = 0,
   max,
   handleExcessMin,
@@ -23,41 +27,57 @@ export const useNumberInput = ({
 }: NumberInputHookProps) => {
   const [value, setValue] = useState(defaultValue);
 
-  const onChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(event.target.value) || 0;
-    setValue(value);
-  }, []);
+  const onChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const value = parseInt(event.target.value) || 0;
 
-  const onBlur = useCallback((event: React.FocusEvent<HTMLInputElement>) => {
-    const value = parseInt(event.target.value) || 0;
+      if (disabled) return;
 
-    if (value < min) {
-      handleExcessMin && handleExcessMin({ input: value, min, max });
-      setValue(min);
-    } else if (max && max < value) {
-      handleExcessMax && handleExcessMax({ input: value, min, max });
-      setValue(max);
-    }
-  }, []);
+      setValue(value);
+    },
+    [disabled, disabledMessage],
+  );
 
-  const onClickSpinButton = useCallback((addend: number) => {
-    setValue((prev) => {
-      const next = prev + addend;
+  const onBlur = useCallback(
+    (event: React.FocusEvent<HTMLInputElement>) => {
+      const value = parseInt(event.target.value) || 0;
 
-      if (next < min) {
+      if (value < min) {
         handleExcessMin && handleExcessMin({ input: value, min, max });
-        return prev;
-      } else if (max && max < next) {
-        handleExcessMax && handleExcessMax({ input: next, min, max });
-        return prev;
+        setValue(min);
+      } else if (max && max < value) {
+        handleExcessMax && handleExcessMax({ input: value, min, max });
+        setValue(max);
       }
+    },
+    [min, max],
+  );
 
-      return next;
-    });
-  }, []);
+  const onClickSpinButton = useCallback(
+    (addend: number) => {
+      if (disabled) return;
+
+      setValue((prev) => {
+        const next = prev + addend;
+
+        if (next < min) {
+          handleExcessMin && handleExcessMin({ input: value, min, max });
+          return min;
+        } else if (max && max < next) {
+          handleExcessMax && handleExcessMax({ input: next, min, max });
+          return max;
+        }
+
+        return next;
+      });
+    },
+    [disabled, disabledMessage, min, max],
+  );
 
   return {
     value,
+    setValue,
+    disabled,
     min,
     max,
     onChange,

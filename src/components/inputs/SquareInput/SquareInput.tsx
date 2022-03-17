@@ -20,7 +20,7 @@ const SquareInput = ({
 }: Props) => {
   return (
     <>
-      <StyledInput id={id} type="radio" {...rest} />
+      <StyledInput id={id} type="radio" disabled={disabled} {...rest} />
       <Label htmlFor={id} variant={variant} size={size} disabled={disabled}>
         {label}
       </Label>

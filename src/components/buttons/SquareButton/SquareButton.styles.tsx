@@ -47,19 +47,26 @@ const setButtonStyle = (
       activeColor: theme.color.buttonActiveReverse,
     },
     disabled: {
-      background: theme.color.gray,
+      background: theme.color.lightGray,
       fontColor: theme.color.white,
-      borderColor: theme.color.gray,
+      borderColor: theme.color.lightGray,
     },
   };
 
   const currentStyle = disabled ? buttonStyle.disabled : buttonStyle[variant];
 
-  const hover =
+  const activeStyle =
     variant === 'outline' &&
     css`
+      cursor: pointer;
+
       &:hover {
         border-color: ${currentStyle.fontColor};
+      }
+
+      &:active {
+        background: ${currentStyle.activeColor};
+        border-color: ${currentStyle.borderColor};
       }
     `;
 
@@ -68,12 +75,7 @@ const setButtonStyle = (
     color: ${currentStyle.fontColor};
     border: ${styles.border.level2}rem solid ${currentStyle.borderColor};
 
-    ${hover}
-
-    &:active {
-      background: ${currentStyle.activeColor};
-      border-color: ${currentStyle.borderColor};
-    }
+    ${!disabled && activeStyle}
   `;
 };
 
@@ -124,8 +126,6 @@ export const StyledButton = styled.button<SquareStyleProps>`
   justify-content: center;
   align-items: center;
   text-align: center;
-
-  cursor: pointer;
 
   ${styles.transition.button}
 `;

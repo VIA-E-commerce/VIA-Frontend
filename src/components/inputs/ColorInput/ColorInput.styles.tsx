@@ -6,6 +6,7 @@ import { hexToRGB } from '@/utils';
 
 export interface LabelStyleProps {
   hexCode: string;
+  disabled?: boolean;
 }
 
 const getLabelActiveStyle = (theme: Theme) => css`
@@ -30,6 +31,15 @@ export const Label = styled.label<LabelStyleProps>`
 
   &:hover {
     ${({ theme }) => getLabelActiveStyle(theme)}
+  }
+  .sold-out {
+    opacity: ${({ disabled }) => (disabled ? 1 : 0)};
+    background: ${({ theme }) => hexToRGB(theme.color.darkGray, 0.5)};
+    color: ${({ theme }) => theme.color.fontReverse};
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `;
 

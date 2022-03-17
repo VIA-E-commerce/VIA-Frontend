@@ -1,5 +1,6 @@
-import { styles } from '@/styles';
 import styled from '@emotion/styled';
+
+import { styles } from '@/styles';
 
 const inputHeight = 4;
 export const Wrapper = styled.div`
@@ -45,7 +46,7 @@ export const PlusMinusButton = styled.button`
 
   cursor: pointer;
 
-  &:hover {
+  &:hover:not([disabled]) {
     background: ${({ theme }) => theme.color.font};
     color: ${({ theme }) => theme.color.fontReverse};
   }

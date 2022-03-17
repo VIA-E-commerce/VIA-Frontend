@@ -72,6 +72,14 @@ export interface SizeValueResponse {
   order: number;
 }
 
+export interface VariantResponse {
+  id: number;
+  quantity: number;
+  hide?: boolean;
+  colorId: number;
+  sizeId: number;
+}
+
 export interface ProductDetailResponse {
   id: number;
   name: string;
@@ -87,6 +95,7 @@ export interface ProductDetailResponse {
   display: boolean;
   onSale: boolean;
 
+  variants: VariantResponse[];
   colors: ColorResponse[];
   sizes: SizeValueResponse[];
 }
