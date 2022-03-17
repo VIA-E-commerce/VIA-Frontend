@@ -32,3 +32,13 @@ export function hexToRGB(hex: string, opacity?: number) {
 
   return `rgb(${r}, ${g}, ${b}, ${a})`;
 }
+
+export function convertArrayToObject<
+  T extends Record<K, any>,
+  K extends keyof any,
+>(array: T[] = [], getKey: (item: T) => K) {
+  return array.reduce((obj, item) => {
+    const key = getKey(item);
+    return { ...obj, [key]: item };
+  }, {} as Record<K, T>);
+}
