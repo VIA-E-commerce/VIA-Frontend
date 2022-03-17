@@ -36,6 +36,11 @@ export const APP = {
   COPYRIGHT: '© 2022 Kyeongho Yang. All rights reserved.',
 };
 
+export const BUSINESS = {
+  POINT_EARNING_RATE: 0.01,
+  FREE_DELIVERY: 30000,
+};
+
 export const QUERY = {
   AUTH: {
     ME: 'me',
