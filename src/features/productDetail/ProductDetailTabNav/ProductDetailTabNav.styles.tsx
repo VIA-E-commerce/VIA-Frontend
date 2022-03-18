@@ -11,6 +11,8 @@ const getBorderStyle = (theme: Theme) => css`
 export const Wrapper = styled.nav`
   background: ${({ theme }) => theme.color.background};
 
+  height: ${styles.component.productDetail.tab.navHeight}rem;
+
   display: flex;
   justify-content: center;
   position: sticky;
@@ -52,8 +54,6 @@ const activeStyle = (theme: Theme) => css`
   color: ${theme.color.fontReverse};
 `;
 export const TabButton = styled.li<TabButtonStyleProps>`
-  height: 5.6rem;
-
   flex: 1 0;
 
   a {

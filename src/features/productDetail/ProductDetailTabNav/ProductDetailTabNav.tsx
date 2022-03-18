@@ -1,9 +1,10 @@
 import React, { memo, useEffect, useState } from 'react';
 import { Link } from 'react-scroll';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import cx from 'classnames';
 
 import { headerBorderState, headerHideState } from '@/state';
+import { styles } from '@/styles';
 import { ProductDetailTabItem } from '@/types';
 
 import { Wrapper, TabMenu, TabButton } from './ProductDetailTabNav.styles';
@@ -12,8 +13,11 @@ interface ProductDetailTabNavProps {
   tabs: ProductDetailTabItem[];
 }
 
+const scrollOffset =
+  styles.component.productDetail.tab.navHeight * -1 * styles.remToPx + 1;
+
 const ProductDetailTabNav = ({ tabs }: ProductDetailTabNavProps) => {
-  const headerHide = useRecoilValue(headerHideState);
+  const [headerHide, setHeaderHide] = useRecoilState(headerHideState);
   const setHeaderBorder = useSetRecoilState(headerBorderState);
   const [activeId, setActiveId] = useState<string | null | undefined>();
 
@@ -35,8 +39,11 @@ const ProductDetailTabNav = ({ tabs }: ProductDetailTabNavProps) => {
               <Link
                 to={tab.id}
                 spy={true}
-                offset={-56}
-                onSetActive={() => setActiveId(tab.id)}
+                offset={scrollOffset}
+                onSetActive={() => {
+                  setActiveId(tab.id);
+                  setHeaderHide(true);
+                }}
                 onSetInactive={() => setActiveId(inactive)}
               >
                 {tab.label}

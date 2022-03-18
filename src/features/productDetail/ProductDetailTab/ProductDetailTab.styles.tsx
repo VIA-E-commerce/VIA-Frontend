@@ -2,10 +2,12 @@ import { styles } from '@/styles';
 import styled from '@emotion/styled';
 
 export const Wrapper = styled.div`
-  padding-top: 14.4rem;
-
   display: flex;
   flex-direction: column;
+
+  &:not(:last-of-type) {
+    padding-bottom: ${styles.component.productDetail.tab.paddingBottom}rem;
+  }
 `;
 
 export const Title = styled.h4`
