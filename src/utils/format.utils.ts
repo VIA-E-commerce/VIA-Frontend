@@ -1,5 +1,12 @@
+import dayjs from 'dayjs';
+
 export function formatPrice(price: number) {
   return price.toLocaleString('ko-kr');
+}
+
+export function formatDate(date: Date, format = 'YYYY년 M월 D일') {
+  const dayjsDate = dayjs(date).format(format);
+  return dayjsDate;
 }
 
 export function hexToRGB(hex: string, opacity?: number) {
