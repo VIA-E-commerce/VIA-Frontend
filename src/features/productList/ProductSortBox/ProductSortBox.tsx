@@ -26,7 +26,7 @@ const sortMethods: SortMethod[] = [
     sort: 'price-desc',
   },
   {
-    label: '리뷰 많은 순',
+    label: '후기 많은 순',
     sort: 'review-desc',
   },
 ];
