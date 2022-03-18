@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { URLS } from '@/constants';
 import { GridSection, Pagination } from '@/components';
@@ -10,7 +11,6 @@ import {
   ProductCard,
   useProductList,
 } from '@/features/productList';
-import { Link } from 'react-router-dom';
 
 const PRODUCT_GRID_COLUMNS = 4;
 const PAGE_SIZE = PRODUCT_GRID_COLUMNS * 4;
@@ -30,6 +30,16 @@ const Category = () => {
     pageSize: PAGE_SIZE,
     category,
   });
+
+  const handleClickPageButton = useCallback(
+    (nextPage: number) => {
+      const newSearchParams = new URLSearchParams(searchParams);
+      newSearchParams.set(URLS.PARAM.PAGE, nextPage.toString());
+
+      navigate({ search: newSearchParams.toString() });
+    },
+    [searchParams],
+  );
 
   useEffect(() => {
     if (!pagination) return;
@@ -69,7 +79,11 @@ const Category = () => {
         ))}
       </GridSection>
       <GridSection cols={1}>
-        <Pagination currentPage={page} totalPages={pagination.totalPages} />
+        <Pagination
+          currentPage={page}
+          totalPages={pagination.totalPages}
+          onClickPageButton={handleClickPageButton}
+        />
       </GridSection>
     </>
   );

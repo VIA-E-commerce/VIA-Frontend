@@ -1,8 +1,5 @@
 import React, { memo } from 'react';
-import { useSearchParams, Link } from 'react-router-dom';
 import { BsCaretLeftFill, BsCaretRightFill } from 'react-icons/bs';
-
-import { URLS } from '@/constants';
 
 import { PageButton, PaginationMenu } from './Pagination.styles';
 
@@ -10,35 +7,32 @@ interface PaginationProps {
   currentPage: number;
   totalPages: number;
   pageRange: number;
+  onClickPageButton: (pageNum: number, event?: React.MouseEvent) => void;
 }
 
 const Pagination = ({
   currentPage,
   totalPages,
   pageRange,
+  onClickPageButton,
 }: PaginationProps) => {
-  const [searchParams] = useSearchParams();
-
   const start = Math.trunc((currentPage - 1) / pageRange) * pageRange + 1;
   const end = Math.min(start + pageRange - 1, totalPages);
   const hasPrev = start > 1;
   const hasNext = end < totalPages;
 
-  searchParams.set(URLS.PARAM.PAGE, (start - 1).toString());
   const prevButton = (
-    <PageButton disabled={!hasPrev}>
-      <Link to={{ search: searchParams.toString() }}>
-        <BsCaretLeftFill />
-      </Link>
+    <PageButton
+      disabled={!hasPrev}
+      onClick={() => onClickPageButton(start - 1)}
+    >
+      <BsCaretLeftFill />
     </PageButton>
   );
 
-  searchParams.set(URLS.PARAM.PAGE, (end + 1).toString());
   const nextButton = (
-    <PageButton disabled={!hasNext}>
-      <Link to={{ search: searchParams.toString() }}>
-        <BsCaretRightFill />
-      </Link>
+    <PageButton disabled={!hasNext} onClick={() => onClickPageButton(end + 1)}>
+      <BsCaretRightFill />
     </PageButton>
   );
 
@@ -46,11 +40,14 @@ const Pagination = ({
   const pageButtons: JSX.Element[] = [];
   for (let page = start; page <= end; page++) {
     const active = currentPage === page;
-    searchParams.set(URLS.PARAM.PAGE, page.toString());
 
     pageButtons.push(
-      <PageButton key={page} active={active}>
-        <Link to={{ search: searchParams.toString() }}>{page}</Link>
+      <PageButton
+        key={page}
+        active={active}
+        onClick={(event) => onClickPageButton(page, event)}
+      >
+        {page}
       </PageButton>,
     );
   }

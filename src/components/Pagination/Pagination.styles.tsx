@@ -39,17 +39,13 @@ export const PageButton = styled.li<PageButtonStyleProps>`
   ${({ active, theme }) => active && getPageButtonActiveStyle(theme)}
   ${({ disabled, theme }) => disabled && getPageButtonDisabledStyle(theme)}
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+
   &:hover {
     ${({ theme }) => getPageButtonActiveStyle(theme)}
-  }
-
-  a {
-    width: 100%;
-    height: 100%;
-    color: inherit;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 `;
