@@ -51,6 +51,7 @@ export const QUERY = {
   PRODUCT: {
     LIST: 'product-list',
     DETAIL: 'product-detail',
+    REVIEWS: 'product-reviews',
   },
 };
 
