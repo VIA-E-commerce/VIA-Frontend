@@ -8,3 +8,5 @@ export interface LoginForm {
   email: string;
   password: string;
 }
+
+export type ReviewSortMethod = '' | 'rating-desc' | 'rating-asc';

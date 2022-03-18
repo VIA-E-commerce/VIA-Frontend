@@ -8,6 +8,7 @@ import {
   ProductFeatureCard,
   useProductDetail,
 } from '@/features/productDetail';
+import { ProductReviewViewer, ReviewModal } from '@/features/review';
 import { ProductDetailTabItem } from '@/types';
 
 import { ContentsSection } from './ProductDetail.styles';
@@ -56,7 +57,9 @@ const ProductDetail = () => {
           <ProductDetailTab tab={productInfoTab} noTitle>
             {productInfoTab.label}
           </ProductDetailTab>
-          <ProductDetailTab tab={reviewTab}>{reviewTab.label}</ProductDetailTab>
+          <ProductDetailTab tab={reviewTab}>
+            <ProductReviewViewer productId={productId} />
+          </ProductDetailTab>
           <ProductDetailTab tab={qnaTab}>{qnaTab.label}</ProductDetailTab>
           <ProductDetailTab tab={deliveryTab}>
             {deliveryTab.label}
@@ -66,6 +69,8 @@ const ProductDetail = () => {
           </ProductDetailTab>
         </GridSection>
       </ContentsSection>
+
+      <ReviewModal />
     </>
   );
 };
