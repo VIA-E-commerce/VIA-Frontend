@@ -21,7 +21,6 @@ export const useLogin = () => {
       navigate(URLS.CLIENT.HOME);
     },
     onError: (data: AxiosError<ResponseEntity<any>>) => {
-      console.log(data.response?.data.statusCode);
       const errorMessage =
         data.response?.data.data || '로그인 중 오류가 발생했습니다.';
       alert(errorMessage);
