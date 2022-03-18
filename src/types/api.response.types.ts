@@ -99,3 +99,17 @@ export interface ProductDetailResponse {
   colors: ColorResponse[];
   sizes: SizeValueResponse[];
 }
+
+export interface ReviewResponse {
+  id: number;
+
+  content: string;
+  imageUrl?: string;
+  rating: number;
+
+  createdAt: Date;
+  updatedAt: Date;
+
+  authorId: number;
+  author: string;
+}

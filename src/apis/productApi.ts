@@ -5,6 +5,7 @@ import {
   ResponseEntity,
   Pagination,
   ProductDetailResponse,
+  ReviewResponse,
 } from '@/types';
 
 export interface FetchProductsProps {
@@ -22,7 +23,7 @@ export const fetchProducts = async ({
 }: FetchProductsProps): Promise<
   ResponseEntity<Pagination<ProductCardResponse>>
 > => {
-  const response = await client.get(URLS.API.PRODUCT, {
+  const response = await client.get(URLS.API.PRODUCT.CRUD, {
     params: {
       pageNum,
       pageSize,
@@ -38,7 +39,39 @@ export const fetchProduct = async (
   productId: number,
 ): Promise<ResponseEntity<ProductDetailResponse>> => {
   const response = await client.get<ResponseEntity<ProductDetailResponse>>(
-    `${URLS.API.PRODUCT}/${productId}`,
+    `${URLS.API.PRODUCT.CRUD}/${productId}`,
+  );
+
+  return response.data;
+};
+
+export interface FetchProductReviewsProps {
+  productId: number;
+  pageSize?: number;
+  pageNum?: number;
+  sort?: string;
+}
+export const fetchProductReviews = async ({
+  productId,
+  pageSize,
+  pageNum,
+  sort,
+}: FetchProductReviewsProps): Promise<
+  ResponseEntity<Pagination<ReviewResponse>>
+> => {
+  const path = URLS.API.PRODUCT.REVIEWS.replace(
+    ':productId',
+    productId.toString(),
+  );
+  const response = await client.get<ResponseEntity<Pagination<ReviewResponse>>>(
+    path,
+    {
+      params: {
+        pageNum,
+        pageSize,
+        sort,
+      },
+    },
   );
 
   return response.data;
