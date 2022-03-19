@@ -31,5 +31,3 @@ export const ReivewSortMenu = styled.ul`
     }
   }
 `;
-
-export const ReviewList = styled.div``;

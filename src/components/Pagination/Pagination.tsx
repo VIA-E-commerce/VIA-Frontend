@@ -45,7 +45,7 @@ const Pagination = ({
       <PageButton
         key={page}
         active={active}
-        onClick={(event) => onClickPageButton(page, event)}
+        onClick={() => onClickPageButton(page)}
       >
         {page}
       </PageButton>,

@@ -1,19 +1,11 @@
-import React, { useState } from 'react';
-import { useSetRecoilState } from 'recoil';
-import { scroller } from 'react-scroll';
+import React from 'react';
 
-import { GridSection, Pagination } from '@/components';
-import { ReviewItem } from '@/features/review/ReviewItem';
-import { headerHideState } from '@/state';
-import { styles } from '@/styles';
-import { ReviewSortMethod } from '@/types';
+import { Pagination } from '@/components';
+import { useDetailTabPageButton } from '@/hooks';
+import { PaginationResponse, ReviewResponse, ReviewSortMethod } from '@/types';
 
-import {
-  Wrapper,
-  ReivewSortMenu,
-  ReviewList,
-} from './ProductReviewViewer.styles';
-import { useProductReviews } from '../useProductReviews';
+import { ReviewList } from '../ReviewList';
+import { Wrapper, ReivewSortMenu } from './ProductReviewViewer.styles';
 
 interface ReviewSortMethodItem {
   label: string;
@@ -34,39 +26,31 @@ const reviewSortMethods: ReviewSortMethodItem[] = [
   },
 ];
 
-const REVIEW_PAGE_SIZE = 5;
 const REVIEW_PAGE_RANGE = 5;
 
 interface ProductReviewViewerProps {
-  productId: number;
+  data?: PaginationResponse<ReviewResponse>;
+  tabId: string;
+  pageNum: number;
+  setPageNum: React.Dispatch<React.SetStateAction<number>>;
+  sort: ReviewSortMethod;
+  setSort: React.Dispatch<React.SetStateAction<ReviewSortMethod>>;
 }
 
-const ProductReviewViewer = ({ productId }: ProductReviewViewerProps) => {
-  const [pageNum, setPageNum] = useState(1);
-  const [sort, setSort] = useState(reviewSortMethods[0].method);
-  const setHeaderHide = useSetRecoilState(headerHideState);
-  const { data: pagination } = useProductReviews({
-    productId,
-    pageNum: pageNum,
-    pageSize: REVIEW_PAGE_SIZE,
-    sort: sort,
+const ProductReviewViewer = ({
+  data: reviewPagination,
+  tabId,
+  pageNum,
+  setPageNum,
+  sort,
+  setSort,
+}: ProductReviewViewerProps) => {
+  const handleClickPageButton = useDetailTabPageButton({
+    to: tabId,
+    setPageNum,
+    offset: 40,
   });
-  const reviews = pagination?.list;
-
-  const handleClickPageButton = (
-    nextPage: number,
-    event?: React.MouseEvent,
-  ) => {
-    event?.preventDefault();
-    event?.stopPropagation();
-
-    setPageNum(nextPage);
-    scroller.scrollTo('reviews', {
-      offset:
-        styles.component.productDetail.tab.navHeight * -1 * styles.remToPx + 40,
-    });
-    setHeaderHide(true);
-  };
+  const reviews = reviewPagination?.list;
 
   const handleClickSortButton = (method: ReviewSortMethod) => {
     setSort((prev) => {
@@ -94,18 +78,10 @@ const ProductReviewViewer = ({ productId }: ProductReviewViewerProps) => {
           );
         })}
       </ReivewSortMenu>
-      <ReviewList>
-        {reviews?.length ? (
-          reviews.map((review) => (
-            <ReviewItem key={review.id} review={review} />
-          ))
-        ) : (
-          <GridSection cols={1}>상품 후기를 작성해주세요</GridSection>
-        )}
-      </ReviewList>
+      <ReviewList reviews={reviews} />
       <Pagination
         currentPage={pageNum}
-        totalPages={pagination?.totalPages || 1}
+        totalPages={reviewPagination?.totalPages || 1}
         pageRange={REVIEW_PAGE_RANGE}
         onClickPageButton={handleClickPageButton}
       />

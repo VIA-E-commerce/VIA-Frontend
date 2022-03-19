@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useParams } from 'react-router';
 
 import { GridSection } from '@/components';
@@ -8,23 +8,23 @@ import {
   ProductFeatureCard,
   useProductDetail,
 } from '@/features/productDetail';
-import { ProductReviewViewer, ReviewModal } from '@/features/review';
+import {
+  ProductReviewViewer,
+  ReviewModal,
+  useProductReviews,
+} from '@/features/review';
 import { ProductDetailTabItem } from '@/types';
 
 import { ContentsSection } from './ProductDetail.styles';
 
-type ProductDetailParams = {
-  productId: string;
-};
-
-const tabs: ProductDetailTabItem[] = [
+const getTabNavMenu = (reviewCount?: number) => [
   {
     id: 'product-info',
     label: '상품 정보',
   },
   {
     id: 'reviews',
-    label: '상품 후기',
+    label: `상품 후기${reviewCount ? ` (${reviewCount})` : ''}`,
   },
   {
     id: 'qna',
@@ -40,9 +40,31 @@ const tabs: ProductDetailTabItem[] = [
   },
 ];
 
+const REVIEW_PAGE_SIZE = 5;
+
+type ProductDetailParams = {
+  productId: string;
+};
+
 const ProductDetail = () => {
   const productId = Number(useParams<ProductDetailParams>().productId);
   const { data: product } = useProductDetail(productId);
+
+  const {
+    data: reviewPagination,
+    reviewPageNum,
+    setReviewPageNum,
+    reviewSort,
+    setReviewSort,
+  } = useProductReviews({
+    productId,
+    pageSize: REVIEW_PAGE_SIZE,
+  });
+
+  const tabs: ProductDetailTabItem[] = useMemo(
+    () => getTabNavMenu(reviewPagination?.totalElements),
+    [reviewPagination?.totalElements],
+  );
 
   const [productInfoTab, reviewTab, qnaTab, deliveryTab, exchangeTab] = tabs;
 
@@ -57,13 +79,24 @@ const ProductDetail = () => {
           <ProductDetailTab tab={productInfoTab} noTitle>
             {productInfoTab.label}
           </ProductDetailTab>
+
           <ProductDetailTab tab={reviewTab}>
-            <ProductReviewViewer productId={productId} />
+            <ProductReviewViewer
+              data={reviewPagination}
+              tabId={reviewTab.id}
+              pageNum={reviewPageNum}
+              setPageNum={setReviewPageNum}
+              sort={reviewSort}
+              setSort={setReviewSort}
+            />
           </ProductDetailTab>
+
           <ProductDetailTab tab={qnaTab}>{qnaTab.label}</ProductDetailTab>
+
           <ProductDetailTab tab={deliveryTab}>
             {deliveryTab.label}
           </ProductDetailTab>
+
           <ProductDetailTab tab={exchangeTab}>
             {exchangeTab.label}
           </ProductDetailTab>
