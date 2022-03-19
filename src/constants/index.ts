@@ -53,6 +53,7 @@ export const QUERY = {
     LIST: 'product-list',
     DETAIL: 'product-detail',
     REVIEWS: 'product-reviews',
+    QUESTIONS: 'product-question',
   },
 };
 
