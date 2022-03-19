@@ -113,3 +113,19 @@ export interface ReviewResponse {
   authorId: number;
   author: string;
 }
+
+export interface QuestionResponse {
+  id: number;
+
+  title: string;
+  content: string;
+  userId: number;
+  username: string;
+
+  isPrivate: boolean;
+
+  productId: number;
+
+  createdAt: Date;
+  updatedAt: Date;
+}
