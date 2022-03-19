@@ -8,6 +8,7 @@ import {
   ProductFeatureCard,
   useProductDetail,
 } from '@/features/productDetail';
+import { QuestionList, useQuestionList } from '@/features/question';
 import {
   ProductReviewViewer,
   ReviewModal,
@@ -17,7 +18,7 @@ import { ProductDetailTabItem } from '@/types';
 
 import { ContentsSection } from './ProductDetail.styles';
 
-const getTabNavMenu = (reviewCount?: number) => [
+const getTabNavMenu = (reviewCount?: number, questionCount?: number) => [
   {
     id: 'product-info',
     label: '상품 정보',
@@ -28,7 +29,7 @@ const getTabNavMenu = (reviewCount?: number) => [
   },
   {
     id: 'qna',
-    label: 'Q&A',
+    label: `Q&A${questionCount ? ` (${questionCount})` : ''}`,
   },
   {
     id: 'delivery',
@@ -41,6 +42,7 @@ const getTabNavMenu = (reviewCount?: number) => [
 ];
 
 const REVIEW_PAGE_SIZE = 5;
+const QUESTION_PAGE_SIZE = 5;
 
 type ProductDetailParams = {
   productId: string;
@@ -61,9 +63,22 @@ const ProductDetail = () => {
     pageSize: REVIEW_PAGE_SIZE,
   });
 
+  const {
+    data: questionPagination,
+    questionPageNum,
+    setQuestionPageNum,
+  } = useQuestionList({
+    productId,
+    pageSize: QUESTION_PAGE_SIZE,
+  });
+
   const tabs: ProductDetailTabItem[] = useMemo(
-    () => getTabNavMenu(reviewPagination?.totalElements),
-    [reviewPagination?.totalElements],
+    () =>
+      getTabNavMenu(
+        reviewPagination?.totalElements,
+        questionPagination?.totalElements,
+      ),
+    [reviewPagination?.totalElements, questionPagination?.totalElements],
   );
 
   const [productInfoTab, reviewTab, qnaTab, deliveryTab, exchangeTab] = tabs;
@@ -91,7 +106,14 @@ const ProductDetail = () => {
             />
           </ProductDetailTab>
 
-          <ProductDetailTab tab={qnaTab}>{qnaTab.label}</ProductDetailTab>
+          <ProductDetailTab tab={qnaTab}>
+            <QuestionList
+              data={questionPagination}
+              tabId={qnaTab.id}
+              pageNum={questionPageNum}
+              setPageNum={setQuestionPageNum}
+            />
+          </ProductDetailTab>
 
           <ProductDetailTab tab={deliveryTab}>
             {deliveryTab.label}

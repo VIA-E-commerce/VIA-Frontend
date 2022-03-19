@@ -12,6 +12,7 @@ export const Wrapper = styled.div`
 
 export const Title = styled.h4`
   height: 6.4rem;
+  margin-bottom: 0;
 
   border-bottom: ${styles.border.level1}rem solid
     ${({ theme }) => theme.color.font};
