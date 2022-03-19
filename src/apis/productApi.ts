@@ -3,7 +3,7 @@ import { URLS } from '@/constants';
 import {
   ProductCardResponse,
   ResponseEntity,
-  Pagination,
+  PaginationResponse,
   ProductDetailResponse,
   ReviewResponse,
 } from '@/types';
@@ -21,7 +21,7 @@ export const fetchProducts = async ({
   category,
   sort,
 }: FetchProductsProps): Promise<
-  ResponseEntity<Pagination<ProductCardResponse>>
+  ResponseEntity<PaginationResponse<ProductCardResponse>>
 > => {
   const response = await client.get(URLS.API.PRODUCT.CRUD, {
     params: {
@@ -57,20 +57,20 @@ export const fetchProductReviews = async ({
   pageNum,
   sort,
 }: FetchProductReviewsProps): Promise<
-  ResponseEntity<Pagination<ReviewResponse>>
+  ResponseEntity<PaginationResponse<ReviewResponse>>
 > => {
   const path = URLS.API.PRODUCT.REVIEWS.replace(
     ':productId',
     productId.toString(),
   );
-  const response = await client.get<ResponseEntity<Pagination<ReviewResponse>>>(
-    path,
-    {
-      params: {
-        pageNum,
-        pageSize,
-        sort,
-      },
+  const response = await client.get<
+    ResponseEntity<PaginationResponse<ReviewResponse>>
+  >(path, {
+    params: {
+      pageNum,
+      pageSize,
+      sort,
+    },
     },
   );
 

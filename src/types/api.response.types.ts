@@ -10,7 +10,7 @@ export interface ErrorResponse {
   message: string | string[];
 }
 
-export interface Pagination<T> {
+export interface PaginationResponse<T> {
   totalElements: number;
   totalPages: number;
   isFirst: boolean;
