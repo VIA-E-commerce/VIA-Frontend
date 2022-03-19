@@ -6,6 +6,7 @@ import {
   PaginationResponse,
   ProductDetailResponse,
   ReviewResponse,
+  QuestionResponse,
 } from '@/types';
 
 export interface FetchProductsProps {
@@ -71,8 +72,35 @@ export const fetchProductReviews = async ({
       pageSize,
       sort,
     },
-    },
+  });
+
+  return response.data;
+};
+
+export interface FetchProductQuestionsProps {
+  productId: number;
+  pageSize?: number;
+  pageNum?: number;
+}
+export const fetchProductQuestions = async ({
+  productId,
+  pageSize,
+  pageNum,
+}: FetchProductQuestionsProps): Promise<
+  ResponseEntity<PaginationResponse<QuestionResponse>>
+> => {
+  const path = URLS.API.PRODUCT.QUESTIONS.replace(
+    ':productId',
+    productId.toString(),
   );
+  const response = await client.get<
+    ResponseEntity<PaginationResponse<QuestionResponse>>
+  >(path, {
+    params: {
+      pageNum,
+      pageSize,
+    },
+  });
 
   return response.data;
 };

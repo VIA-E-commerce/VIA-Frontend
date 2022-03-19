@@ -14,6 +14,7 @@ export const URLS = {
     PRODUCT: {
       CRUD: '/products',
       REVIEWS: '/products/:productId/reviews',
+      QUESTIONS: '/products/:productId/questions',
     },
     USER: {
       ME: '/users/me',
