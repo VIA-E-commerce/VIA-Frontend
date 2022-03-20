@@ -19,7 +19,7 @@ export const GlobalStyles = () => {
           margin: 0;
           font-size: 160%;
           letter-spacing: 0.05em;
-          line-height: 1.8;
+          line-height: 1.7;
         }
 
         #root {
