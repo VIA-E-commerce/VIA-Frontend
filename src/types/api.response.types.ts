@@ -129,3 +129,22 @@ export interface QuestionResponse {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface CartItemResponse {
+  id: number;
+  productName: string;
+  thumbnail: string;
+
+  retailPrice: number;
+  sellingPrice: number;
+  quantity: number;
+  stock: number;
+
+  disabled: boolean;
+
+  productId: number;
+  variantId: number;
+
+  color: ColorResponse;
+  size: SizeValueResponse;
+}

@@ -19,6 +19,9 @@ export const URLS = {
     USER: {
       ME: '/users/me',
     },
+    CART: {
+      ME: '/carts/me',
+    },
   },
   CLIENT: {
     HOME: '/',
@@ -54,6 +57,9 @@ export const QUERY = {
     DETAIL: 'product-detail',
     REVIEWS: 'product-reviews',
     QUESTIONS: 'product-questions',
+  },
+  CART: {
+    MINE: 'my-cart',
   },
 };
 
