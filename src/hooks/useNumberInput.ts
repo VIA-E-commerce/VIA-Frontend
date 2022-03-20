@@ -9,7 +9,6 @@ interface NumberValidation {
 interface NumberInputHookProps {
   defaultValue?: number;
   disabled?: boolean;
-  disabledMessage?: string;
   min?: number;
   max?: number;
   handleExcessMin?: ({ input, min }: NumberValidation) => void;
@@ -17,38 +16,46 @@ interface NumberInputHookProps {
 }
 
 export const useNumberInput = ({
-  defaultValue = 0,
+  defaultValue: rawDefaultValue = 0,
   disabled,
-  disabledMessage,
-  min = 0,
+  min: defaultMin = 0,
   max,
   handleExcessMin,
   handleExcessMax,
 }: NumberInputHookProps) => {
+  const defaultValue =
+    max !== undefined ? Math.min(rawDefaultValue, max) : rawDefaultValue;
+  const min = max !== undefined ? Math.min(defaultMin, max) : defaultMin;
+
   const [value, setValue] = useState(defaultValue);
 
   const onChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      const value = parseInt(event.target.value) || 0;
-
+      const changedValue = parseInt(event.target.value) || 0;
       if (disabled) return;
-
-      setValue(value);
+      setValue(changedValue);
     },
-    [disabled, disabledMessage],
+    [disabled],
+  );
+
+  const checkNumberRange = useCallback(
+    (value: number, min: number, max?: number) => {
+      if (value < min) {
+        handleExcessMin && handleExcessMin({ input: value, min });
+        return min;
+      } else if (max !== undefined && max < value) {
+        handleExcessMax && handleExcessMax({ input: value, max });
+        return max;
+      }
+      return value;
+    },
+    [handleExcessMin, handleExcessMax],
   );
 
   const onBlur = useCallback(
     (event: React.FocusEvent<HTMLInputElement>) => {
-      const value = parseInt(event.target.value) || 0;
-
-      if (value < min) {
-        handleExcessMin && handleExcessMin({ input: value, min, max });
-        setValue(min);
-      } else if (max && max < value) {
-        handleExcessMax && handleExcessMax({ input: value, min, max });
-        setValue(max);
-      }
+      const targetValue = parseInt(event.target.value) || 0;
+      setValue((prev) => checkNumberRange(targetValue, min, max));
     },
     [min, max],
   );
@@ -59,19 +66,10 @@ export const useNumberInput = ({
 
       setValue((prev) => {
         const next = prev + addend;
-
-        if (next < min) {
-          handleExcessMin && handleExcessMin({ input: value, min, max });
-          return min;
-        } else if (max && max < next) {
-          handleExcessMax && handleExcessMax({ input: next, min, max });
-          return max;
-        }
-
-        return next;
+        return checkNumberRange(next, min, max);
       });
     },
-    [disabled, disabledMessage, min, max],
+    [disabled, min, max],
   );
 
   return {
