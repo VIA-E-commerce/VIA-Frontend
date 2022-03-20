@@ -16,16 +16,27 @@ const SquareInput = ({
   disabled,
   size,
   label,
+  style,
   ...rest
 }: Props) => {
   return (
     <>
       <StyledInput id={id} type="radio" disabled={disabled} {...rest} />
-      <Label htmlFor={id} variant={variant} size={size} disabled={disabled}>
+      <Label
+        htmlFor={id}
+        variant={variant}
+        size={size}
+        disabled={disabled}
+        style={style}
+      >
         {label}
       </Label>
     </>
   );
+};
+
+SquareInput.defaultProps = {
+  size: 'normal',
 };
 
 export default memo(SquareInput);

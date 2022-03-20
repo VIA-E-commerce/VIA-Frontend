@@ -1,20 +1,24 @@
-import React, { DetailedHTMLProps, InputHTMLAttributes, memo } from 'react';
+import React, { memo } from 'react';
 
-import { Wrapper, StyledInput, PlusMinusButton } from './NumberInput.styles';
+import {
+  Wrapper,
+  StyledInput,
+  PlusMinusButton,
+  NumberInputSizeType,
+} from './NumberInput.styles';
 
-interface NumberInputProps
-  extends DetailedHTMLProps<
-    InputHTMLAttributes<HTMLInputElement>,
-    HTMLInputElement
-  > {
+interface NumberInputProps {
+  size: NumberInputSizeType;
   name: string;
   value: number;
   min?: number;
   max?: number;
+  disabled?: boolean;
   onClickSpinButton: (value: number) => void;
 }
 
 const NumberInput = ({
+  size,
   name,
   value,
   min,
@@ -24,7 +28,7 @@ const NumberInput = ({
   ...rest
 }: NumberInputProps) => {
   return (
-    <Wrapper>
+    <Wrapper size={size}>
       <PlusMinusButton
         disabled={disabled}
         onClick={() => onClickSpinButton(-1)}
@@ -45,6 +49,10 @@ const NumberInput = ({
       </PlusMinusButton>
     </Wrapper>
   );
+};
+
+NumberInput.defaultProps = {
+  size: 'normal',
 };
 
 export default memo(NumberInput);

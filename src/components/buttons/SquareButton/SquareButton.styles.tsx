@@ -1,10 +1,10 @@
-import { css } from '@emotion/react';
+import { css, SerializedStyles } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import { styles, Theme } from '@/styles';
 
 type ButtonVariant = 'primary' | 'outline';
-export type ButtonSize = 'small' | 'normal';
+export type ButtonSize = 'xsmall' | 'small' | 'normal';
 type ButtonGrid = {
   colNum: number;
   span: number;
@@ -24,7 +24,10 @@ interface ButtonStyle {
     background: string;
     fontColor: string;
     borderColor: string;
-    activeColor?: string;
+    activeStyle?: SerializedStyles;
+    hoverStyle?: SerializedStyles;
+    activeBackground?: string;
+    activeBorderColor?: string;
   };
 }
 
@@ -38,13 +41,25 @@ const setButtonStyle = (
       background: theme.color.font,
       fontColor: theme.color.fontReverse,
       borderColor: theme.color.font,
-      activeColor: theme.color.buttonActive,
+      activeStyle: css`
+        background: ${theme.color.font};
+      `,
+      hoverStyle: css`
+        background: ${theme.color.buttonActive};
+        border-color: ${theme.color.buttonActive};
+      `,
     },
     outline: {
       background: theme.color.fontReverse,
       fontColor: theme.color.font,
       borderColor: theme.color.lightGray,
-      activeColor: theme.color.buttonActiveReverse,
+      activeStyle: css`
+        background: ${theme.color.fontReverse};
+        border-color: ${theme.color.lightGray};
+      `,
+      hoverStyle: css`
+        background: ${theme.color.buttonActiveReverse};
+      `,
     },
     disabled: {
       background: theme.color.lightGray,
@@ -55,25 +70,24 @@ const setButtonStyle = (
 
   const currentStyle = disabled ? buttonStyle.disabled : buttonStyle[variant];
 
-  const activeStyle =
-    variant === 'outline' &&
-    css`
-      cursor: pointer;
+  const activeStyle = css`
+    cursor: pointer;
 
-      &:hover {
-        border-color: ${currentStyle.fontColor};
-      }
+    &:hover {
+      ${currentStyle.hoverStyle}
+    }
 
-      &:active {
-        background: ${currentStyle.activeColor};
-        border-color: ${currentStyle.borderColor};
-      }
-    `;
+    &:active {
+      ${currentStyle.activeStyle}
+    }
+  `;
 
   return css`
     background: ${currentStyle.background};
     color: ${currentStyle.fontColor};
-    border: ${styles.border.level2}rem solid ${currentStyle.borderColor};
+
+    border-style: solid;
+    border-color: ${currentStyle.borderColor};
 
     ${!disabled && activeStyle}
   `;
@@ -90,10 +104,17 @@ function setButtonSize(size: ButtonSize) {
     normal: {
       height: 4.8,
       fontSize: styles.fontSize.normal,
+      borderWidth: styles.border.level2,
     },
     small: {
       height: 4,
       fontSize: styles.fontSize.small,
+      borderWidth: styles.border.level2,
+    },
+    xsmall: {
+      height: 2.8,
+      fontSize: styles.fontSize.xsmall,
+      borderWidth: styles.border.level1,
     },
   };
 
@@ -102,6 +123,7 @@ function setButtonSize(size: ButtonSize) {
   return css`
     height: ${currentSize.height}rem;
     font-size: ${currentSize.fontSize}rem;
+    border-width: ${currentSize.borderWidth}rem;
   `;
 }
 
