@@ -1,7 +1,12 @@
 import React from 'react';
 import { MdShare, MdFavoriteBorder } from 'react-icons/md';
 
-import { GridSection, LabelField, SquareButton } from '@/components';
+import {
+  GridSection,
+  LabelField,
+  PriceLabel,
+  SquareButton,
+} from '@/components';
 import { BUSINESS } from '@/constants';
 import { ProductDetailResponse } from '@/types';
 import {
@@ -18,7 +23,6 @@ import {
   ProductDetailInfo,
   InfoBody,
   ProductName,
-  ProductPrice,
   InfoFooter,
 } from './ProductFeatureCard.styles';
 
@@ -45,14 +49,11 @@ const ProductFeatureCard = ({ product }: ProductFeatureCardProps) => {
           <InfoBody>
             <section>
               <ProductName>{product.name}</ProductName>
-              <ProductPrice>
-                <span className="selling-price">
-                  {formatPrice(product.sellingPrice)}원
-                </span>
-                <span className="retail-price">
-                  {formatPrice(product.retailPrice)}
-                </span>
-              </ProductPrice>
+              <PriceLabel
+                size="large"
+                sellingPrice={product.sellingPrice}
+                retailPrice={product.retailPrice}
+              />
             </section>
 
             <section>

@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 
+import { PriceLabel } from '@/components';
 import { ProductCardResponse } from '@/types';
 
 import {
@@ -7,12 +8,8 @@ import {
   CardImage,
   CardBody,
   CardTitle,
-  CardPrice,
-  SellingPrice,
-  OriginalPrice,
   CardFooter,
 } from './ProductCard.styles';
-import { formatPrice } from '@/utils';
 
 interface ProductCardProps {
   card: ProductCardResponse;
@@ -26,12 +23,10 @@ const ProductCard = ({ card }: ProductCardProps) => {
       </header>
       <CardBody>
         <CardTitle>{card.name}</CardTitle>
-        <CardPrice>
-          <SellingPrice>{formatPrice(card.sellingPrice)}원</SellingPrice>
-          {card.retailPrice && (
-            <OriginalPrice>{formatPrice(card.retailPrice)}</OriginalPrice>
-          )}
-        </CardPrice>
+        <PriceLabel
+          sellingPrice={card.sellingPrice}
+          retailPrice={card.retailPrice}
+        />
       </CardBody>
       <CardFooter></CardFooter>
     </CardWrapper>

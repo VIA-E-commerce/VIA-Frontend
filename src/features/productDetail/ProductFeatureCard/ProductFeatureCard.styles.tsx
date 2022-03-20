@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 
 import { styles, Theme } from '@/styles';
-import { css } from '@emotion/react';
 
 export const Wrapper = styled.article`
   display: flex;
@@ -79,25 +79,6 @@ export const ProductName = styled.h4`
   height: 4rem;
 
   font-weight: ${styles.fontWeight.regular};
-`;
-
-export const ProductPrice = styled.div`
-  height: 4.8rem;
-
-  display: flex;
-  align-items: flex-end;
-  gap: ${styles.space.level4}rem;
-
-  .selling-price {
-    font-size: ${styles.fontSize.h4}rem;
-    font-weight: ${styles.fontWeight.bold};
-  }
-
-  .retail-price {
-    color: ${({ theme }) => theme.color.gray};
-    font-size: ${styles.fontSize.h5}rem;
-    text-decoration: line-through;
-  }
 `;
 
 export const InfoFooter = styled.footer``;

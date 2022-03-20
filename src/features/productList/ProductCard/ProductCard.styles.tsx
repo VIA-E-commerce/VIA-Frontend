@@ -1,5 +1,6 @@
-import { styles } from '@/styles';
 import styled from '@emotion/styled';
+
+import { styles } from '@/styles';
 
 export const CardWrapper = styled.article``;
 
@@ -18,35 +19,6 @@ export const CardTitle = styled.p`
   height: 2rem;
 
   font-size: ${styles.fontSize.small}rem;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-`;
-
-export const CardPrice = styled.div`
-  height: 3.2rem;
-
-  display: flex;
-  align-items: flex-end;
-  gap: ${styles.space.level2}rem;
-
-  overflow: hidden;
-`;
-
-export const SellingPrice = styled.div`
-  height: 3.2rem;
-
-  display: flex;
-  align-items: center;
-
-  font-size: ${styles.fontSize.large}rem;
-  font-weight: ${styles.fontWeight.bold};
-`;
-
-export const OriginalPrice = styled.div`
-  color: ${({ theme }) => theme.color.gray};
-  font-size: ${styles.fontSize.small}rem;
-  text-decoration: line-through;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
