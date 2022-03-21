@@ -4,8 +4,10 @@ import { css } from '@emotion/react';
 import { styles } from '@/styles';
 
 type LabelFieldSize = 'normal' | 'large';
+export type ContentAlignType = 'left' | 'center' | 'right';
 export interface LabelFieldStyleProps {
   size: LabelFieldSize;
+  contentAlign: ContentAlignType;
 }
 const getLabelFieldSize = (size: LabelFieldSize) => {
   let height = 4;
@@ -30,6 +32,19 @@ const getLabelFieldSize = (size: LabelFieldSize) => {
     font-size: ${styles.fontSize.small}rem;
   `;
 };
+const getContentAlignment = (contentAlign: ContentAlignType) => {
+  let align = 'flex-start';
+
+  if (contentAlign === 'center') {
+    align = 'center';
+  } else if (contentAlign === 'right') {
+    align = 'flex-end';
+  }
+
+  return css`
+    justify-content: ${align};
+  `;
+};
 export const Wrapper = styled.div<LabelFieldStyleProps>`
   ${({ size }) => getLabelFieldSize(size)}
 
@@ -42,5 +57,6 @@ export const Wrapper = styled.div<LabelFieldStyleProps>`
   .content {
     flex: 1;
     display: flex;
+    ${({ contentAlign }) => getContentAlignment(contentAlign)}
   }
 `;
