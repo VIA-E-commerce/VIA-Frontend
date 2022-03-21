@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
 import { LabelField } from '@/components';
@@ -12,7 +12,7 @@ const CartBill = () => {
   const selectedCartItems = useRecoilValue(selectedCartItemsState);
   const [bill, setBill] = useRecoilState(billState);
 
-  useMemo(() => {
+  useEffect(() => {
     let productTotal = 0;
     let sellingPriceTotal = 0;
 
@@ -35,7 +35,7 @@ const CartBill = () => {
       delivery,
       total,
     });
-  }, [selectedCartItems.size]);
+  }, [selectedCartItems]);
 
   const { productTotal, discount, delivery, total } = bill;
 

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router';
 
 import { SquareButton } from '@/components';
 import {
@@ -8,9 +9,9 @@ import {
   AuthSection,
   useLogin,
 } from '@/features/auth';
-import { AuthType, LoginForm } from '@/types';
-
 import { useForm } from '@/hooks';
+import { AuthType, LoginForm } from '@/types';
+import { setRedirect } from '@/utils';
 
 const initJoinForm: LoginForm = {
   email: '',
@@ -18,9 +19,15 @@ const initJoinForm: LoginForm = {
 };
 
 const Login = () => {
+  const location = useLocation();
+
   const { mutate } = useLogin();
   const { register, onSubmit, errors } = useForm(initJoinForm, mutate);
   const authType: AuthType = 'login';
+
+  useEffect(() => {
+    setRedirect(location);
+  }, [location]);
 
   return (
     <AuthSection>

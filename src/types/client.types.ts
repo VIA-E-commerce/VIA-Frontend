@@ -1,9 +1,9 @@
 import { HTMLInputTypeAttribute } from 'react';
-import { To } from 'react-router';
+import { Path, To } from 'react-router';
 
 export interface NavMenuItem {
   label: string;
-  to: string | To;
+  to: To;
 }
 
 export interface Dictionary<T> {
@@ -43,4 +43,8 @@ export type AuthType = 'join' | 'login';
 export interface ProductDetailTabItem {
   id: string;
   label: string;
+}
+
+export interface RedirectLocationState {
+  redirect: Path;
 }

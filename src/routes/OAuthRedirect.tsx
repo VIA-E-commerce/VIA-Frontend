@@ -1,18 +1,24 @@
 import React, { useEffect } from 'react';
 import { Navigate } from 'react-router';
-import { URLS } from '@/constants';
 import { useSearchParams } from 'react-router-dom';
-import { setBearerToken } from '@/apis';
 
-export const OAuthRedirect = () => {
+import { setBearerToken } from '@/apis';
+import { getRedirect } from '@/utils';
+
+const OAuthRedirect = () => {
   const [query] = useSearchParams();
+  const accessToken = query.get('token');
+  const redirect = getRedirect();
 
   useEffect(() => {
-    const accessToken = query.get('token');
     if (accessToken) {
       setBearerToken(accessToken);
     }
-  }, []);
+  }, [accessToken]);
 
-  return <Navigate to={URLS.CLIENT.HOME} />;
+  if (accessToken) return <Navigate to={redirect} replace />;
+
+  return null;
 };
+
+export default OAuthRedirect;

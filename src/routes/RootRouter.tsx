@@ -4,9 +4,10 @@ import { Route, Routes } from 'react-router';
 import { Home, Join, Login, Category, ProductDetail, Cart } from '@/pages';
 import { URLS } from '@/constants';
 
-import { OAuthRedirect } from './OAuthRedirect';
+import OAuthRedirect from './OAuthRedirect';
+import ProtectedRoute from './ProtectedRoute';
 
-export const RootRouter = () => {
+const RootRouter = () => {
   return (
     <Routes>
       <Route path={URLS.CLIENT.HOME} element={<Home />} />
@@ -18,7 +19,16 @@ export const RootRouter = () => {
         path={`${URLS.CLIENT.PRODUCT}/:productId`}
         element={<ProductDetail />}
       />
-      <Route path={URLS.CLIENT.CART} element={<Cart />} />
+      <Route
+        path={URLS.CLIENT.CART}
+        element={
+          <ProtectedRoute>
+            <Cart />
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   );
 };
+
+export default RootRouter;

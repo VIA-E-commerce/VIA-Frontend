@@ -3,8 +3,9 @@ import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router';
 
 import { login, setBearerToken } from '@/apis';
-import { URLS } from '@/constants';
 import { ResponseEntity, LoginResponse } from '@/types';
+import { getRedirect } from '@/utils';
+
 import { useMe } from './useMe';
 
 export const useLogin = () => {
@@ -18,7 +19,8 @@ export const useLogin = () => {
       meQuery.refetch();
 
       alert('로그인 되었습니다!');
-      navigate(URLS.CLIENT.HOME);
+      const redirect = getRedirect();
+      navigate(redirect, { replace: true });
     },
     onError: (data: AxiosError<ResponseEntity<any>>) => {
       const errorMessage =

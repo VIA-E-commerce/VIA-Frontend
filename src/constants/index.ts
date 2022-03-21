@@ -66,6 +66,10 @@ export const QUERY = {
   },
 };
 
+export const LOCAL_STORAGE = {
+  REDIRECT: 'redirect',
+};
+
 export const CATEGORY: Dictionary<string> = {
   new: 'NEW',
   sale: 'SALE',
