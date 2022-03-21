@@ -1,6 +1,7 @@
-import { URLS } from '@/constants';
-import React, { memo, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
+
+import { URLS } from '@/constants';
 
 import { Wrapper, SortMenu, SortMenuItem } from './ProductSortBox.styles';
 
@@ -38,7 +39,7 @@ interface SortButtonProps {
   defaultSearchParams: URLSearchParams;
 }
 
-const SortButton = memo(function SortButton({
+const SortButton = function SortButton({
   label,
   sortMethod = '',
   active,
@@ -61,7 +62,7 @@ const SortButton = memo(function SortButton({
       <Link to={{ search }}>{label}</Link>
     </SortMenuItem>
   );
-});
+};
 
 const ProductSortBox = () => {
   const [searchParams] = useSearchParams();
