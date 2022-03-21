@@ -38,7 +38,9 @@ const UserMenu = ({ user, onClickLogout }: Props) => {
       )}
 
       <MenuItem>
-        <MdShoppingCart />
+        <Link to={URLS.CLIENT.CART}>
+          <MdShoppingCart />
+        </Link>
       </MenuItem>
     </Menu>
   );
