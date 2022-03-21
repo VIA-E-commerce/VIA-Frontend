@@ -1,8 +1,9 @@
 import React from 'react';
 import { Route, Routes } from 'react-router';
 
-import { Home, Join, Login, Category, ProductDetail } from '@/pages';
+import { Home, Join, Login, Category, ProductDetail, Cart } from '@/pages';
 import { URLS } from '@/constants';
+
 import { OAuthRedirect } from './OAuthRedirect';
 
 export const RootRouter = () => {
@@ -17,6 +18,7 @@ export const RootRouter = () => {
         path={`${URLS.CLIENT.PRODUCT}/:productId`}
         element={<ProductDetail />}
       />
+      <Route path={URLS.CLIENT.CART} element={<Cart />} />
     </Routes>
   );
 };

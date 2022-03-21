@@ -5,3 +5,4 @@ export const Join = loadable(() => import('./Join'));
 export const Login = loadable(() => import('./Login'));
 export const Category = loadable(() => import('./Category'));
 export const ProductDetail = loadable(() => import('./ProductDetail'));
+export const Cart = loadable(() => import('./Cart'));

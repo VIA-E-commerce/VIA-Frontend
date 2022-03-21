@@ -5,6 +5,7 @@ import { QUERY } from '@/constants';
 
 export const useCartItemList = () => {
   const { data, ...rest } = useQuery(QUERY.CART.MINE, fetchMyCart, {
+    refetchOnMount: true,
     refetchOnWindowFocus: false,
   });
 
