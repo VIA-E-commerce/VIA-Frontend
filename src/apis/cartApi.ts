@@ -34,3 +34,7 @@ export const editCartItem = async ({
 
   return response.data;
 };
+
+export const removeCartItem = async (cartItemId: number) => {
+  await client.delete(`${URLS.API.CART.ITEM}/${cartItemId}`);
+};
