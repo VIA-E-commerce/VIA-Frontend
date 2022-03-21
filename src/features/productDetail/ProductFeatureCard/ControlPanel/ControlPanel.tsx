@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import { LabelField, SquareButton, NumberInput } from '@/components';
 import { ProductDetailResponse } from '@/types';
 import { formatPrice } from '@/utils';
 
+import { useAddCartItemMutation } from '../../useAddCartItemMutation';
+import { useProductControlPanel } from '../../useProductControlPanel';
 import { ColorSelector } from '../ColorSelector';
 import { SizeSelector } from '../SizeSelector';
-import { useProductControlPanel } from '../../useProductControlPanel';
 import { TotalPrice, BuyButtonGroup } from './ControlPanel.styles';
 
 interface ControlPanelProps {
@@ -26,6 +27,16 @@ const ControlPanel = ({ product }: ControlPanelProps) => {
     numberInputProps,
   } = useProductControlPanel({ product });
 
+  const { mutate } = useAddCartItemMutation();
+
+  const handleClickCart = useCallback(() => {
+    if (!sizeId) return alert('사이즈를 선택해주세요.');
+
+    if (variant) {
+      mutate({ variantId: variant.id, quantity });
+    }
+  }, [sizeId, variant]);
+
   return (
     <>
       <section>
@@ -41,9 +52,15 @@ const ControlPanel = ({ product }: ControlPanelProps) => {
           setSizeId={setSizeId}
           variants={variantsFilteredByColor}
         />
-        <LabelField label="수량">
-          <NumberInput name="quantity" value={quantity} {...numberInputProps} />
-        </LabelField>
+        {variant && (
+          <LabelField label="수량">
+            <NumberInput
+              name="quantity"
+              value={quantity}
+              {...numberInputProps}
+            />
+          </LabelField>
+        )}
       </section>
 
       <section>
@@ -51,7 +68,9 @@ const ControlPanel = ({ product }: ControlPanelProps) => {
           <TotalPrice>{formatPrice(totalPrice)}원</TotalPrice>
         </LabelField>
         <BuyButtonGroup cols={2} gap={8}>
-          <SquareButton variant="outline">장바구니</SquareButton>
+          <SquareButton variant="outline" onClick={handleClickCart}>
+            장바구니
+          </SquareButton>
           <SquareButton>바로구매</SquareButton>
         </BuyButtonGroup>
       </section>
