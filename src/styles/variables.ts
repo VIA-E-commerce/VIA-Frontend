@@ -94,4 +94,7 @@ export const component = {
       paddingBottom: 14.4,
     },
   },
+  cart: {
+    itemPadding: space.level5,
+  },
 };

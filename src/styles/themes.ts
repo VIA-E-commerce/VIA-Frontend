@@ -25,6 +25,8 @@ export const theme = {
     gray: color.gray,
     lightGray: color.lightGray,
     white: color.white,
+
+    cartBorder: color.gray,
   },
 };
 
