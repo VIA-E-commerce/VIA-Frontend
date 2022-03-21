@@ -48,6 +48,7 @@ export const APP = {
 export const BUSINESS = {
   POINT_EARNING_RATE: 0.01,
   FREE_DELIVERY: 30000,
+  DELIVERY_FEE: 3000,
 };
 
 export const QUERY = {
