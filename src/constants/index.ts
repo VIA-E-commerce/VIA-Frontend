@@ -21,6 +21,7 @@ export const URLS = {
     },
     CART: {
       ME: '/carts/me',
+      ITEM: '/cart-items',
     },
   },
   CLIENT: {
@@ -30,6 +31,7 @@ export const URLS = {
     OAUTH: '/oauth',
     CATEGORY: '/category',
     PRODUCT: '/product',
+    CART: '/cart',
   },
   PARAM: {
     CATEGORY: 'category',

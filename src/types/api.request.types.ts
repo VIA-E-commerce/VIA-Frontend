@@ -10,3 +10,8 @@ export interface LoginForm {
 }
 
 export type ReviewSortMethod = '' | 'rating-desc' | 'rating-asc';
+
+export interface AddCartItemRequest {
+  variantId: number;
+  quantity: number;
+}
