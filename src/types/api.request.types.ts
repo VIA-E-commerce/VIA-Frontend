@@ -15,3 +15,7 @@ export interface AddCartItemRequest {
   variantId: number;
   quantity: number;
 }
+
+export interface EditCartItemRequest {
+  quantity: number;
+}
