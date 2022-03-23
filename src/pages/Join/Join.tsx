@@ -1,29 +1,33 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router';
 
-import { SquareButton } from '@/components';
+import { Input, SquareButton } from '@/components';
+import { INPUT_OPTIONS } from '@/constants';
 import {
   AuthCheckBox,
   AuthForm,
-  AuthInput,
   OAuthButtonGroup,
   AuthSection,
   useJoin,
 } from '@/features/auth';
-import { useForm } from '@/hooks';
+import { useForm } from '@/lib';
 import { AuthType, JoinForm } from '@/types';
 import { setRedirect } from '@/utils';
-
-const initJoinForm: JoinForm = {
-  email: '',
-  name: '',
-  password: '',
-};
 
 const Join = () => {
   const location = useLocation();
   const { mutate } = useJoin();
-  const { register, onSubmit, errors } = useForm(initJoinForm, mutate);
+
+  const onValid = async (form: JoinForm) => {
+    const { email, name, password } = form;
+    mutate({
+      email,
+      name,
+      password,
+    });
+  };
+
+  const { register, handleSubmit, errors } = useForm<JoinForm>();
   const authType: AuthType = 'join';
 
   useEffect(() => {
@@ -32,71 +36,41 @@ const Join = () => {
 
   return (
     <AuthSection>
-      <AuthForm title={authType} onSubmit={(event) => onSubmit(event)}>
-        <AuthInput
-          errors={errors}
+      <AuthForm title={authType} onSubmit={handleSubmit(onValid)}>
+        <Input
+          type="email"
+          errorMessage={errors['email']}
           {...register({
             name: 'email',
-            type: 'email',
             placeholder: '이메일',
-            validation: {
-              required: '이메일을 입력해주세요.',
-              maxLength: {
-                value: 255,
-                message: '이메일이 너무 깁니다.',
-              },
-              pattern: {
-                value: /^[a-z0-9]+@[a-z0-9]+\.[a-z]{2,3}$/i,
-                message: '이메일 형식에 맞게 입력해주세요.',
-              },
-            },
+            validationRules: INPUT_OPTIONS.EMAIL,
           })}
         />
-        <AuthInput
-          errors={errors}
+        <Input
+          type="text"
+          errorMessage={errors['name']}
           {...register({
             name: 'name',
-            type: 'text',
             placeholder: '이름',
-            validation: {
-              required: '이름을 입력해주세요.',
-              minLength: {
-                value: 2,
-                message: `이름은 최소 ${2}자 이상이어야 합니다.`,
-              },
-              maxLength: {
-                value: 17,
-                message: `이름은 ${17}자 이하여야 합니다.`,
-              },
-            },
+            validationRules: INPUT_OPTIONS.NAME,
           })}
         />
-        <AuthInput
-          errors={errors}
+        <Input
+          type="password"
+          errorMessage={errors['password']}
           {...register({
             name: 'password',
-            type: 'password',
             placeholder: '비밀번호',
-            validation: {
-              required: '비밀번호를 입력해주세요.',
-              minLength: {
-                value: 8,
-                message: `비밀번호는 최소 ${8}자 이상이어야 합니다.`,
-              },
-              maxLength: {
-                value: 255,
-                message: `비밀번호는 ${255}자 이하여야 합니다.`,
-              },
-            },
+            validationRules: INPUT_OPTIONS.PASSWORD,
           })}
         />
-        <AuthInput
-          errors={errors}
+        <Input
+          type="password"
+          errorMessage={errors['confirmPassword']}
           {...register({
             name: 'confirmPassword',
-            type: 'password',
             placeholder: '비밀번호 확인',
-            validation: {
+            validationRules: {
               required: '비밀번호 확인을 입력해주세요.',
               match: {
                 value: 'password',
@@ -110,8 +84,7 @@ const Join = () => {
             label="서비스 이용약관 (필수)"
             {...register({
               name: 'agreeToUseService',
-              type: 'checkbox',
-              validation: {
+              validationRules: {
                 required: '서비스 이용약관 동의는 필수입니다.',
               },
             })}
@@ -120,8 +93,7 @@ const Join = () => {
             label="개인정보 수집 및 이용 동의 (필수)"
             {...register({
               name: 'agreeToUsePersnalInfo',
-              type: 'checkbox',
-              validation: {
+              validationRules: {
                 required: '개인정보 수집 및 이용 동의는 필수입니다.',
               },
             })}
