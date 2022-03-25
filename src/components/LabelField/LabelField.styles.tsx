@@ -8,13 +8,13 @@ export type ContentAlignType = 'left' | 'center' | 'right';
 export interface LabelFieldStyleProps {
   size: LabelFieldSize;
   contentAlign: ContentAlignType;
+  required?: boolean;
 }
 const getLabelFieldSize = (size: LabelFieldSize) => {
   let height = 4;
   if (size === 'large') {
     height = 4.8;
     return css`
-      &,
       .label {
         min-height: ${height}rem;
         line-height: ${height}rem;
@@ -24,7 +24,6 @@ const getLabelFieldSize = (size: LabelFieldSize) => {
   }
 
   return css`
-    &,
     .label {
       min-height: ${height}rem;
       line-height: ${height}rem;
@@ -43,6 +42,7 @@ const getContentAlignment = (contentAlign: ContentAlignType) => {
 
   return css`
     justify-content: ${align};
+    align-items: center;
   `;
 };
 export const Wrapper = styled.div<LabelFieldStyleProps>`
@@ -52,6 +52,10 @@ export const Wrapper = styled.div<LabelFieldStyleProps>`
 
   .label {
     width: 14.4rem;
+
+    .required {
+      color: red;
+    }
   }
 
   .content {

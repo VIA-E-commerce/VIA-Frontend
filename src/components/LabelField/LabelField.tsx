@@ -16,11 +16,15 @@ const LabelField = ({
   label,
   size,
   contentAlign,
+  required,
   children,
 }: LabelFieldProps) => {
   return (
-    <Wrapper size={size} contentAlign={contentAlign}>
-      <div className="label">{label}</div>
+    <Wrapper size={size} contentAlign={contentAlign} required={required}>
+      <div className="label">
+        {label}
+        {required && <span className="required">*</span>}
+      </div>
       <div className="content">{children}</div>
     </Wrapper>
   );
