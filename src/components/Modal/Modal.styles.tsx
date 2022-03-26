@@ -30,6 +30,7 @@ export const Overlay = styled.div<OverlayStyleProps>`
 
   ${({ show }) => getShowStyle(show)};
 
+  z-index: 900;
   position: fixed;
   top: 0;
   right: 0;

@@ -10,6 +10,7 @@ export const StyledHeader = styled.header`
 
   height: ${styles.component.header.height}rem;
 
+  z-index: 500;
   position: sticky;
   top: 0;
 
