@@ -6,6 +6,7 @@ const color = {
   gray: '#AAAAAA',
   lightGray: '#BDBDBD',
   dimGray: '#EDEDEF',
+  dimBeige: '#F9F9F7',
   red: '#ff0000',
 };
 
@@ -15,6 +16,7 @@ export const theme = {
     fontReverse: color.white,
     error: color.red,
     background: color.white,
+    surface: color.dimBeige,
 
     buttonActive: color.dark,
     buttonActiveReverse: color.dimGray,
