@@ -4,14 +4,15 @@ import {
   WrapperStyleProps,
   Wrapper,
   StyledInput,
-  InputStyleProps,
   ErrorMessage,
 } from './Input.styles';
 
-interface InputProps extends WrapperStyleProps, InputStyleProps {
+interface InputProps extends WrapperStyleProps {
   name?: string;
   type?: React.HTMLInputTypeAttribute;
+  defaultValue?: any;
   placeholder?: string;
+  readOnly?: boolean;
   width?: number;
   min?: number;
   max?: number;

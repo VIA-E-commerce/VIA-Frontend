@@ -6,7 +6,7 @@ import { getValidateOptionValue, setField } from '../utils';
 export const register =
   (fields: Fields, onBlur: React.FocusEventHandler): FieldRegister =>
   <Target extends RefTarget>(options: RegisterOptions) => {
-    const { name, placeholder, validationRules } = options;
+    const { name, defaultValue, placeholder, validationRules } = options;
 
     const ref = useRef<Target>(null);
 
@@ -15,6 +15,7 @@ export const register =
     return {
       ref,
       name,
+      defaultValue,
       placeholder,
       minLength: getValidateOptionValue(validationRules?.minLength),
       maxLength: getValidateOptionValue(validationRules?.maxLength),

@@ -15,6 +15,7 @@ export type FieldErrors = Record<keyof Fields, any>;
 // register
 export interface RegisterOptions {
   name: string;
+  defaultValue?: any;
   placeholder?: string;
   validationRules?: ValidationRules;
 }

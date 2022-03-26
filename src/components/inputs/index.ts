@@ -1,3 +1,4 @@
+export * from './AddressInput';
 export * from './ColorInput';
 export * from './Input';
 export * from './NumberInput';
