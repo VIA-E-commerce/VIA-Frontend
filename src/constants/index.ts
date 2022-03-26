@@ -70,6 +70,9 @@ export const QUERY = {
   CART: {
     MINE: 'my-cart',
   },
+  ORDER: {
+    ITEMS: 'order-items',
+  },
 };
 
 export const LOCAL_STORAGE = {
