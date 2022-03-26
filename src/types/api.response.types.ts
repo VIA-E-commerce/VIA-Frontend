@@ -26,6 +26,7 @@ export interface UserSummary {
   id: number;
   email: string;
   name: string;
+  phone: string;
   role: string;
   provider: string;
   snsId?: string;

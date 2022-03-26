@@ -1,7 +1,15 @@
 import React from 'react';
 import { Route, Routes } from 'react-router';
 
-import { Home, Join, Login, Category, ProductDetail, Cart } from '@/pages';
+import {
+  Home,
+  Join,
+  Login,
+  Category,
+  ProductDetail,
+  Cart,
+  Order,
+} from '@/pages';
 import { URLS } from '@/constants';
 
 import OAuthRedirect from './OAuthRedirect';
@@ -24,6 +32,14 @@ const RootRouter = () => {
         element={
           <ProtectedRoute>
             <Cart />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path={URLS.CLIENT.ORDER}
+        element={
+          <ProtectedRoute>
+            <Order />
           </ProtectedRoute>
         }
       />

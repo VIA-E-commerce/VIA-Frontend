@@ -78,3 +78,10 @@ export function getRedirect() {
 
   return redirectTo;
 }
+
+export function getSearchParamArray(
+  searchParams: URLSearchParams,
+  name: string,
+): Array<string> {
+  return searchParams.get(name)?.split(',') || [];
+}
