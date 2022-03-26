@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 import {
   validateField as wrappedValidateField,
@@ -11,16 +11,25 @@ import { Form, UseFormReturn, Fields, FieldErrors } from './types';
 export const useForm = <
   SubmitForm extends Form,
 >(): UseFormReturn<SubmitForm> => {
-  const fields: Fields = {};
+  const formRef = useRef<{ fields: Fields }>({ fields: {} });
+  const fields: Fields = formRef.current.fields;
   const [errors, setErrors] = useState<FieldErrors>({});
 
-  const validateField = wrappedValidateField(fields, setErrors);
+  const validateField = useCallback(
+    wrappedValidateField(fields, setErrors),
+    [],
+  );
 
-  const onBlur = wrappedOnBlur(fields, validateField);
+  const onBlur = useCallback(wrappedOnBlur(fields, validateField), [
+    validateField,
+  ]);
 
-  const register = wrappedRegister(fields, onBlur);
+  const register = useCallback(wrappedRegister(fields, onBlur), [onBlur]);
 
-  const handleSubmit = wrappedHandleSubmit<SubmitForm>(fields, validateField);
+  const handleSubmit = useCallback(
+    wrappedHandleSubmit<SubmitForm>(fields, validateField),
+    [],
+  );
 
   return {
     register,
