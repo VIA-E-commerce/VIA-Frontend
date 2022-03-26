@@ -10,6 +10,7 @@ export const useMe = () => {
     fetchMe,
     {
       retry: false,
+      refetchOnMount: false,
       refetchOnWindowFocus: false,
       cacheTime: 0,
     },
