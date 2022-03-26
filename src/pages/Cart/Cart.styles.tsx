@@ -15,3 +15,17 @@ export const CartAside = styled.aside`
 
   position: sticky;
 `;
+
+export const EmptyCartItemList = styled.div`
+  height: 100%;
+
+  border-width: 0;
+  border-style: solid;
+  border-color: ${({ theme }) => theme.color.font};
+  border-top-width: ${styles.border.level2}rem;
+  border-bottom-width: ${styles.border.level1}rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

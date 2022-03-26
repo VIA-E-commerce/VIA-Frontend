@@ -20,16 +20,18 @@ import {
 
 interface CartItemProps {
   item: CartItemResponse;
+  checked?: boolean;
   onSelectItem: (cartItem: CartItemResponse) => void;
   onDeselectItem: (cartItemId: number) => void;
 }
 
-const CartItem = ({ item, onSelectItem, onDeselectItem }: CartItemProps) => {
-  const {
-    value: quantity,
-    setValue: setQuantity,
-    ...rest
-  } = useNumberInput({
+const CartItem = ({
+  item,
+  checked,
+  onSelectItem,
+  onDeselectItem,
+}: CartItemProps) => {
+  const { value: quantity, ...rest } = useNumberInput({
     defaultValue: item.quantity,
     min: 1,
     max: item.stock,
@@ -43,9 +45,12 @@ const CartItem = ({ item, onSelectItem, onDeselectItem }: CartItemProps) => {
 
   const handleClickEditQuantity = (
     cartItem: CartItemResponse,
-    quantity: number,
+    newQuantity: number,
   ) => {
-    mutateEditItem({ cartItemId: cartItem.id, request: { quantity } });
+    mutateEditItem({
+      cartItemId: cartItem.id,
+      request: { quantity: newQuantity },
+    });
   };
 
   const handleClickRemove = (cartItemId: number) => {
@@ -63,8 +68,6 @@ const CartItem = ({ item, onSelectItem, onDeselectItem }: CartItemProps) => {
     } else {
       onDeselectItem(item.id);
     }
-
-    setQuantity(item.quantity);
   };
 
   return (
@@ -72,7 +75,7 @@ const CartItem = ({ item, onSelectItem, onDeselectItem }: CartItemProps) => {
       <OrderSelector>
         <input
           type="checkbox"
-          defaultChecked={true}
+          checked={checked}
           onChange={handleChangeItemSelection}
         />
       </OrderSelector>
@@ -88,8 +91,8 @@ const CartItem = ({ item, onSelectItem, onDeselectItem }: CartItemProps) => {
           </Link>
           <div className="price">
             <PriceLabel
-              sellingPrice={item.sellingPrice * quantity}
-              retailPrice={item.retailPrice * quantity}
+              sellingPrice={item.sellingPrice * item.quantity}
+              retailPrice={item.retailPrice * item.quantity}
             />
           </div>
           <div className="option">

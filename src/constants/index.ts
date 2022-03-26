@@ -22,7 +22,6 @@ export const URLS = {
       ME: '/users/me',
     },
     CART: {
-      ME: '/carts/me',
       ITEM: '/cart-items',
     },
     ORDER: {
@@ -37,11 +36,13 @@ export const URLS = {
     CATEGORY: '/category',
     PRODUCT: '/product',
     CART: '/cart',
+    ORDER: '/order',
   },
   PARAM: {
     CATEGORY: 'category',
     SORT: 'sort',
     PAGE: 'page',
+    CART_ITEM_ID: 'cart-item-id',
   },
 };
 

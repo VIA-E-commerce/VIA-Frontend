@@ -21,10 +21,12 @@ export const useEditCartItemMutation = () => {
         const newMap = new Map(prev);
 
         // 선택된 장바구니 항목 중 방금 업데이트된 것이 있으면 정보를 최신화해줍니다.
-        const updatedCartItem = prev.get(cartItemId);
-        if (updatedCartItem) {
-          updatedCartItem.quantity = quantity;
-          newMap.set(cartItemId, updatedCartItem);
+        if (prev.has(cartItemId)) {
+          const updatedCartItem = prev.get(cartItemId);
+          if (updatedCartItem) {
+            updatedCartItem.quantity = quantity;
+            newMap.set(cartItemId, updatedCartItem);
+          }
         }
 
         return newMap;

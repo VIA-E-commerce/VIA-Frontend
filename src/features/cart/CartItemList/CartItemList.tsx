@@ -1,18 +1,20 @@
 import React, { useEffect } from 'react';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 
 import { selectedCartItemsState } from '@/state';
 import { CartItemResponse } from '@/types';
 
 import { CartItem } from './CartItem';
-import { List, EmptyList } from './CartItemList.styles';
+import { List } from './CartItemList.styles';
 
 interface CartItemListProps {
-  cartItems?: CartItemResponse[];
+  cartItems: CartItemResponse[];
 }
 
 const CartItemList = ({ cartItems }: CartItemListProps) => {
-  const setSelectedCartItems = useSetRecoilState(selectedCartItemsState);
+  const [selectedCartItems, setSelectedCartItems] = useRecoilState(
+    selectedCartItemsState,
+  );
 
   const handleSelectItem = (cartItem: CartItemResponse) => {
     setSelectedCartItems((prev) => new Map(prev).set(cartItem.id, cartItem));
@@ -29,11 +31,11 @@ const CartItemList = ({ cartItems }: CartItemListProps) => {
 
   useEffect(() => {
     cartItems?.forEach((item) => handleSelectItem(item));
-  }, [cartItems]);
 
-  if (cartItems?.length === 0) {
-    return <EmptyList>장바구니에 담긴 상품이 없습니다</EmptyList>;
-  }
+    return () => {
+      setSelectedCartItems(new Map());
+    };
+  }, []);
 
   return (
     <List>
@@ -41,6 +43,7 @@ const CartItemList = ({ cartItems }: CartItemListProps) => {
         <li key={item.id}>
           <CartItem
             item={item}
+            checked={selectedCartItems.has(item.id)}
             onSelectItem={handleSelectItem}
             onDeselectItem={handleDeselectItem}
           />

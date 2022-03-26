@@ -7,9 +7,14 @@ import {
   ResponseEntity,
 } from '@/types';
 
-export const fetchMyCart = async () => {
+export const fetchCartItems = async (cartItems?: number[]) => {
   const response = await client.get<ResponseEntity<CartItemResponse[]>>(
-    URLS.API.CART.ME,
+    URLS.API.CART.ITEM,
+    {
+      params: {
+        id: cartItems?.join(','),
+      },
+    },
   );
   return response.data;
 };
