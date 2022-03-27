@@ -30,40 +30,12 @@ const Order = () => {
 
   const { data: userData } = useMe();
   const { data: cartItems } = useOrderCartItems(cartItemIds);
-  const { onSubmit: onSubmitOrderForm } = useCreateOrderMutation();
+  const { onSubmit: onSubmitOrderForm } = useCreateOrderMutation({ cartItems });
   const { handleSubmit, ...rest } = useForm<RawOrderForm>();
 
   const priceInfo = useOrderPriceInfo({ cartItems });
 
-    if (cartItems) {
-      totalProductPrice = cartItems.reduce(
-        (sum, item) =>
-          sum + (item.retailPrice || item.sellingPrice) * item.quantity,
-        0,
-      );
-
-      const totalSellingPrice = cartItems.reduce(
-        (sum, item) => sum + item.sellingPrice * item.quantity,
-        0,
-      );
-
-      totalDiscount = totalProductPrice - totalSellingPrice;
-
-      deliveryFee =
-        totalSellingPrice >= BUSINESS.FREE_DELIVERY ? 0 : BUSINESS.DELIVERY_FEE;
-
-      totalPrice = totalProductPrice - totalDiscount + deliveryFee;
-    }
-
-    return {
-      totalProductPrice,
-      totalDiscount,
-      deliveryFee,
-      totalPrice,
-    };
-  }, [cartItems]);
-
-  const onSubmit = useMemo(() => handleSubmit(onSubmitOrderForm), []);
+  const onSubmit = useMemo(() => handleSubmit(onSubmitOrderForm), [cartItems]);
 
   if (!userData || !cartItems)
     return <GridSection cols={1}>로딩 중</GridSection>;

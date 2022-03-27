@@ -37,12 +37,14 @@ export const URLS = {
     PRODUCT: '/product',
     CART: '/cart',
     ORDER: '/order',
+    PAYMENT: '/payment',
   },
   PARAM: {
     CATEGORY: 'category',
     SORT: 'sort',
     PAGE: 'page',
     CART_ITEM_ID: 'cart-item-id',
+    ORDER: 'order',
   },
 };
 
@@ -52,6 +54,7 @@ export const APP = {
 };
 
 export const BUSINESS = {
+  IMP_ACCOUNT_ID: process.env.REACT_APP_ACCOUNT_ID,
   POINT_EARNING_RATE: 0.01,
   FREE_DELIVERY: 30000,
   DELIVERY_FEE: 3000,
@@ -87,6 +90,17 @@ export const CATEGORY: Dictionary<string> = {
   bottom: 'BOTTOM',
   ['bag-acc']: 'BAG/ACC',
 };
+
+export const ORDER_STATUS = {
+  AWAITING_PAYMENT: 'AWAITING_PAYMENT', // 입금대기
+  PAYMENT_ACCEPTED: 'PAYMENT_ACCEPTED', // 입금확인
+  AWAITING_SHIPMENT: 'AWAITING_SHIPMENT', // 배송준비중
+  SHIPPED: 'SHIPPED', // 배송중
+  DELIVERED: 'DELIVERED', // 배송완료
+  CANCELLED: 'CANCELLED', // 주문 취소
+  EXCHANGED: 'EXCHANGED', // 교환
+  REFUNDED: 'REFUNDED', // 환불
+} as const;
 
 export const PAYMENT_METHOD = {
   BACS: 'BACS', // 무통장입금

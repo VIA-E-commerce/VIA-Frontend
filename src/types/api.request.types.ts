@@ -20,6 +20,17 @@ export interface EditCartItemRequest {
   quantity: number;
 }
 
+// 주문
+export type OrderStatus =
+  | 'AWAITING_PAYMENT'
+  | 'PAYMENT_ACCEPTED'
+  | 'AWAITING_SHIPMENT'
+  | 'SHIPPED'
+  | 'DELIVERED'
+  | 'CANCELLED'
+  | 'EXCHANGED'
+  | 'REFUNDED';
+
 export type PaymentMethod =
   | 'BACS'
   | 'ACCOUNT_TRANSFER'
@@ -43,7 +54,15 @@ export interface CreateOrderRequest {
   shippingAddress: string;
   message: string;
 
-  status: string;
+  status: OrderStatus;
   paymentMethod: PaymentMethod;
   paidAt: Date;
+
+  orderDetails: OrderDetailRequest[];
+}
+
+export interface OrderDetailRequest {
+  price: number;
+  quantity: number;
+  variantId: number;
 }

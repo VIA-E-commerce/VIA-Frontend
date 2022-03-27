@@ -110,7 +110,6 @@ const OrderForm = ({ me, totalPrice, discount }: Props) => {
           />
         </LabelField>
       </OrderFieldGroup>
-      <OrderFieldGroup title="결제 수단"></OrderFieldGroup>
     </StyledForm>
   );
 };

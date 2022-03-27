@@ -23,6 +23,7 @@ export const OrderHeader = styled.section`
 
 export const OrderBody = styled.section`
   grid-column: 1 / span 8;
+  margin-bottom: 8rem;
 
   display: flex;
   flex-direction: column;
