@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { useSearchParams, Navigate } from 'react-router-dom';
 
 import { GridSection } from '@/components';
-import { BUSINESS, URLS } from '@/constants';
+import { URLS } from '@/constants';
 import { AddressModal } from '@/features/address';
 import { useMe } from '@/features/auth';
 import {
@@ -11,6 +11,7 @@ import {
   OrderItemInfoTable,
   useOrderCartItems,
   useCreateOrderMutation,
+  useOrderPriceInfo,
 } from '@/features/order';
 import { FormProvider, useForm } from '@/lib';
 import { RawOrderForm } from '@/types';
@@ -20,8 +21,6 @@ import { OrderHeader, OrderBody } from './Order.styles';
 const Order = () => {
   const [searchParams] = useSearchParams();
   const cartItemIds = searchParams.getAll(URLS.PARAM.CART_ITEM_ID).map(Number);
-
-  console.log(searchParams.toString());
 
   // 주문 상품이 없으면 뒤로 가기
   if (cartItemIds.length === 0) {
@@ -34,11 +33,7 @@ const Order = () => {
   const { onSubmit: onSubmitOrderForm } = useCreateOrderMutation();
   const { handleSubmit, ...rest } = useForm<RawOrderForm>();
 
-  const priceInfo = useMemo(() => {
-    let totalProductPrice = 0;
-    let totalDiscount = 0;
-    let deliveryFee = BUSINESS.DELIVERY_FEE;
-    let totalPrice = 0;
+  const priceInfo = useOrderPriceInfo({ cartItems });
 
     if (cartItems) {
       totalProductPrice = cartItems.reduce(

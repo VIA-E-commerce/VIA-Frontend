@@ -5,3 +5,4 @@ export * from './OrderItemInfoTable';
 
 export * from './useCreateOrderMutation';
 export * from './useOrderCartItems';
+export * from './useOrderPriceInfo';
