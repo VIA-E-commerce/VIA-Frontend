@@ -1,5 +1,5 @@
-import React from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import React, { useEffect } from 'react';
+import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 
 import { useFormContext } from '@/lib';
 import {
@@ -19,9 +19,12 @@ interface AddressInputProps {
 
 const AddressInput = ({ name }: AddressInputProps) => {
   const { register, errors } = useFormContext();
+
+  const setAddressModalState = useSetRecoilState(addressModalState);
+
   const { postalCode, address } =
     useRecoilValue<AddressInputState>(addressInputState);
-  const setAddressModalState = useSetRecoilState(addressModalState);
+  const resetAddressInput = useResetRecoilState(addressInputState);
 
   const [postalCodeName, addressName, addressDetailName] = [
     `${name}PostalCode`,
@@ -33,6 +36,10 @@ const AddressInput = ({ name }: AddressInputProps) => {
     event.preventDefault();
     setAddressModalState((prev) => ({ ...prev, show: true }));
   };
+
+  useEffect(() => {
+    return () => resetAddressInput();
+  }, []);
 
   return (
     <Wrapper>
