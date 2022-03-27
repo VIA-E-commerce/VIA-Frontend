@@ -1,13 +1,15 @@
 import React from 'react';
-import { MdShare, MdFavoriteBorder } from 'react-icons/md';
+import { MdShare } from 'react-icons/md';
 
 import {
   GridSection,
   LabelField,
   PriceLabel,
   SquareButton,
+  TransparentButton,
 } from '@/components';
-import { BUSINESS } from '@/constants';
+import { BUSINESS, QUERY } from '@/constants';
+import { useToggleWishlistMutation, WishlistButton } from '@/features/wishlist';
 import { ProductDetailResponse } from '@/types';
 import {
   calcIntegerPercentage,
@@ -25,20 +27,34 @@ import {
   ProductName,
   InfoFooter,
 } from './ProductFeatureCard.styles';
+import { useQueryClient } from 'react-query';
 
 interface ProductFeatureCardProps {
   product: ProductDetailResponse;
 }
 
 const ProductFeatureCard = ({ product }: ProductFeatureCardProps) => {
+  const queryClient = useQueryClient();
+  const wishlistButtoncallback = () => {
+    queryClient.fetchQuery([QUERY.PRODUCT.DETAIL, product.id]);
+  };
+
   const pointEarningRate = calcRoundedPercentage(BUSINESS.POINT_EARNING_RATE);
   const point = calcIntegerPercentage(product.sellingPrice, pointEarningRate);
+  const { onToggleWishlist } = useToggleWishlistMutation(
+    wishlistButtoncallback,
+  );
 
   return (
     <GridSection cols={1} rowGap={8}>
       <TopButtonGroup>
-        <MdShare />
-        <MdFavoriteBorder />
+        <TransparentButton>
+          <MdShare />
+        </TransparentButton>
+        <WishlistButton
+          wished={product.wished}
+          onClick={() => onToggleWishlist(product.id, product.wished)}
+        />
       </TopButtonGroup>
       <Wrapper>
         <ProductImages>

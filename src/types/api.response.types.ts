@@ -54,6 +54,7 @@ export interface ProductCardResponse {
 
   display: boolean;
   onSale: boolean;
+  wished: boolean;
 
   createdAt: Date;
   updatedAt: Date;
@@ -95,6 +96,7 @@ export interface ProductDetailResponse {
 
   display: boolean;
   onSale: boolean;
+  wished: boolean;
 
   variants: VariantResponse[];
   colors: ColorResponse[];

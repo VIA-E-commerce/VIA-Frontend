@@ -15,6 +15,10 @@ export const useProductReviews = ({
   const { data, ...rest } = useQuery(
     [QUERY.PRODUCT.REVIEWS, { productId, pageNum, sort }],
     () => fetchProductReviews({ productId, pageSize, pageNum, sort }),
+    {
+      retry: false,
+      refetchOnWindowFocus: false,
+    },
   );
 
   return {

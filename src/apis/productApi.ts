@@ -104,3 +104,19 @@ export const fetchProductQuestions = async ({
 
   return response.data;
 };
+
+export const addToWishlist = async (productId: number) => {
+  const path = URLS.API.PRODUCT.WISHLIST.replace(
+    ':productId',
+    productId.toString(),
+  );
+  await client.post(path);
+};
+
+export const removeFromWishlist = async (productId: number) => {
+  const path = URLS.API.PRODUCT.WISHLIST.replace(
+    ':productId',
+    productId.toString(),
+  );
+  await client.delete(path);
+};

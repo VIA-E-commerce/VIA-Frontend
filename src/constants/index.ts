@@ -17,6 +17,7 @@ export const URLS = {
       CRUD: '/products',
       REVIEWS: '/products/:productId/reviews',
       QUESTIONS: '/products/:productId/questions',
+      WISHLIST: '/products/:productId/wishlist',
     },
     USER: {
       ME: '/users/me',

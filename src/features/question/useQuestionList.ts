@@ -19,6 +19,10 @@ export const useQuestionList = ({
       },
     ],
     () => fetchProductQuestions({ productId, pageNum, pageSize }),
+    {
+      retry: false,
+      refetchOnWindowFocus: false,
+    },
   );
 
   return {
