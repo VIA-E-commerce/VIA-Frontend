@@ -9,7 +9,7 @@ export const Menu = styled.ul`
   grid-column: 10 / span 3;
   display: flex;
   justify-content: flex-end;
-  align-items: center;
+  align-items: wrap;
   gap: 1.6rem;
 
   font-size: ${styles.fontSize.xsmall}rem;
