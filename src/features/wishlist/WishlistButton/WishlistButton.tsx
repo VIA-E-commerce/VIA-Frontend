@@ -2,6 +2,7 @@ import React from 'react';
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 
 import { TransparentButton } from '@/components';
+import { useProtectedFunction } from '@/hooks';
 
 interface Props {
   wished?: boolean;
@@ -9,8 +10,14 @@ interface Props {
 }
 
 export const WishlistButton = ({ wished, onClick }: Props) => {
+  const protectedFunction = useProtectedFunction();
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    protectedFunction(() => onClick(event));
+  };
+
   return (
-    <TransparentButton onClick={onClick}>
+    <TransparentButton onClick={handleClick}>
       {wished ? <MdFavorite /> : <MdFavoriteBorder />}
     </TransparentButton>
   );

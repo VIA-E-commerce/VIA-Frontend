@@ -1,10 +1,10 @@
 import React, { useMemo } from 'react';
 import { useSearchParams, Navigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
 
 import { GridSection } from '@/components';
 import { URLS } from '@/constants';
 import { AddressModal } from '@/features/address';
-import { useMe } from '@/features/auth';
 import {
   OrderAside,
   OrderForm,
@@ -14,6 +14,7 @@ import {
   useOrderPriceInfo,
 } from '@/features/order';
 import { FormProvider, useForm } from '@/lib';
+import { currentUserState } from '@/state';
 import { RawOrderForm } from '@/types';
 
 import { OrderHeader, OrderBody } from './Order.styles';
@@ -28,7 +29,7 @@ const Order = () => {
     return <Navigate to={URLS.CLIENT.HOME} />;
   }
 
-  const { data: userData } = useMe();
+  const userData = useRecoilValue(currentUserState);
   const { data: cartItems } = useOrderCartItems(cartItemIds);
   const { onSubmit: onSubmitOrderForm } = useCreateOrderMutation({ cartItems });
   const { handleSubmit, ...rest } = useForm<RawOrderForm>();

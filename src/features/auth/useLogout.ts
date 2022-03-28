@@ -1,15 +1,19 @@
 import { useMutation, useQueryClient } from 'react-query';
+import { useSetRecoilState } from 'recoil';
 
 import { logout, setBearerToken } from '@/apis';
 import { QUERY } from '@/constants';
+import { currentUserState } from '@/state';
 
 export const useLogout = () => {
   const queryClient = useQueryClient();
+  const setCurrentUser = useSetRecoilState(currentUserState);
 
   const { mutate } = useMutation(logout, {
     onSuccess: () => {
       setBearerToken('');
-      queryClient.setQueryData(QUERY.AUTH.ME, null);
+      queryClient.removeQueries(QUERY.AUTH.ME);
+      setCurrentUser(undefined);
     },
   });
 
