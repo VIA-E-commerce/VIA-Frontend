@@ -5,16 +5,15 @@ import cx from 'classnames';
 
 import { headerBorderState, headerHideState } from '@/state';
 import { styles } from '@/styles';
-import { ProductDetailTabItem } from '@/types';
+import { TabItem } from '@/types';
 
 import { Wrapper, TabMenu, TabButton } from './ProductDetailTabNav.styles';
 
 interface ProductDetailTabNavProps {
-  tabs: ProductDetailTabItem[];
+  tabs: TabItem[];
 }
 
-const scrollOffset =
-  styles.component.productDetail.tab.navHeight * -1 * styles.remToPx + 1;
+const scrollOffset = styles.component.tab.navHeight * -1 * styles.remToPx + 1;
 
 const ProductDetailTabNav = ({ tabs }: ProductDetailTabNavProps) => {
   const [headerHide, setHeaderHide] = useRecoilState(headerHideState);

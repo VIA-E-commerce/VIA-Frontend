@@ -14,7 +14,7 @@ import {
   ReviewModal,
   useProductReviews,
 } from '@/features/review';
-import { ProductDetailTabItem } from '@/types';
+import { TabItem } from '@/types';
 
 import { ContentsSection } from './ProductDetail.styles';
 
@@ -72,7 +72,7 @@ const ProductDetail = () => {
     pageSize: QUESTION_PAGE_SIZE,
   });
 
-  const tabs: ProductDetailTabItem[] = useMemo(
+  const tabs: TabItem[] = useMemo(
     () =>
       getTabNavMenu(
         reviewPagination?.totalElements,

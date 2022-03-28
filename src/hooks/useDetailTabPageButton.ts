@@ -21,9 +21,7 @@ export const useDetailTabPageButton = ({
   const handleClickPageButton = (nextPage: number) => {
     setPageNum(nextPage);
     scroller.scrollTo(to, {
-      offset:
-        styles.component.productDetail.tab.navHeight * -1 * styles.remToPx +
-        offset,
+      offset: styles.component.tab.navHeight * -1 * styles.remToPx + offset,
     });
     setHeaderHide(true);
   };

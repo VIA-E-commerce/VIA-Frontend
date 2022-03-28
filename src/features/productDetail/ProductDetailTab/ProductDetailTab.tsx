@@ -1,11 +1,11 @@
 import React, { memo, ReactNode } from 'react';
 
-import { ProductDetailTabItem } from '@/types';
+import { TabItem } from '@/types';
 
 import { Wrapper, Title } from './ProductDetailTab.styles';
 
 interface ProductDetailTabProps {
-  tab: ProductDetailTabItem;
+  tab: TabItem;
   children: ReactNode;
   noTitle?: boolean;
 }

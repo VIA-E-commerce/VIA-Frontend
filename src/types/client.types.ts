@@ -17,9 +17,10 @@ export interface Provider {
 
 export type AuthType = 'join' | 'login';
 
-export interface ProductDetailTabItem {
+export interface TabItem {
   id: string;
   label: string;
+  to?: To;
 }
 
 export interface RedirectLocationState {
