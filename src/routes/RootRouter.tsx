@@ -11,6 +11,7 @@ import {
   Cart,
   Order,
   Wishlist,
+  MyPage,
 } from '@/pages';
 
 import OAuthRedirect from './OAuthRedirect';
@@ -49,6 +50,14 @@ const RootRouter = () => {
         element={
           <ProtectedRoute>
             <Wishlist />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path={`${URLS.CLIENT.MY_PAGE.INDEX}/*`}
+        element={
+          <ProtectedRoute>
+            <MyPage />
           </ProtectedRoute>
         }
       />

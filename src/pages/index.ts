@@ -8,3 +8,4 @@ export const ProductDetail = loadable(() => import('./ProductDetail'));
 export const Cart = loadable(() => import('./Cart'));
 export const Order = loadable(() => import('./Order'));
 export const Wishlist = loadable(() => import('./Wishlist'));
+export const MyPage = loadable(() => import('./MyPage'));

@@ -37,6 +37,15 @@ export const URLS = {
     ORDER: '/order',
     PAYMENT: '/payment',
     WISHLIST: '/wishlist',
+    MY_PAGE: {
+      INDEX: '/mypage',
+      TABS: {
+        PROFILE: 'profile',
+        ORDERS: 'orders',
+        REVIEWS: 'reviews',
+        QUESTIONS: 'questions',
+      },
+    },
   },
   PARAM: {
     CATEGORY: 'category',
