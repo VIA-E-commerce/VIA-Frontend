@@ -17,6 +17,7 @@ export const URLS = {
     },
     USER: {
       ME: '/users/me',
+      MY_WISHLIST: '/users/me/wishlist',
     },
     CART: {
       ITEM: '/cart-items',
@@ -35,6 +36,7 @@ export const URLS = {
     CART: '/cart',
     ORDER: '/order',
     PAYMENT: '/payment',
+    WISHLIST: '/wishlist',
   },
   PARAM: {
     CATEGORY: 'category',
