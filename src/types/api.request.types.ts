@@ -20,6 +20,11 @@ export interface EditCartItemRequest {
   quantity: number;
 }
 
+export interface PagingQuery {
+  pageNum?: number;
+  pageSize?: number;
+}
+
 // 주문
 export type OrderStatus =
   | 'AWAITING_PAYMENT'

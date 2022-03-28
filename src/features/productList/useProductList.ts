@@ -7,10 +7,13 @@ import {
   PaginationResponse,
   ProductCardResponse,
 } from '@/types';
+import { getValidPagingQuery } from '@/utils';
 
 export const useProductList = (props: FetchProductsProps) => {
-  const pageNum = Math.max(1, props.pageNum);
-  const pageSize = Math.max(1, props.pageSize || 1);
+  const { pageNum, pageSize } = getValidPagingQuery({
+    pageNum: props.pageNum,
+    pageSize: props.pageSize,
+  });
 
   const { data, ...rest } = useQuery<
     ResponseEntity<PaginationResponse<ProductCardResponse>>

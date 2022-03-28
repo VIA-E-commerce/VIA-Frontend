@@ -7,11 +7,10 @@ import {
   ProductDetailResponse,
   ReviewResponse,
   QuestionResponse,
+  PagingQuery,
 } from '@/types';
 
-export interface FetchProductsProps {
-  pageNum: number;
-  pageSize?: number;
+export interface FetchProductsProps extends PagingQuery {
   category?: string;
   sort?: string;
 }
@@ -46,10 +45,8 @@ export const fetchProduct = async (
   return response.data;
 };
 
-export interface FetchProductReviewsProps {
+export interface FetchProductReviewsProps extends PagingQuery {
   productId: number;
-  pageSize?: number;
-  pageNum?: number;
   sort?: string;
 }
 export const fetchProductReviews = async ({
@@ -77,10 +74,8 @@ export const fetchProductReviews = async ({
   return response.data;
 };
 
-export interface FetchProductQuestionsProps {
+export interface FetchProductQuestionsProps extends PagingQuery {
   productId: number;
-  pageSize?: number;
-  pageNum?: number;
 }
 export const fetchProductQuestions = async ({
   productId,
