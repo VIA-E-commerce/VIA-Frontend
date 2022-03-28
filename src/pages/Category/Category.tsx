@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
-import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useSearchParams, useNavigate, Link } from 'react-router-dom';
 import { useLocation } from 'react-router';
-import { Link } from 'react-router-dom';
 
 import { URLS } from '@/constants';
 import { GridSection, Pagination } from '@/components';
