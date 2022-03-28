@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router';
 
+import { URLS } from '@/constants';
 import {
   Home,
   Join,
@@ -9,8 +10,8 @@ import {
   ProductDetail,
   Cart,
   Order,
+  Wishlist,
 } from '@/pages';
-import { URLS } from '@/constants';
 
 import OAuthRedirect from './OAuthRedirect';
 import ProtectedRoute from './ProtectedRoute';
@@ -40,6 +41,14 @@ const RootRouter = () => {
         element={
           <ProtectedRoute>
             <Order />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path={URLS.CLIENT.WISHLIST}
+        element={
+          <ProtectedRoute>
+            <Wishlist />
           </ProtectedRoute>
         }
       />
