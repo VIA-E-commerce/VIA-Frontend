@@ -6,3 +6,4 @@ export * from './PhoneInput';
 export * from './Select';
 export * from './SquareInput';
 export * from './StarRating';
+export * from './TextCounter';
