@@ -15,3 +15,9 @@ export interface RawOrderForm
   recipientPhone1: string;
   recipientPhone2: string;
 }
+
+export interface RawMyInfoForm {
+  name: string;
+  phone1: string;
+  phone2: string;
+}

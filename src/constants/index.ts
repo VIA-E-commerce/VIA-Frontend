@@ -68,3 +68,7 @@ export const PAYMENT_METHOD = {
   NAVER_PAY: 'NAVER_PAY', // 네이버페이
   KAKAO_PAY: 'KAKAO_PAY', // 카카오페이
 };
+
+export const DATE_FORMAT = {
+  KOR_DATE_TIME: 'YYYY년 M월 D일 HH시 mm분',
+};
