@@ -1,5 +1,7 @@
 import { Path, To } from 'react-router';
 
+import { SNSProvider } from './api.response.types';
+
 export interface NavMenuItem {
   label: string;
   to: To;
@@ -8,6 +10,7 @@ export interface NavMenuItem {
 export type Dictionary<T> = Record<string, T>;
 
 export interface Provider {
+  code: SNSProvider;
   name: string;
   color: string;
   fontColor: string;

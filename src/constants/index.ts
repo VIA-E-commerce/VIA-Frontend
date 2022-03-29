@@ -1,5 +1,6 @@
 import { Dictionary } from '@/types';
 
+export * from './loginProviders';
 export * from './urls';
 export * from './validation';
 

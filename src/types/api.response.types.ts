@@ -28,7 +28,7 @@ export interface UserSummary {
   name: string;
   phone: string;
   role: string;
-  provider: string;
+  provider: SNSProvider;
   snsId?: string;
   createdAt: Date;
   updatedAt: Date;
@@ -151,3 +151,5 @@ export interface CartItemResponse {
   color: ColorResponse;
   size: SizeValueResponse;
 }
+
+export type SNSProvider = 'LOCAL' | 'KAKAO' | 'NAVER';
