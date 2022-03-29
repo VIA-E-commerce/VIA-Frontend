@@ -1,14 +1,11 @@
 import React, { memo, ReactNode } from 'react';
 
-import {
-  Wrapper,
-  LabelFieldStyleProps,
-  ContentAlignType,
-} from './LabelField.styles';
+import { Wrapper, LabelFieldStyleProps, AlignType } from './LabelField.styles';
 
 interface LabelFieldProps extends LabelFieldStyleProps {
   label: string;
-  contentAlign: ContentAlignType;
+  labelAlign: AlignType;
+  contentAlign: AlignType;
   bold?: boolean;
   vertical?: boolean;
   style?: React.CSSProperties;
@@ -18,6 +15,7 @@ interface LabelFieldProps extends LabelFieldStyleProps {
 const LabelField = ({
   label,
   size,
+  labelAlign,
   contentAlign,
   required,
   bold,
@@ -28,6 +26,7 @@ const LabelField = ({
   return (
     <Wrapper
       size={size}
+      labelAlign={labelAlign}
       contentAlign={contentAlign}
       required={required}
       bold={bold}
@@ -44,6 +43,7 @@ const LabelField = ({
 };
 LabelField.defaultProps = {
   size: 'normal',
+  labelAlign: 'left',
   contentAlign: 'left',
 };
 

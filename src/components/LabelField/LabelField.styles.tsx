@@ -4,10 +4,11 @@ import { css } from '@emotion/react';
 import { styles } from '@/styles';
 
 type LabelFieldSize = 'normal' | 'large';
-export type ContentAlignType = 'left' | 'center' | 'right';
+export type AlignType = 'left' | 'center' | 'right';
 export interface LabelFieldStyleProps {
   size: LabelFieldSize;
-  contentAlign: ContentAlignType;
+  labelAlign: AlignType;
+  contentAlign: AlignType;
   required?: boolean;
   bold?: boolean;
   vertical?: boolean;
@@ -33,12 +34,12 @@ const getLabelFieldSize = (size: LabelFieldSize) => {
     font-size: ${styles.fontSize.small}rem;
   `;
 };
-const getContentAlignment = (contentAlign: ContentAlignType) => {
+const getAlignment = (alignType: AlignType) => {
   let align = 'flex-start';
 
-  if (contentAlign === 'center') {
+  if (alignType === 'center') {
     align = 'center';
-  } else if (contentAlign === 'right') {
+  } else if (alignType === 'right') {
     align = 'flex-end';
   }
 
@@ -71,11 +72,14 @@ export const Wrapper = styled.div<LabelFieldStyleProps>`
       color: red;
     }
     ${({ bold }) => bold && `font-weight: ${styles.fontWeight.bold};`}
+
+    display: flex;
+    ${({ labelAlign }) => getAlignment(labelAlign)}
   }
 
   .content {
     flex: 1;
     display: flex;
-    ${({ contentAlign }) => getContentAlignment(contentAlign)}
+    ${({ contentAlign }) => getAlignment(contentAlign)}
   }
 `;
