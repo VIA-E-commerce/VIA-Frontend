@@ -9,6 +9,8 @@ export interface LabelFieldStyleProps {
   size: LabelFieldSize;
   contentAlign: ContentAlignType;
   required?: boolean;
+  bold?: boolean;
+  vertical?: boolean;
 }
 const getLabelFieldSize = (size: LabelFieldSize) => {
   let height = 4;
@@ -45,17 +47,30 @@ const getContentAlignment = (contentAlign: ContentAlignType) => {
     align-items: center;
   `;
 };
+const getVerticalStyles = (vertical?: boolean) => {
+  if (vertical) {
+    return css`
+      flex-direction: column;
+    `;
+  }
+
+  return css`
+    .label {
+      width: 14.4rem;
+    }
+  `;
+};
 export const Wrapper = styled.div<LabelFieldStyleProps>`
   ${({ size }) => getLabelFieldSize(size)}
 
   display: flex;
+  ${({ vertical }) => getVerticalStyles(vertical)}
 
   .label {
-    width: 14.4rem;
-
     .required {
       color: red;
     }
+    ${({ bold }) => bold && `font-weight: ${styles.fontWeight.bold};`}
   }
 
   .content {
