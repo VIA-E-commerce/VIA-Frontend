@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react';
 import { Link } from 'react-router-dom';
 
-import { NumberInput, PriceLabel, SquareButton } from '@/components';
+import { CheckBox, NumberInput, PriceLabel, SquareButton } from '@/components';
 import { URLS } from '@/constants';
 import { useNumberInput } from '@/hooks';
 import { CartItemResponse } from '@/types';
@@ -73,11 +73,7 @@ const CartItem = ({
   return (
     <Wrapper>
       <OrderSelector>
-        <input
-          type="checkbox"
-          checked={checked}
-          onChange={handleChangeItemSelection}
-        />
+        <CheckBox checked={checked} onChange={handleChangeItemSelection} />
       </OrderSelector>
       <Thumbnail>
         <Link to={productUrl}>
