@@ -1,3 +1,3 @@
 export * from './iamport';
-export * from './postCode';
+export * from './postcode';
 export * from './useForm';
