@@ -10,6 +10,7 @@ import {
 interface InputProps extends WrapperStyleProps {
   name?: string;
   type?: React.HTMLInputTypeAttribute;
+  value?: any;
   defaultValue?: any;
   placeholder?: string;
   readOnly?: boolean;
