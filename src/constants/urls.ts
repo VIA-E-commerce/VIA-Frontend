@@ -25,6 +25,9 @@ export const URLS = {
     ORDER: {
       CRUD: '/orders',
     },
+    QUESTION: {
+      CRUD: '/questions',
+    },
   },
   CLIENT: {
     HOME: '/',

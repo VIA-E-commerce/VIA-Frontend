@@ -80,3 +80,11 @@ export interface EditUserRequest {
   name: string;
   phone: string;
 }
+
+// 문의
+export interface CreateQuestionRequest {
+  title: string;
+  content: string;
+  isPrivate?: boolean;
+  productId: number;
+}

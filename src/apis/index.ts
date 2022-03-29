@@ -5,3 +5,4 @@ export * from './cartApi';
 export * from './orderApi';
 export * from './productApi';
 export * from './userApi';
+export * from './questionApi';
