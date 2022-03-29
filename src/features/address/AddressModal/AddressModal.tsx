@@ -9,11 +9,11 @@ import { Wrapper } from './AddressModal.styles';
 
 const AddressModal = () => {
   const [{ show }, setAddressModalState] = useRecoilState(addressModalState);
-  const handleClick = () =>
+  const handleMouseDown = () =>
     setAddressModalState((prev) => ({ ...prev, show: false }));
 
   return (
-    <Modal show={show} onClick={handleClick}>
+    <Modal show={show} onMouseDown={handleMouseDown}>
       <Wrapper onClick={(event) => event.stopPropagation()}>
         {show && <PostCode />}
       </Wrapper>

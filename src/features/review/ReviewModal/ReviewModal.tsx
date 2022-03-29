@@ -9,11 +9,11 @@ import { ImageCard } from './ReviewModal.styles';
 const ReviewModal = () => {
   const [{ show, imageUrl }, setReviewModalState] =
     useRecoilState(reviewModalStateAtom);
-  const handleClick = () =>
+  const handleMouseDown = () =>
     setReviewModalState((prev) => ({ ...prev, show: false }));
 
   return (
-    <Modal show={show} onClick={handleClick}>
+    <Modal show={show} onMouseDown={handleMouseDown}>
       <ImageCard onClick={(event) => event.stopPropagation()}>
         <img src={imageUrl} />
       </ImageCard>

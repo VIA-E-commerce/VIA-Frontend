@@ -5,12 +5,12 @@ import { Overlay } from './Modal.styles';
 interface ModalProps {
   show: boolean;
   children: ReactNode;
-  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  onMouseDown?: React.MouseEventHandler<HTMLDivElement>;
 }
 
-const Modal = ({ show, children, onClick }: ModalProps) => {
+const Modal = ({ show, children, onMouseDown }: ModalProps) => {
   return (
-    <Overlay show={show} onClick={onClick}>
+    <Overlay show={show} onMouseDown={onMouseDown}>
       {children}
     </Overlay>
   );
