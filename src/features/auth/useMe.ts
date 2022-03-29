@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { useSetRecoilState } from 'recoil';
 
@@ -9,7 +8,13 @@ import { ResponseEntity, UserSummary } from '@/types';
 export const useMe = () => {
   const setCurrentUser = useSetRecoilState(currentUserState);
 
-  const { data, ...rest } = useQuery<ResponseEntity<UserSummary>>(
+  const setMe = (response?: ResponseEntity<UserSummary>) => {
+    const userSummary = response?.data;
+
+    setCurrentUser(userSummary);
+  };
+
+  const { data, refetch, ...rest } = useQuery<ResponseEntity<UserSummary>>(
     QUERY.AUTH.ME,
     fetchMe,
     {
@@ -17,20 +22,25 @@ export const useMe = () => {
       refetchOnMount: false,
       refetchOnWindowFocus: false,
       cacheTime: 0,
+      onSuccess: (response) => {
+        setMe(response);
+      },
     },
   );
 
-  useEffect(() => {
-    if (data) {
-      const userSummary = data.data;
-      setCurrentUser(userSummary);
-    } else {
-      setCurrentUser(undefined);
-    }
-  }, [data]);
+  const handleRefetch = () => {
+    refetch()
+      .then((result) => {
+        setMe(result.data);
+      })
+      .catch(() => {
+        setCurrentUser(undefined);
+      });
+  };
 
   return {
     data: data?.data,
+    refetch: handleRefetch,
     ...rest,
   };
 };

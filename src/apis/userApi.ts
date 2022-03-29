@@ -5,6 +5,7 @@ import {
   PaginationResponse,
   ProductCardResponse,
   ResponseEntity,
+  EditUserRequest,
 } from '@/types';
 
 export const fetchMe = async () => {
@@ -21,5 +22,10 @@ export const fetchMyWishlist = async ({ pageNum, pageSize }: PagingQuery) => {
       pageSize,
     },
   });
+  return response.data;
+};
+
+export const editMyInfo = async (request: EditUserRequest) => {
+  const response = await client.patch(URLS.API.USER.ME, request);
   return response.data;
 };
