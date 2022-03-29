@@ -57,6 +57,8 @@ const OrderForm = ({ me, totalPrice, discount }: Props) => {
             name="purchaserPhone"
             defaultValue={me.phone}
             requiredMessage="주문자 연락처를 입력해주세요."
+            register={register}
+            errors={errors}
           />
         </LabelField>
         <LabelField label="이메일" required>
@@ -92,7 +94,11 @@ const OrderForm = ({ me, totalPrice, discount }: Props) => {
           />
         </LabelField>
         <LabelField label="수령인 연락처" required>
-          <PhoneInput name="recipientPhone" />
+          <PhoneInput
+            name="recipientPhone"
+            register={register}
+            errors={errors}
+          />
         </LabelField>
         <LabelField label="주소" required>
           <AddressInput name="recipientAddress" />

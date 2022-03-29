@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { REGEXP, VALIDATION } from '@/constants';
-import { useFormContext } from '@/lib';
+import { FieldErrors, FieldRegister } from '@/lib';
 
 import { Select } from '../Select';
 import { Input } from '../Input';
@@ -10,14 +10,19 @@ import { Wrapper } from './PhoneInput.styles';
 interface PhoneInputProps {
   name: string;
   defaultValue?: string;
+  register: FieldRegister;
+  errors: FieldErrors;
 }
 
-const PhoneInput = ({ name, defaultValue = '010' }: PhoneInputProps) => {
-  const { register, errors } = useFormContext();
-
+const PhoneInput = ({
+  name,
+  defaultValue = '010',
+  register,
+  errors,
+}: PhoneInputProps) => {
   const [default1, default2] = [
-    defaultValue.substring(0, 2),
-    defaultValue.substring(3),
+    defaultValue?.substring(0, 2),
+    defaultValue?.substring(3),
   ];
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
