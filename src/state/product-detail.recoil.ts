@@ -7,3 +7,10 @@ export const reviewModalStateAtom = atom({
     imageUrl: undefined as string | undefined,
   },
 });
+
+export const questionModalState = atom({
+  key: 'questioModalState',
+  default: {
+    show: false,
+  },
+});

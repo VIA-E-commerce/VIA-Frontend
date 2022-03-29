@@ -31,6 +31,14 @@ export const VALIDATION = {
       MAX_LENGTH: 50,
     },
   },
+  QUESTION: {
+    TITLE: {
+      MAX_LENGTH: 100,
+    },
+    CONTENT: {
+      MAX_LENGTH: 1000,
+    },
+  },
 };
 
 export const INPUT_OPTIONS: Dictionary<ValidationRules> = {

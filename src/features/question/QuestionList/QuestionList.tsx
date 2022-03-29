@@ -1,7 +1,9 @@
 import React from 'react';
+import { useSetRecoilState } from 'recoil';
 
 import { Pagination, SquareButton } from '@/components';
 import { useDetailTabPageButton } from '@/hooks';
+import { questionModalState } from '@/state';
 import { PaginationResponse, QuestionResponse } from '@/types';
 
 import { QuestionItem } from './QuestionItem';
@@ -22,6 +24,12 @@ const QuestionList = ({
   pageNum,
   setPageNum,
 }: QuestionListProps) => {
+  const setQuestionModal = useSetRecoilState(questionModalState);
+
+  const handleClickWrite = () => {
+    setQuestionModal((prev) => ({ ...prev, show: true }));
+  };
+
   const handleClickPageButton = useDetailTabPageButton({
     to: tabId,
     setPageNum,
@@ -50,7 +58,11 @@ const QuestionList = ({
           />
         </div>
         <div className="right-menu">
-          <SquareButton variant="outline" size="small">
+          <SquareButton
+            variant="outline"
+            size="small"
+            onClick={handleClickWrite}
+          >
             문의 작성
           </SquareButton>
         </div>

@@ -8,7 +8,11 @@ import {
   ProductFeatureCard,
   useProductDetail,
 } from '@/features/productDetail';
-import { QuestionList, useQuestionList } from '@/features/question';
+import {
+  QuestionAddModal,
+  QuestionList,
+  useQuestionList,
+} from '@/features/question';
 import {
   ProductReviewViewer,
   ReviewModal,
@@ -126,6 +130,7 @@ const ProductDetail = () => {
       </ContentsSection>
 
       <ReviewModal />
+      <QuestionAddModal product={product} />
     </>
   );
 };
