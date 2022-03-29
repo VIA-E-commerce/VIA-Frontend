@@ -12,10 +12,14 @@ export const Wrapper = styled.div<WrapperStyleProps>`
 
 export interface InputStyleProps {
   error?: boolean;
+  readOnly?: boolean;
 }
 const getBorderColor = (theme: Theme, defaultColor: string, error?: boolean) =>
   error ? theme.color.error : defaultColor;
 export const StyledInput = styled.input<InputStyleProps>`
+  ${({ readOnly, theme }) =>
+    readOnly && `background: ${theme.color.buttonActiveReverse};`}
+
   width: 100%;
   height: 4rem;
   padding: 0.6rem 1.2rem;
