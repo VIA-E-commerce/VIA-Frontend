@@ -27,7 +27,8 @@ export const StyledInput = styled.input<InputStyleProps>`
   font-size: ${styles.fontSize.small}rem;
 
   border: ${styles.border.level1}rem solid
-    ${({ theme, error }) => getBorderColor(theme, theme.color.lightGray, error)};
+    ${({ theme, error }) =>
+      getBorderColor(theme, theme.color.inputBorder, error)};
 
   &::placeholder {
     color: ${({ theme }) => theme.color.darkGray};

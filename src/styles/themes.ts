@@ -29,6 +29,7 @@ export const theme = {
     white: color.white,
 
     cartBorder: color.gray,
+    inputBorder: color.lightGray,
   },
 };
 
