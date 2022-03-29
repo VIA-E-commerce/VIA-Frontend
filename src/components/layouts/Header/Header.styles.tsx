@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
-import { mixins, styles, Theme } from '@/styles';
 import { css } from '@emotion/react';
+
+import { mixins, styles, Theme } from '@/styles';
 
 const borderStyle = (theme: Theme) => css`
   border-bottom: ${styles.border.level1}rem solid ${theme.color.font};
@@ -19,7 +20,6 @@ export const StyledHeader = styled.header`
   ${({ theme }) => borderStyle(theme)}
 
   &:not(.border) {
-    box-sizing: content-box;
     padding-bottom: 0.1rem;
   }
 
