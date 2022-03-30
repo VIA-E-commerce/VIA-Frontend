@@ -1,18 +1,18 @@
 import { useMutation, useQueryClient } from 'react-query';
 
-import { addQuestion } from '@/apis';
+import { editQuestion } from '@/apis';
 import { QUERY } from '@/constants';
 
-export const useAddQuestionMutation = () => {
+export const useEditQuestionMutation = () => {
   const queryClient = useQueryClient();
 
-  return useMutation(addQuestion, {
+  return useMutation(editQuestion, {
     onSuccess: () => {
       queryClient.refetchQueries(QUERY.PRODUCT.QUESTIONS);
-      alert('문의가 등록되었습니다.');
+      alert('문의 내용이 수정되었습니다.');
     },
     onError: () => {
-      alert('등록 중 오류가 발생했습니다.');
+      alert('수정 중 오류가 발생했습니다.');
     },
   });
 };

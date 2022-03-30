@@ -88,3 +88,9 @@ export interface CreateQuestionRequest {
   isPrivate?: boolean;
   productId: number;
 }
+
+export interface EditQuestionRequest {
+  title: string;
+  content: string;
+  isPrivate?: boolean;
+}
