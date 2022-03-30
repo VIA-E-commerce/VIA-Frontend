@@ -5,3 +5,4 @@ export * from './useAddQuestionMutation';
 export * from './useEditQuestionMutation';
 export * from './useQuestionForm';
 export * from './useQuestionList';
+export * from './useRemoveQuestionMutation';

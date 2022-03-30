@@ -24,3 +24,11 @@ export const editQuestion = async ({
 
   return response.data;
 };
+
+export const removeQuestion = async (questionId: number) => {
+  const response = await client.delete(
+    `${URLS.API.QUESTION.CRUD}/${questionId}`,
+  );
+
+  return response.data;
+};
