@@ -13,19 +13,19 @@ import {
 import { VALIDATION } from '@/constants';
 import { ProductDetailResponse } from '@/types';
 
+import { useQuestionForm } from '../useQuestionForm';
 import {
   FormCard,
   ModalHeader,
   ModalBody,
   ModalFooter,
-} from './QuestionAddModal.styles';
-import { useQuestionForm } from '../useQuestionForm';
+} from './QuestionEditorModal.styles';
 
 interface Props {
   product: ProductDetailResponse;
 }
 
-const QuestionFormModal = ({ product }: Props) => {
+const QuestionEditorModal = ({ product }: Props) => {
   const {
     show,
     onMouseDownModal,
@@ -39,15 +39,19 @@ const QuestionFormModal = ({ product }: Props) => {
     onClickPrivate,
     onChangeContent,
     onSubmit,
+
+    mode,
   } = useQuestionForm({
     product,
   });
+
+  const isAddMode = mode === 'add';
 
   return (
     <Modal show={show} onMouseDown={onMouseDownModal}>
       <FormCard onMouseDown={onMouseDownForm} onSubmit={onSubmit}>
         <ModalHeader>
-          <h5>문의 작성</h5>
+          <h5>문의 {isAddMode ? '작성' : '수정'}</h5>
           <div className="product-info">{product.name}</div>
         </ModalHeader>
         <ModalBody>
@@ -90,9 +94,11 @@ const QuestionFormModal = ({ product }: Props) => {
           </LabelField>
         </ModalBody>
         <ModalFooter>
-          <SquareButton size="small">문의 작성</SquareButton>
+          <SquareButton size="small">
+            {isAddMode ? '작성' : '수정'}
+          </SquareButton>
           <SquareButton size="small" variant="outline" onClick={onClickCancel}>
-            작성 취소
+            취소
           </SquareButton>
         </ModalFooter>
       </FormCard>
@@ -100,4 +106,4 @@ const QuestionFormModal = ({ product }: Props) => {
   );
 };
 
-export default QuestionFormModal;
+export default QuestionEditorModal;

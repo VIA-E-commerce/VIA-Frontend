@@ -1,9 +1,9 @@
-import React from 'react';
-import { useSetRecoilState } from 'recoil';
+import React, { useCallback, useState } from 'react';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 import { Pagination, SquareButton } from '@/components';
 import { useDetailTabPageButton } from '@/hooks';
-import { questionModalState } from '@/state';
+import { currentUserState, questionModalState } from '@/state';
 import { PaginationResponse, QuestionResponse } from '@/types';
 
 import { QuestionItem } from './QuestionItem';
@@ -25,6 +25,8 @@ const QuestionList = ({
   setPageNum,
 }: QuestionListProps) => {
   const setQuestionModal = useSetRecoilState(questionModalState);
+  const [activeQuestionId, setActiveQuestionId] = useState<number | null>(null);
+  const currentUser = useRecoilValue(currentUserState);
 
   const handleClickWrite = () => {
     setQuestionModal((prev) => ({ ...prev, show: true }));
@@ -37,12 +39,24 @@ const QuestionList = ({
   });
   const questions = pagination?.list;
 
+  const handleClickQuestion = useCallback((questionId: number) => {
+    setActiveQuestionId((prev) => {
+      return prev === questionId ? null : questionId;
+    });
+  }, []);
+
   return (
     <div>
       <ListBody>
         {questions?.length ? (
           questions.map((question) => (
-            <QuestionItem key={question.id} question={question} />
+            <QuestionItem
+              key={question.id}
+              question={question}
+              active={activeQuestionId === question.id}
+              owned={currentUser && currentUser.id === question.userId}
+              onClick={() => handleClickQuestion(question.id)}
+            />
           ))
         ) : (
           <EmptyList>등록된 문의가 없습니다</EmptyList>

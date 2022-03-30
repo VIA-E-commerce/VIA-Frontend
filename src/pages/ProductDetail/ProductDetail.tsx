@@ -9,7 +9,7 @@ import {
   useProductDetail,
 } from '@/features/productDetail';
 import {
-  QuestionAddModal,
+  QuestionEditorModal,
   QuestionList,
   useQuestionList,
 } from '@/features/question';
@@ -130,7 +130,7 @@ const ProductDetail = () => {
       </ContentsSection>
 
       <ReviewModal />
-      <QuestionAddModal product={product} />
+      <QuestionEditorModal product={product} />
     </>
   );
 };

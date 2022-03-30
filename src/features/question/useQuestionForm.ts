@@ -1,9 +1,11 @@
-import { ChangeEvent, FormEvent, useCallback, useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { ChangeEvent, FormEvent, useCallback } from 'react';
+import { useRecoilState, useResetRecoilState } from 'recoil';
 
-import { useAddQuestionMutation } from '@/features/question';
-import { questionModalState } from '@/state';
+import { questionEditorState, questionModalState } from '@/state';
 import { ProductDetailResponse } from '@/types';
+
+import { useAddQuestionMutation } from './useAddQuestionMutation';
+import { useEditQuestionMutation } from './useEditQuestionMutation';
 
 interface Props {
   product: ProductDetailResponse;
@@ -11,26 +13,21 @@ interface Props {
 
 export const useQuestionForm = ({ product }: Props) => {
   const [{ show }, setQuestionModal] = useRecoilState(questionModalState);
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const [isPrivate, setIsPrivate] = useState(false);
+  const [{ title, content, isPrivate, mode, questionId }, setQuestionForm] =
+    useRecoilState(questionEditorState);
+  const resetQuestionForm = useResetRecoilState(questionEditorState);
 
   const { mutate: addNewQuestion } = useAddQuestionMutation();
+  const { mutate: editQuestion } = useEditQuestionMutation();
 
   // 재사용될 함수
-  const initForm = useCallback(() => {
-    setTitle('');
-    setContent('');
-    setIsPrivate(false);
-  }, []);
-
   const closeModal = useCallback(() => {
     if (
       (!title && !content) ||
       confirm('작성을 취소하시겠습니까? 작성 중인 내용은 사라지게 됩니다.')
     ) {
       setQuestionModal((prev) => ({ ...prev, show: false }));
-      initForm();
+      resetQuestionForm();
     }
   }, [title, content]);
 
@@ -55,12 +52,18 @@ export const useQuestionForm = ({ product }: Props) => {
 
   // Form 이벤트 핸들러
   const onChangeTitle = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    setTitle(event.target.value);
+    setQuestionForm((prev) => ({
+      ...prev,
+      title: event.target.value,
+    }));
   }, []);
 
   const onChangeContent = useCallback(
     (event: ChangeEvent<HTMLTextAreaElement>) => {
-      setContent(event.target.value);
+      setQuestionForm((prev) => ({
+        ...prev,
+        content: event.target.value,
+      }));
     },
     [],
   );
@@ -68,7 +71,10 @@ export const useQuestionForm = ({ product }: Props) => {
   const onClickPrivate = useCallback(
     (event: React.MouseEvent<HTMLButtonElement>) => {
       event.preventDefault();
-      setIsPrivate((prev) => !prev);
+      setQuestionForm((prev) => ({
+        ...prev,
+        isPrivate: !prev.isPrivate,
+      }));
     },
     [],
   );
@@ -79,21 +85,34 @@ export const useQuestionForm = ({ product }: Props) => {
 
       if (!title) {
         alert('제목을 입력해주세요.');
-      } else if (!content) {
+        return;
+      }
+
+      if (!content) {
         alert('내용을 입력해주세요.');
-      } else {
+        return;
+      }
+
+      if (mode === 'add') {
         addNewQuestion({
           title,
           content,
           isPrivate,
           productId: product.id,
         });
-
-        setQuestionModal((prev) => ({ ...prev, show: false }));
-        initForm();
+      } else if (questionId) {
+        editQuestion({
+          questionId,
+          title,
+          content,
+          isPrivate,
+        });
       }
+
+      setQuestionModal((prev) => ({ ...prev, show: false }));
+      resetQuestionForm();
     },
-    [title, content, isPrivate, product],
+    [title, content, isPrivate, mode, questionId, product],
   );
 
   return {
@@ -101,6 +120,7 @@ export const useQuestionForm = ({ product }: Props) => {
     title,
     content,
     isPrivate,
+    mode,
     onMouseDownModal,
     onMouseDownForm,
     onClickPrivate,

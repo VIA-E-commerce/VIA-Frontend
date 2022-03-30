@@ -1,14 +1,8 @@
-import { styles } from '@/styles';
 import styled from '@emotion/styled';
 
 export const ListBody = styled.div`
   display: flex;
   flex-direction: column;
-
-  & > * + * {
-    border-top: ${styles.border.level1}rem solid
-      ${({ theme }) => theme.color.gray};
-  }
 `;
 
 export const ListFooter = styled.div`
