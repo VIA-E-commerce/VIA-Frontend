@@ -105,7 +105,6 @@ const config: Configuration = {
     port: PORT,
     static: { directory: path.resolve(__dirname, PUBLIC_DIR) },
     open: true,
-    hot: true,
     proxy: {
       [API_PREFIX]: {
         target: API_BASE_URL,
