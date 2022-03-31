@@ -35,6 +35,7 @@ export const QUERY = {
   WISHLIST: 'wishlist',
   USER: {
     MY_QUESTIONS: 'my-questions',
+    MY_REVIEWS: 'my-reviews',
   },
 };
 

@@ -28,9 +28,9 @@ const MyQuestions = () => {
     });
   }, []);
 
-  const onClickPageButton = (pageNum: number) => {
+  const onClickPageButton = useCallback((pageNum: number) => {
     setPageNum(pageNum);
-  };
+  }, []);
 
   if (!pagination || !questions) {
     return <GridSection cols={1}>로딩 중</GridSection>;

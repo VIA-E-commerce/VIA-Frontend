@@ -7,6 +7,7 @@ import {
   MyQuestionResponse,
   ResponseEntity,
   EditUserRequest,
+  MyReviewResponse,
 } from '@/types';
 
 export const fetchMe = async () => {
@@ -35,6 +36,18 @@ export const fetchMyQuestions = async ({ pageNum, pageSize }: PagingQuery) => {
   const response = await client.get<
     ResponseEntity<PaginationResponse<MyQuestionResponse>>
   >(URLS.API.USER.MY_QUESTIONS, {
+    params: {
+      pageNum,
+      pageSize,
+    },
+  });
+  return response.data;
+};
+
+export const fetchMyReviews = async ({ pageNum, pageSize }: PagingQuery) => {
+  const response = await client.get<
+    ResponseEntity<PaginationResponse<MyReviewResponse>>
+  >(URLS.API.USER.MY_REVIEWS, {
     params: {
       pageNum,
       pageSize,

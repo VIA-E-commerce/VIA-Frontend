@@ -117,6 +117,11 @@ export interface ReviewResponse {
   author: string;
 }
 
+export interface MyReviewResponse extends ReviewResponse {
+  productName: string;
+  thumbnail: string;
+}
+
 export interface QuestionResponse {
   id: number;
 

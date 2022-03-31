@@ -19,6 +19,7 @@ export const URLS = {
       ME: '/users/me',
       MY_WISHLIST: '/users/me/wishlist',
       MY_QUESTIONS: '/users/me/questions',
+      MY_REVIEWS: '/users/me/reviews',
     },
     CART: {
       ITEM: '/cart-items',
