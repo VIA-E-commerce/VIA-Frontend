@@ -1,4 +1,5 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
+import { useRecoilValue } from 'recoil';
 import { useParams } from 'react-router';
 
 import { GridSection } from '@/components';
@@ -19,6 +20,7 @@ import {
   ReviewModal,
   useProductReviews,
 } from '@/features/review';
+import { currentUserState } from '@/state';
 import { TabItem } from '@/types';
 
 import { ContentsSection } from './ProductDetail.styles';
@@ -56,6 +58,7 @@ type ProductDetailParams = {
 const ProductDetail = () => {
   const productId = Number(useParams<ProductDetailParams>().productId);
   const { data: product } = useProductDetail(productId);
+  const currentUser = useRecoilValue(currentUserState);
 
   const {
     data: reviewPagination,
@@ -72,6 +75,7 @@ const ProductDetail = () => {
     data: questionPagination,
     questionPageNum,
     setQuestionPageNum,
+    refetch: refetchQuestionList,
   } = useQuestionList({
     productId,
     pageSize: QUESTION_PAGE_SIZE,
@@ -87,6 +91,12 @@ const ProductDetail = () => {
   );
 
   const [productInfoTab, reviewTab, qnaTab, deliveryTab, exchangeTab] = tabs;
+
+  useEffect(() => {
+    if (currentUser) {
+      refetchQuestionList();
+    }
+  }, [currentUser]);
 
   if (!product) return <GridSection cols={1}>로딩 중</GridSection>;
 
