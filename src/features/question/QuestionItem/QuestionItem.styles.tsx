@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
 import { styles, Theme } from '@/styles';
+import { hexToRGB } from '@/utils';
 
 const getBorderStyle = (theme: Theme) => css`
   border-bottom: ${styles.border.level1}rem solid ${theme.color.gray};
@@ -9,15 +10,35 @@ const getBorderStyle = (theme: Theme) => css`
 export const Header = styled.div`
   height: 8.8rem;
 
-  display: grid;
-  grid-template-columns: 1fr 6fr 1fr 2fr 1fr 1fr;
+  display: flex;
+  position: relative;
+
+  &:hover {
+    outline: ${styles.border.level2}rem solid
+      ${({ theme }) => theme.color.highlight};
+    box-shadow: 0 0 0.6rem ${({ theme }) => hexToRGB(theme.color.highlight)};
+  }
 
   cursor: pointer;
 
-  div {
+  div,
+  .thumbnail a {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .thumbnail {
+    img {
+      height: 6.4rem;
+      aspect-ratio: 1;
+      object-fit: cover;
+
+      &:hover {
+        outline: ${styles.border.level2}rem solid
+          ${({ theme }) => theme.color.highlight};
+      }
+    }
   }
 
   .private {
@@ -25,6 +46,18 @@ export const Header = styled.div`
       color: ${({ theme }) => theme.color.darkGray};
       font-size: ${styles.fontSize.h4}rem;
     }
+  }
+
+  .private,
+  .thumbnail,
+  .username,
+  .is-answered,
+  .accordion {
+    flex: 1;
+  }
+
+  .created-at {
+    flex: 2;
   }
 
   .accordion {
@@ -35,8 +68,22 @@ export const Header = styled.div`
   }
 `;
 
-export const Wrapper = styled.div`
-  ${({ theme }) => getBorderStyle(theme)}
+export const Title = styled.div`
+  flex: 6;
+
+  display: flex;
+  flex-direction: column;
+
+  .product-name {
+    a {
+      color: ${({ theme }) => theme.color.darkGray};
+      font-size: ${styles.fontSize.small}rem;
+
+      &:hover {
+        color: ${({ theme }) => theme.color.highlight};
+      }
+    }
+  }
 `;
 
 export const Collapse = styled.div`
@@ -71,4 +118,8 @@ export const Contents = styled.div`
 
   padding: ${styles.space.level9}rem ${styles.space.level6}rem;
   white-space: pre;
+`;
+
+export const Wrapper = styled.div`
+  ${({ theme }) => getBorderStyle(theme)}
 `;

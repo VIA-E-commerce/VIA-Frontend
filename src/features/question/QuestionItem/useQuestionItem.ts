@@ -1,20 +1,22 @@
 import { useCallback } from 'react';
 import { useSetRecoilState } from 'recoil';
+import { QueryKey } from 'react-query';
 
 import { questionEditorState, questionModalState } from '@/state';
 import { QuestionResponse } from '@/types';
 
-import { useRemoveQuestionMutation } from './useRemoveQuestionMutation';
+import { useRemoveQuestionMutation } from '../useRemoveQuestionMutation';
 
 interface Props {
   question: QuestionResponse;
+  queryKey: QueryKey;
 }
 
-export const useQuestionItem = ({ question }: Props) => {
+export const useQuestionItem = ({ question, queryKey }: Props) => {
   const setQuestionForm = useSetRecoilState(questionEditorState);
-  const setQUestionModal = useSetRecoilState(questionModalState);
+  const setQuestionModal = useSetRecoilState(questionModalState);
 
-  const { mutate } = useRemoveQuestionMutation();
+  const { mutate } = useRemoveQuestionMutation(queryKey);
 
   const handleClickEdit = useCallback(() => {
     setQuestionForm({
@@ -23,8 +25,10 @@ export const useQuestionItem = ({ question }: Props) => {
       isPrivate: question.isPrivate,
       mode: 'edit',
       questionId: question.id,
+      productId: question.productId,
+      productName: question.productName,
     });
-    setQUestionModal({ show: true });
+    setQuestionModal({ show: true });
   }, [question]);
 
   const handleClickRemove = useCallback(() => {

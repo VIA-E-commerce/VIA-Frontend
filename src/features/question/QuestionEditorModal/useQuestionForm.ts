@@ -1,26 +1,37 @@
 import { ChangeEvent, FormEvent, useCallback } from 'react';
-import { useRecoilState, useResetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
+import { QueryKey } from 'react-query';
 
 import { questionEditorState, questionModalState } from '@/state';
-import { ProductDetailResponse } from '@/types';
 
-import { useAddQuestionMutation } from './useAddQuestionMutation';
-import { useEditQuestionMutation } from './useEditQuestionMutation';
+import { useAddQuestionMutation } from '../useAddQuestionMutation';
+import { useEditQuestionMutation } from '../useEditQuestionMutation';
 
 interface Props {
-  product: ProductDetailResponse;
+  queryKey: QueryKey;
 }
 
-export const useQuestionForm = ({ product }: Props) => {
+export const useQuestionForm = ({ queryKey }: Props) => {
   const [{ show }, setQuestionModal] = useRecoilState(questionModalState);
-  const [{ title, content, isPrivate, mode, questionId }, setQuestionForm] =
-    useRecoilState(questionEditorState);
-  const resetQuestionForm = useResetRecoilState(questionEditorState);
+  const [
+    { title, content, isPrivate, mode, questionId, productId, productName },
+    setQuestionForm,
+  ] = useRecoilState(questionEditorState);
 
   const { mutate: addNewQuestion } = useAddQuestionMutation();
-  const { mutate: editQuestion } = useEditQuestionMutation();
+  const { mutate: editQuestion } = useEditQuestionMutation(queryKey);
 
   // 재사용될 함수
+  const resetQuestionForm = useCallback(() => {
+    setQuestionForm((prev) => ({
+      ...prev,
+      title: '',
+      content: '',
+      isPrivate: false,
+      mode: 'add',
+    }));
+  }, []);
+
   const closeModal = useCallback(() => {
     if (
       (!title && !content) ||
@@ -93,12 +104,17 @@ export const useQuestionForm = ({ product }: Props) => {
         return;
       }
 
+      if (!productId) {
+        alert('상품을 찾을 수 없습니다.');
+        return;
+      }
+
       if (mode === 'add') {
         addNewQuestion({
           title,
           content,
           isPrivate,
-          productId: product.id,
+          productId,
         });
       } else if (questionId) {
         editQuestion({
@@ -112,7 +128,7 @@ export const useQuestionForm = ({ product }: Props) => {
       setQuestionModal((prev) => ({ ...prev, show: false }));
       resetQuestionForm();
     },
-    [title, content, isPrivate, mode, questionId, product],
+    [title, content, isPrivate, mode, questionId, productId],
   );
 
   return {
@@ -120,6 +136,7 @@ export const useQuestionForm = ({ product }: Props) => {
     title,
     content,
     isPrivate,
+    productName,
     mode,
     onMouseDownModal,
     onMouseDownForm,

@@ -1,14 +1,13 @@
-import { useMutation, useQueryClient } from 'react-query';
+import { QueryKey, useMutation, useQueryClient } from 'react-query';
 
 import { removeQuestion } from '@/apis';
-import { QUERY } from '@/constants';
 
-export const useRemoveQuestionMutation = () => {
+export const useRemoveQuestionMutation = (queryKey: QueryKey) => {
   const queryClient = useQueryClient();
 
   return useMutation(removeQuestion, {
     onSuccess: () => {
-      queryClient.refetchQueries(QUERY.PRODUCT.QUESTIONS);
+      queryClient.refetchQueries(queryKey);
       alert('상품 문의가 삭제되었습니다.');
     },
     onError: () => {

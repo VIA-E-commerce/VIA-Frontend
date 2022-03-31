@@ -2,16 +2,26 @@ import React, { useCallback, useState } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 import { Pagination, SquareButton } from '@/components';
+import { QUERY } from '@/constants';
 import { useDetailTabPageButton } from '@/hooks';
-import { currentUserState, questionModalState } from '@/state';
-import { PaginationResponse, QuestionResponse } from '@/types';
+import {
+  currentUserState,
+  questionEditorState,
+  questionModalState,
+} from '@/state';
+import {
+  PaginationResponse,
+  ProductDetailResponse,
+  QuestionResponse,
+} from '@/types';
 
-import { QuestionItem } from './QuestionItem';
+import { QuestionItem } from '../QuestionItem';
 import { ListBody, ListFooter, EmptyList } from './QuestionList.styles';
 
 const QUESTION_PAGE_RANGE = 5;
 
 interface QuestionListProps {
+  product: ProductDetailResponse;
   data?: PaginationResponse<QuestionResponse>;
   tabId: string;
   pageNum: number;
@@ -19,6 +29,7 @@ interface QuestionListProps {
 }
 
 const QuestionList = ({
+  product,
   data: pagination,
   tabId,
   pageNum,
@@ -27,6 +38,7 @@ const QuestionList = ({
   const setQuestionModal = useSetRecoilState(questionModalState);
   const [activeQuestionId, setActiveQuestionId] = useState<number | null>(null);
   const currentUser = useRecoilValue(currentUserState);
+  const setQuestionEditorState = useSetRecoilState(questionEditorState);
 
   const handleClickWrite = () => {
     setQuestionModal((prev) => ({ ...prev, show: true }));
@@ -39,11 +51,19 @@ const QuestionList = ({
   });
   const questions = pagination?.list;
 
-  const handleClickQuestion = useCallback((questionId: number) => {
-    setActiveQuestionId((prev) => {
-      return prev === questionId ? null : questionId;
-    });
-  }, []);
+  const handleClickQuestion = useCallback(
+    (questionId: number) => {
+      setActiveQuestionId((prev) => {
+        return prev === questionId ? null : questionId;
+      });
+      setQuestionEditorState((prev) => ({
+        ...prev,
+        productId: product.id,
+        productName: product.name,
+      }));
+    },
+    [product],
+  );
 
   return (
     <div>
@@ -56,6 +76,7 @@ const QuestionList = ({
               active={activeQuestionId === question.id}
               owned={currentUser && currentUser.id === question.userId}
               onClick={() => handleClickQuestion(question.id)}
+              queryKey={QUERY.PRODUCT.QUESTIONS}
             />
           ))
         ) : (

@@ -8,16 +8,20 @@ const color = {
   dimGray: '#EDEDEF',
   dimBeige: '#F9F9F7',
   red: '#ff0000',
+  green: '#1C9C6C',
+  blue: '#2FA4FF',
 };
 
 export const theme = {
   color: {
     font: color.black,
     fontReverse: color.white,
+    success: color.green,
     error: color.red,
     background: color.white,
     surface: color.dimBeige,
 
+    highlight: color.blue,
     buttonActive: color.dark,
     buttonActiveReverse: color.dimGray,
 

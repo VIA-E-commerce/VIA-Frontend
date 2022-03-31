@@ -6,4 +6,8 @@ export const ContentsSection = styled.section`
   display: flex;
   flex-direction: column;
   gap: 4rem;
+
+  nav {
+    z-index: 100;
+  }
 `;

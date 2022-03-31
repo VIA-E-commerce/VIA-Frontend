@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { useParams } from 'react-router';
 
 import { GridSection } from '@/components';
+import { QUERY } from '@/constants';
 import {
   ProductDetailTab,
   ProductDetailTabNav,
@@ -112,6 +113,7 @@ const ProductDetail = () => {
 
           <ProductDetailTab tab={qnaTab}>
             <QuestionList
+              product={product}
               data={questionPagination}
               tabId={qnaTab.id}
               pageNum={questionPageNum}
@@ -130,7 +132,7 @@ const ProductDetail = () => {
       </ContentsSection>
 
       <ReviewModal />
-      <QuestionEditorModal product={product} />
+      <QuestionEditorModal queryKey={QUERY.PRODUCT.QUESTIONS} />
     </>
   );
 };

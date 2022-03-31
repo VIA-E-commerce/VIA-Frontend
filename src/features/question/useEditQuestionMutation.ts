@@ -1,14 +1,13 @@
-import { useMutation, useQueryClient } from 'react-query';
+import { QueryKey, useMutation, useQueryClient } from 'react-query';
 
 import { editQuestion } from '@/apis';
-import { QUERY } from '@/constants';
 
-export const useEditQuestionMutation = () => {
+export const useEditQuestionMutation = (queryKey: QueryKey) => {
   const queryClient = useQueryClient();
 
   return useMutation(editQuestion, {
     onSuccess: () => {
-      queryClient.refetchQueries(QUERY.PRODUCT.QUESTIONS);
+      queryClient.refetchQueries(queryKey);
       alert('문의 내용이 수정되었습니다.');
     },
     onError: () => {

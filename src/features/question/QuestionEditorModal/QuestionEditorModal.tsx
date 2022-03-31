@@ -1,4 +1,5 @@
 import React from 'react';
+import { QueryKey } from 'react-query';
 import { MdLockOpen, MdLock } from 'react-icons/md';
 
 import {
@@ -11,21 +12,20 @@ import {
   TransparentButton,
 } from '@/components';
 import { VALIDATION } from '@/constants';
-import { ProductDetailResponse } from '@/types';
 
-import { useQuestionForm } from '../useQuestionForm';
 import {
   FormCard,
   ModalHeader,
   ModalBody,
   ModalFooter,
 } from './QuestionEditorModal.styles';
+import { useQuestionForm } from './useQuestionForm';
 
 interface Props {
-  product: ProductDetailResponse;
+  queryKey: QueryKey;
 }
 
-const QuestionEditorModal = ({ product }: Props) => {
+const QuestionEditorModal = ({ queryKey }: Props) => {
   const {
     show,
     onMouseDownModal,
@@ -35,15 +35,14 @@ const QuestionEditorModal = ({ product }: Props) => {
     title,
     content,
     isPrivate,
+    productName,
     onChangeTitle,
     onClickPrivate,
     onChangeContent,
     onSubmit,
 
     mode,
-  } = useQuestionForm({
-    product,
-  });
+  } = useQuestionForm({ queryKey });
 
   const isAddMode = mode === 'add';
 
@@ -52,7 +51,7 @@ const QuestionEditorModal = ({ product }: Props) => {
       <FormCard onMouseDown={onMouseDownForm} onSubmit={onSubmit}>
         <ModalHeader>
           <h5>문의 {isAddMode ? '작성' : '수정'}</h5>
-          <div className="product-info">{product.name}</div>
+          <div className="product-info">{productName}</div>
         </ModalHeader>
         <ModalBody>
           <div className="title-and-private">

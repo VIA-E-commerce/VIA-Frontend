@@ -7,6 +7,8 @@ interface QuestionEditorState {
   isPrivate: boolean;
   mode?: QuestionEditorMode;
   questionId?: number;
+  productId?: number;
+  productName?: string;
 }
 
 export const questionEditorState = atom<QuestionEditorState>({
