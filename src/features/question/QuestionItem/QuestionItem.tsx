@@ -66,9 +66,7 @@ const QuestionItem = ({
         )}
         <Title>
           {isForMyPage && (
-            <div className="product-name">
-              <Link to={productUrl}>{myQuestion.productName}</Link>
-            </div>
+            <div className="product-name">{myQuestion.productName}</div>
           )}
           <div className="title">{question.title}</div>
         </Title>

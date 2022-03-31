@@ -19,6 +19,7 @@ export const theme = {
     success: color.green,
     error: color.red,
     background: color.white,
+    backgroundHover: color.dimGray,
     surface: color.dimBeige,
 
     highlight: color.blue,

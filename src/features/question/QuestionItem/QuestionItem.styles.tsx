@@ -14,9 +14,7 @@ export const Header = styled.div`
   position: relative;
 
   &:hover {
-    outline: ${styles.border.level2}rem solid
-      ${({ theme }) => theme.color.highlight};
-    box-shadow: 0 0 0.6rem ${({ theme }) => hexToRGB(theme.color.highlight)};
+    background: ${({ theme }) => theme.color.backgroundHover};
   }
 
   cursor: pointer;
@@ -75,14 +73,8 @@ export const Title = styled.div`
   flex-direction: column;
 
   .product-name {
-    a {
-      color: ${({ theme }) => theme.color.darkGray};
-      font-size: ${styles.fontSize.small}rem;
-
-      &:hover {
-        color: ${({ theme }) => theme.color.highlight};
-      }
-    }
+    color: ${({ theme }) => theme.color.darkGray};
+    font-size: ${styles.fontSize.small}rem;
   }
 `;
 
