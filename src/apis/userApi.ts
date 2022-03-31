@@ -4,6 +4,7 @@ import {
   PagingQuery,
   PaginationResponse,
   ProductCardResponse,
+  MyQuestionResponse,
   ResponseEntity,
   EditUserRequest,
 } from '@/types';
@@ -27,5 +28,17 @@ export const fetchMyWishlist = async ({ pageNum, pageSize }: PagingQuery) => {
 
 export const editMyInfo = async (request: EditUserRequest) => {
   const response = await client.patch(URLS.API.USER.ME, request);
+  return response.data;
+};
+
+export const fetchMyQuestions = async ({ pageNum, pageSize }: PagingQuery) => {
+  const response = await client.get<
+    ResponseEntity<PaginationResponse<MyQuestionResponse>>
+  >(URLS.API.USER.MY_QUESTIONS, {
+    params: {
+      pageNum,
+      pageSize,
+    },
+  });
   return response.data;
 };

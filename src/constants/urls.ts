@@ -18,6 +18,7 @@ export const URLS = {
     USER: {
       ME: '/users/me',
       MY_WISHLIST: '/users/me/wishlist',
+      MY_QUESTIONS: '/users/me/questions',
     },
     CART: {
       ITEM: '/cart-items',

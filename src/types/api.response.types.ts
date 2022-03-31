@@ -128,9 +128,14 @@ export interface QuestionResponse {
   isPrivate: boolean;
 
   productId: number;
+  productName: string;
 
   createdAt: Date;
   updatedAt: Date;
+}
+
+export interface MyQuestionResponse extends QuestionResponse {
+  thumbnail: string;
 }
 
 export interface CartItemResponse {

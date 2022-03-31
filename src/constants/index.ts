@@ -33,6 +33,9 @@ export const QUERY = {
     ITEMS: 'order-items',
   },
   WISHLIST: 'wishlist',
+  USER: {
+    MY_QUESTIONS: 'my-questions',
+  },
 };
 
 export const LOCAL_STORAGE = {
