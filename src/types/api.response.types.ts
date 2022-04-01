@@ -118,8 +118,9 @@ export interface ReviewResponse {
 }
 
 export interface MyReviewResponse extends ReviewResponse {
+  productId: number;
   productName: string;
-  thumbnail: string;
+  productThumbnail: string;
 }
 
 export interface QuestionResponse {

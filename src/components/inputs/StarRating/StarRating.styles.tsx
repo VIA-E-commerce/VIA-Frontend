@@ -26,3 +26,9 @@ export const YellowStar = styled.span<YellowStarStyleProps>`
 
   overflow: hidden;
 `;
+
+export const Score = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

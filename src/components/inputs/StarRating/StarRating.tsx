@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Wrapper, StarIcon, YellowStar } from './StarRating.styles';
+import { Wrapper, StarIcon, YellowStar, Score } from './StarRating.styles';
 
 interface StarRatingInputProps {
   rating: number;
@@ -14,7 +14,7 @@ const StarRating = ({ rating }: StarRatingInputProps) => {
       <StarIcon>
         <YellowStar width={width} />
       </StarIcon>
-      <div>{rating}점</div>
+      <Score>{rating}점</Score>
     </Wrapper>
   );
 };

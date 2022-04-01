@@ -30,6 +30,9 @@ export const URLS = {
     QUESTION: {
       CRUD: '/questions',
     },
+    REVIEW: {
+      CRUD: '/reviews',
+    },
   },
   CLIENT: {
     HOME: '/',
