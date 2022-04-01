@@ -14,7 +14,7 @@ const ImageModal = () => {
 
   return (
     <Modal show={show} onMouseDown={handleMouseDown}>
-      <ImageCard onClick={(event) => event.stopPropagation()}>
+      <ImageCard onMouseDown={(event) => event.stopPropagation()}>
         <img src={imageUrl} />
       </ImageCard>
     </Modal>
