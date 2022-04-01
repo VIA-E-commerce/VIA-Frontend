@@ -2,7 +2,7 @@ import React from 'react';
 import { useSetRecoilState } from 'recoil';
 
 import { SquareButton, StarRating, TransparentButton } from '@/components';
-import { reviewModalStateAtom } from '@/state';
+import { imageModalState } from '@/state';
 import { ReviewResponse } from '@/types';
 import { formatDate } from '@/utils';
 
@@ -20,7 +20,7 @@ interface ReviewItemProps {
 }
 
 const ReviewItem = ({ review }: ReviewItemProps) => {
-  const setReviewModalShow = useSetRecoilState(reviewModalStateAtom);
+  const setImageModalShow = useSetRecoilState(imageModalState);
 
   return (
     <Wrapper>
@@ -40,7 +40,7 @@ const ReviewItem = ({ review }: ReviewItemProps) => {
                 src={review.imageUrl}
                 alt="후기 이미지"
                 onClick={() =>
-                  setReviewModalShow({
+                  setImageModalShow({
                     show: true,
                     imageUrl: review.imageUrl,
                   })

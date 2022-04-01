@@ -2,7 +2,7 @@ import React, { useEffect, useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
 import { useParams } from 'react-router';
 
-import { GridSection } from '@/components';
+import { GridSection, ImageModal } from '@/components';
 import { QUERY } from '@/constants';
 import {
   ProductDetailTab,
@@ -15,11 +15,7 @@ import {
   QuestionList,
   useQuestionList,
 } from '@/features/question';
-import {
-  ProductReviewViewer,
-  ReviewModal,
-  useProductReviews,
-} from '@/features/review';
+import { ProductReviewViewer, useProductReviews } from '@/features/review';
 import { currentUserState } from '@/state';
 import { TabItem } from '@/types';
 
@@ -141,7 +137,7 @@ const ProductDetail = () => {
         </GridSection>
       </ContentsSection>
 
-      <ReviewModal />
+      <ImageModal />
       <QuestionEditorModal queryKey={QUERY.PRODUCT.QUESTIONS} />
     </>
   );
