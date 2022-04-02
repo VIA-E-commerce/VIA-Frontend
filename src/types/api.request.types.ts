@@ -15,8 +15,14 @@ export interface PagingQuery {
   pageSize?: number;
 }
 
-// 리뷰
+// 후기
 export type ReviewSortMethod = '' | 'rating-desc' | 'rating-asc';
+
+export interface EditReviewRequest {
+  content: string;
+  imageUrl?: string;
+  rating: number;
+}
 
 // 장바구니
 export interface AddCartItemRequest {
