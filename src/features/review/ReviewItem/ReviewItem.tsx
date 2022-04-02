@@ -26,7 +26,7 @@ const ReviewItem = ({ review }: ReviewItemProps) => {
     <Wrapper>
       <ReviewHeader>
         <div>
-          <StarRating rating={review.rating} />
+          <StarRating rating={review.rating} readOnly />
         </div>
         <div>{formatDate(review.createdAt)}</div>
         <div>{review.author}</div>

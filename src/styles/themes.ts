@@ -10,6 +10,7 @@ const color = {
   red: '#ff0000',
   green: '#1C9C6C',
   blue: '#2FA4FF',
+  yellow: '#FFD700',
 };
 
 export const theme = {
@@ -35,6 +36,7 @@ export const theme = {
 
     cartBorder: color.gray,
     inputBorder: color.lightGray,
+    star: color.yellow,
   },
 };
 

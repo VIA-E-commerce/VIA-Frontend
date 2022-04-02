@@ -5,30 +5,12 @@ export const Wrapper = styled.div`
   gap: 0.8rem;
 `;
 
-export const StarIcon = styled.span`
-  background: url(/images/star-gray.png);
+export const RatingRadioButtons = styled.div`
+  display: flex;
   width: 12rem;
-  height: 2.4rem;
-
-  display: inline-block;
-`;
-
-interface YellowStarStyleProps {
-  width: number;
-}
-export const YellowStar = styled.span<YellowStarStyleProps>`
-  background: url(/images/star-yellow.png);
-
-  width: ${({ width }) => width}%;
-  height: 100%;
-
-  display: inline-block;
-
-  overflow: hidden;
 `;
 
 export const Score = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
 `;
