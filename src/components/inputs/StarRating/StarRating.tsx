@@ -1,30 +1,30 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { StarIcon } from './StarIcon';
 import { Wrapper, RatingRadioButtons, Score } from './StarRating.styles';
 
 interface StarRatingInputProps {
   rating: number;
+  onChangeRating?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   readOnly?: boolean;
 }
 
 const ratingArray = [1, 2, 3, 4, 5];
 
-const StarRating = ({ rating, readOnly }: StarRatingInputProps) => {
-  const [selectedScore, setSelectedScore] = useState(rating);
+const StarRating = ({
+  rating,
+  onChangeRating,
+  readOnly,
+}: StarRatingInputProps) => {
   const [displayScore, setDisplayScore] = useState(rating);
 
   const handleMouseEvent = useCallback((score: number) => {
     setDisplayScore(score);
   }, []);
 
-  const handleChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const { value } = event.target;
-      setSelectedScore(Number(value));
-    },
-    [],
-  );
+  useEffect(() => {
+    setDisplayScore(rating);
+  }, [rating]);
 
   return (
     <Wrapper>
@@ -36,8 +36,8 @@ const StarRating = ({ rating, readOnly }: StarRatingInputProps) => {
             value={ratingScore}
             readOnly={readOnly}
             onMouseOver={() => handleMouseEvent(ratingScore)}
-            onMouseOut={() => handleMouseEvent(selectedScore)}
-            onChange={handleChange}
+            onMouseOut={() => handleMouseEvent(rating)}
+            onChange={onChangeRating}
           />
         ))}
       </RatingRadioButtons>
@@ -46,4 +46,4 @@ const StarRating = ({ rating, readOnly }: StarRatingInputProps) => {
   );
 };
 
-export default React.memo(StarRating);
+export default StarRating;
