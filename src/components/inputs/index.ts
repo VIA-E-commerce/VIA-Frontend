@@ -1,6 +1,7 @@
 export * from './AddressInput';
 export * from './CheckBox';
 export * from './ColorInput';
+export * from './ImageInput';
 export * from './Input';
 export * from './NumberInput';
 export * from './PhoneInput';

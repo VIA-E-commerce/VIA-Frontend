@@ -5,6 +5,7 @@ import {
   Wrapper,
   StyledInput,
   ErrorMessage,
+  InputSize,
 } from './Input.styles';
 
 interface InputProps extends WrapperStyleProps {
@@ -25,11 +26,16 @@ interface InputProps extends WrapperStyleProps {
   onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
   onKeyPress?: React.KeyboardEventHandler<HTMLInputElement>;
   onBlur?: React.FocusEventHandler<HTMLInputElement>;
+
   style?: React.CSSProperties;
+  size?: InputSize;
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ name, type, width, errorMessage, ...rest }, ref) => {
+  (
+    { name, type = 'text', width, errorMessage, size = 'normal', ...rest },
+    ref,
+  ) => {
     return (
       <Wrapper width={width}>
         <StyledInput
@@ -37,6 +43,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           name={name}
           type={type}
           error={errorMessage !== undefined}
+          inputSize={size}
           {...rest}
         />
         <ErrorMessage>{errorMessage}</ErrorMessage>
@@ -46,8 +53,5 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 );
 
 Input.displayName = 'Input';
-Input.defaultProps = {
-  type: 'text',
-};
 
 export default React.memo(Input);

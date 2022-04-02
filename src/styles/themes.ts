@@ -2,6 +2,7 @@ const color = {
   black: '#000000',
   white: '#ffffff',
   dark: '#333',
+  lightDark: '#555',
   darkGray: '#767676',
   gray: '#AAAAAA',
   lightGray: '#BDBDBD',
@@ -29,6 +30,7 @@ export const theme = {
 
     black: color.black,
     dark: color.dark,
+    lightDark: color.lightDark,
     darkGray: color.darkGray,
     gray: color.gray,
     lightGray: color.lightGray,
