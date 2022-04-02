@@ -21,7 +21,7 @@ const getShowStyle = (show: boolean) => {
     opacity: 0;
 
     & > * {
-      transform: translate(0, -25%);
+      transform: translate(0, -5%);
     }
   `;
 };

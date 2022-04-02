@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 
 import { Overlay } from './Modal.styles';
 
@@ -9,6 +9,10 @@ interface ModalProps {
 }
 
 const Modal = ({ show, children, onMouseDown }: ModalProps) => {
+  useEffect(() => {
+    document.body.style.overflow = show ? 'hidden' : 'visible';
+  }, [show]);
+
   return (
     <Overlay show={show} onMouseDown={onMouseDown}>
       {children}
