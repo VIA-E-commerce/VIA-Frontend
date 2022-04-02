@@ -47,8 +47,6 @@ export const useCreateOrderMutation = ({ cartItems }: Props) => {
 
     const callback = (response: RequestPayResponse) => {
       if (response.success) {
-        console.log(response);
-
         const { paid_amount, paid_at } = response;
 
         if (paid_amount) request.totalPrice = paid_amount;

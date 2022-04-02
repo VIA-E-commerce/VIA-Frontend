@@ -1,7 +1,8 @@
 import React, { useCallback, useState } from 'react';
 
 import { GridSection, Pagination, Tab } from '@/components';
-import { useMyReviews } from '@/features/review';
+import { QUERY } from '@/constants';
+import { useMyReviews, ReviewModal } from '@/features/review';
 import { MyReviewItem } from '@/features/mypage';
 
 const PAGE_SIZE = 10;
@@ -25,19 +26,22 @@ const MyReviews = () => {
   }
 
   return (
-    <Tab>
-      <div>
-        {reviews.map((review) => (
-          <MyReviewItem key={review.id} review={review} />
-        ))}
-      </div>
-      <Pagination
-        pageRange={PAGE_RANGE}
-        totalPages={pagination.totalPages}
-        currentPage={pageNum}
-        onClickPageButton={onClickPageButton}
-      />
-    </Tab>
+    <>
+      <Tab>
+        <div>
+          {reviews.map((review) => (
+            <MyReviewItem key={review.id} review={review} />
+          ))}
+        </div>
+        <Pagination
+          pageRange={PAGE_RANGE}
+          totalPages={pagination.totalPages}
+          currentPage={pageNum}
+          onClickPageButton={onClickPageButton}
+        />
+      </Tab>
+      <ReviewModal queryKey={QUERY.USER.MY_REVIEWS} />
+    </>
   );
 };
 
