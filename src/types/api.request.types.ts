@@ -100,3 +100,11 @@ export interface EditQuestionRequest {
   content: string;
   isPrivate?: boolean;
 }
+
+// 결제
+export interface ImpRefundRequest {
+  impUID: string;
+  reason?: string;
+  amount?: number;
+  checksum?: number;
+}
