@@ -12,6 +12,7 @@ import {
   Order,
   Wishlist,
   MyPage,
+  Payment,
 } from '@/pages';
 
 import OAuthRedirect from './OAuthRedirect';
@@ -58,6 +59,14 @@ const RootRouter = () => {
         element={
           <ProtectedRoute>
             <MyPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path={URLS.CLIENT.PAYMENT}
+        element={
+          <ProtectedRoute>
+            <Payment />
           </ProtectedRoute>
         }
       />

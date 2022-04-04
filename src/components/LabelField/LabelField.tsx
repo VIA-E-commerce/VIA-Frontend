@@ -10,6 +10,7 @@ interface LabelFieldProps extends LabelFieldStyleProps {
   vertical?: boolean;
   style?: React.CSSProperties;
   children?: ReactNode;
+  className?: string;
 }
 
 const LabelField = ({
@@ -20,8 +21,8 @@ const LabelField = ({
   required,
   bold,
   vertical,
-  style,
   children,
+  ...rest
 }: LabelFieldProps) => {
   return (
     <Wrapper
@@ -31,7 +32,7 @@ const LabelField = ({
       required={required}
       bold={bold}
       vertical={vertical}
-      style={style}
+      {...rest}
     >
       <div className="label">
         {label}

@@ -1,12 +1,27 @@
 import dayjs from 'dayjs';
 
-export function formatPrice(price: number) {
-  return price.toLocaleString('ko-kr');
+export function formatPrice(price: number, option?: { unit?: boolean }) {
+  let priceWithComma = price.toLocaleString('ko-kr');
+  if (option?.unit) {
+    priceWithComma = `${priceWithComma}원`;
+  }
+
+  return priceWithComma;
 }
 
-export function formatDate(date: Date, format = 'YYYY년 M월 D일') {
+export function formatDate(date?: Date, format = 'YYYY년 M월 D일') {
+  if (!date) return '';
+
   const dayjsDate = dayjs(date).format(format);
   return dayjsDate;
+}
+
+export function formatPhone(phone?: string) {
+  if (!phone) return '';
+
+  return phone
+    .trim()
+    .replace(/(^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/, '$1-$2-$3');
 }
 
 export function hexToRGB(hex: string, opacity?: number) {

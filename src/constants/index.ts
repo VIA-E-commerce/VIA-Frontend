@@ -30,6 +30,7 @@ export const QUERY = {
     MINE: 'my-cart',
   },
   ORDER: {
+    INFO: 'order-info',
     ITEMS: 'order-items',
   },
   WISHLIST: 'wishlist',

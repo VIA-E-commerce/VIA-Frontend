@@ -1,11 +1,18 @@
 import { client } from '@/apis';
 import { URLS } from '@/constants';
-import { CreateOrderRequest, ResponseEntity } from '@/types';
+import { CreateOrderRequest, OrderResponse, ResponseEntity } from '@/types';
 
 export const createOrder = async (request: CreateOrderRequest) => {
   const response = await client.post<ResponseEntity<number>>(
     URLS.API.ORDER.CRUD,
     request,
+  );
+  return response.data;
+};
+
+export const fetchOrder = async (orderId: number) => {
+  const response = await client.get<ResponseEntity<OrderResponse>>(
+    `${URLS.API.ORDER.CRUD}/${orderId}`,
   );
   return response.data;
 };

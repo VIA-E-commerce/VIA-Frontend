@@ -43,16 +43,8 @@ export type OrderStatus =
   | 'DELIVERED'
   | 'CANCELLED'
   | 'EXCHANGED'
-  | 'REFUNDED';
-
-export type PaymentMethod =
-  | 'BACS'
-  | 'ACCOUNT_TRANSFER'
-  | 'PHONE_BANKING'
-  | 'PAYCO'
-  | 'SAMSUNG_PAY'
-  | 'NAVER_PAY'
-  | 'KAKAO_PAY';
+  | 'REFUNDED'
+  | 'FAILED';
 
 export interface CreateOrderRequest {
   purchaser: string;

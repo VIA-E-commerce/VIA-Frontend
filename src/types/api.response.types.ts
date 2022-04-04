@@ -164,3 +164,29 @@ export interface CartItemResponse {
 }
 
 export type SNSProvider = 'LOCAL' | 'KAKAO' | 'NAVER';
+
+export interface OrderResponse {
+  id: number;
+
+  totalPrice: number;
+  paymentReal: number;
+
+  purchaser: string;
+  purchaserPhone?: string;
+  purchaserEmail?: string;
+
+  recipient: string;
+  recipientPhone: string;
+  postalCode: string;
+  shippingAddress: string;
+  message?: string;
+
+  status: string;
+
+  paymentMethod: string;
+
+  arrivedAt?: Date;
+  paidAt?: Date;
+  createdAt: Date;
+  updatedAt: Date;
+}

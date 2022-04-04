@@ -1,4 +1,5 @@
 export * from './LabelField';
+export * from './LabelSection';
 export * from './Pagination';
 export * from './PriceLabel';
 export * from './SNSProviderIcon';
