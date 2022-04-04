@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router';
 
 import { createOrder } from '@/apis';
 import { URLS } from '@/constants';
+import { useRefundMutation } from '@/features/payment';
 import { impRequestPay, RequestPayParams, RequestPayResponse } from '@/lib';
 import { CartItemResponse, CreateOrderRequest, RawOrderForm } from '@/types';
-import dayjs from 'dayjs';
 
 interface Props {
   cartItems?: CartItemResponse[];
@@ -13,6 +13,8 @@ interface Props {
 
 export const useCreateOrderMutation = ({ cartItems }: Props) => {
   const navigate = useNavigate();
+  const { mutate: refundMutate } = useRefundMutation();
+
   const { mutate } = useMutation(createOrder, {
     onSuccess: ({ data: orderId }) => {
       navigate({
@@ -20,8 +22,13 @@ export const useCreateOrderMutation = ({ cartItems }: Props) => {
         search: `${URLS.PARAM.ORDER}=${orderId}`,
       });
     },
-    onError: () => {
+    onError: (error, data) => {
       alert('결제 도중 오류가 발생했습니다.');
+      // 결제 중 서버 오류 발생 시 전액 환불
+      refundMutate({
+        impUID: data.impUID,
+        reason: '서버 결제 오류',
+      });
     },
   });
 
@@ -36,7 +43,7 @@ export const useCreateOrderMutation = ({ cartItems }: Props) => {
     }
 
     const data: RequestPayParams = {
-      pg: 'html5_inicis',
+      pg: 'nice',
       merchant_uid: `mid_${new Date().getTime()}`,
       name: orderName,
       amount: 100, // form.totalPrice,
@@ -45,22 +52,14 @@ export const useCreateOrderMutation = ({ cartItems }: Props) => {
       buyer_tel: request.purchaserPhone,
     };
 
-    const callback = (response: RequestPayResponse) => {
+    const callback = async (response: RequestPayResponse) => {
       if (response.success) {
-        const { paid_amount, paid_at } = response;
-
-        if (paid_amount) request.totalPrice = paid_amount;
-        if (paid_at) request.paidAt = dayjs.unix(paid_at).toDate();
+        const { imp_uid } = response;
 
         mutate({
           ...request,
-          orderDetails: cartItems.map(
-            ({ sellingPrice, quantity, variantId }) => ({
-              price: sellingPrice,
-              quantity,
-              variantId,
-            }),
-          ),
+          impUID: imp_uid as string,
+          cartItemIds: cartItems.map(({ id }) => id),
         });
       } else {
         alert('결제가 취소되었습니다.');

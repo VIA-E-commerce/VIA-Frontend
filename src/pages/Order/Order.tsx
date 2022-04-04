@@ -52,7 +52,7 @@ const Order = () => {
           <FormProvider handleSubmit={handleSubmit} {...rest}>
             <OrderForm
               me={userData}
-              totalPrice={priceInfo.totalPrice}
+              totalPrice={priceInfo.paymentReal}
               discount={priceInfo.totalDiscount}
             />
           </FormProvider>

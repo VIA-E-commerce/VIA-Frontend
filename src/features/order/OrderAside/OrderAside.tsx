@@ -10,7 +10,7 @@ interface Props {
   totalProductPrice: number;
   totalDiscount: number;
   deliveryFee: number;
-  totalPrice: number;
+  paymentReal: number;
   onSubmit: SubmitHandler<any>;
 }
 
@@ -18,7 +18,7 @@ const OrderAside = ({
   totalProductPrice,
   totalDiscount,
   deliveryFee,
-  totalPrice,
+  paymentReal,
   onSubmit,
 }: Props) => {
   return (
@@ -38,8 +38,8 @@ const OrderAside = ({
           </div>
           <div>
             <LabelField label="총 결제금액" size="large" contentAlign="right">
-              <span className="total-price">
-                <b>{formatPrice(totalPrice)}</b> 원
+              <span className="payment-real">
+                <b>{formatPrice(paymentReal)}</b> 원
               </span>
             </LabelField>
           </div>

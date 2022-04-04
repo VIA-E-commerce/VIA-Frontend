@@ -21,7 +21,7 @@ export const Wrapper = styled.div`
   border: ${styles.border.level1}rem solid
     ${({ theme }) => theme.color.cartBorder};
 
-  .total-price {
+  .payment-real {
     font-size: ${styles.fontSize.h4}rem;
   }
 

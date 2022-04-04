@@ -12,7 +12,7 @@ export const useOrderPriceInfo = ({ cartItems }: Props) => {
     let totalProductPrice = 0;
     let totalDiscount = 0;
     let deliveryFee = BUSINESS.DELIVERY_FEE;
-    let totalPrice = 0;
+    let paymentReal = 0;
 
     if (cartItems) {
       totalProductPrice = cartItems.reduce(
@@ -31,14 +31,14 @@ export const useOrderPriceInfo = ({ cartItems }: Props) => {
       deliveryFee =
         totalSellingPrice >= BUSINESS.FREE_DELIVERY ? 0 : BUSINESS.DELIVERY_FEE;
 
-      totalPrice = totalProductPrice - totalDiscount + deliveryFee;
+      paymentReal = totalProductPrice - totalDiscount + deliveryFee;
     }
 
     return {
       totalProductPrice,
       totalDiscount,
       deliveryFee,
-      totalPrice,
+      paymentReal,
     };
   }, [cartItems]);
 };

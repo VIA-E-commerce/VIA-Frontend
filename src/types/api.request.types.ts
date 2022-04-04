@@ -55,9 +55,6 @@ export type PaymentMethod =
   | 'KAKAO_PAY';
 
 export interface CreateOrderRequest {
-  totalPrice: number;
-  discount: number;
-
   purchaser: string;
   purchaserPhone: string;
   purchaserEmail: string;
@@ -68,11 +65,9 @@ export interface CreateOrderRequest {
   shippingAddress: string;
   message: string;
 
-  status: OrderStatus;
-  paymentMethod: PaymentMethod;
-  paidAt: Date;
+  impUID: string;
 
-  orderDetails: OrderDetailRequest[];
+  cartItemIds: number[];
 }
 
 export interface OrderDetailRequest {

@@ -8,7 +8,7 @@ type IMPRequestPay = (
 
 export const impRequestPay: IMPRequestPay = (data, callback) => {
   const { IMP } = window;
-  const userCode = BUSINESS.IMP_ACCOUNT_ID;
+  const userCode = BUSINESS.IMP_MERCHANT_ID;
 
   if (!userCode) throw Error('가맹점 코드가 유효하지 않습니다.');
 
