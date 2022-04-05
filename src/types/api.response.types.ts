@@ -13,6 +13,8 @@ export interface ErrorResponse {
 export interface PaginationResponse<T> {
   totalElements: number;
   totalPages: number;
+  pageNum: number;
+  pageSize: number;
   isFirst: boolean;
   isLast: boolean;
   list: T[];
