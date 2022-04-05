@@ -10,25 +10,36 @@ export const Menu = styled.ul`
   display: flex;
   justify-content: flex-end;
   align-items: wrap;
-  gap: 1.6rem;
+  gap: 0.8rem;
 
   font-size: ${styles.fontSize.xsmall}rem;
 `;
 
 export const MenuItem = styled.li`
   flex-shrink: 0;
-  cursor: pointer;
 
-  &,
-  a {
+  cursor: pointer;
+  text-transform: uppercase;
+
+  &:hover {
+    text-decoration: underline;
+    svg {
+      transform: scale(1.1);
+    }
+  }
+
+  a,
+  button {
+    height: 100%;
+    padding: 0 0.8rem;
+
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  text-transform: uppercase;
-
   svg {
     font-size: 2.4rem;
+    transition: all 0.1s ease-out;
   }
 `;

@@ -23,18 +23,24 @@ const UserMenu = ({ user, onClickLogout }: Props) => {
   return (
     <Menu>
       <MenuItem>
-        <MdSearch />
+        <TransparentButton>
+          <MdSearch />
+        </TransparentButton>
       </MenuItem>
 
       {user ? (
         <>
-          <MenuItem onClick={onClickLogout}>LOGOUT</MenuItem>
+          <MenuItem>
+            <TransparentButton onClick={onClickLogout}>
+              LOGOUT
+            </TransparentButton>
+          </MenuItem>
           <MenuItem>
             <DropDown
               button={
-                <TransparentButton>
+                <Link to={URLS.CLIENT.MY_PAGE.INDEX}>
                   <MdPerson />
-                </TransparentButton>
+                </Link>
               }
               style={{
                 transform: `translate(-3.2rem, -${styles.border.level1}rem)`,
