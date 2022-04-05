@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 import { styles, Theme } from '@/styles';
 
-type ButtonVariant = 'primary' | 'outline';
+type ButtonVariant = 'primary' | 'reverse' | 'outline';
 export type ButtonSize = 'xsmall' | 'small' | 'normal';
 type ButtonGrid = {
   colNum: number;
@@ -47,6 +47,18 @@ const setButtonStyle = (
       hoverStyle: css`
         background: ${theme.color.buttonActive};
         border-color: ${theme.color.buttonActive};
+      `,
+    },
+    reverse: {
+      background: theme.color.fontReverse,
+      fontColor: theme.color.font,
+      borderColor: theme.color.fontReverse,
+      activeStyle: css`
+        background: ${theme.color.fontReverse};
+      `,
+      hoverStyle: css`
+        background: ${theme.color.buttonActiveReverse};
+        border-color: ${theme.color.buttonActiveReverse};
       `,
     },
     outline: {
