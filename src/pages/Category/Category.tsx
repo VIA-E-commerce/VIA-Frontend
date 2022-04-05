@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
-import { useSearchParams, useNavigate, Link } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router';
 
 import { URLS } from '@/constants';
@@ -72,9 +72,7 @@ const Category = () => {
       </GridSection>
       <GridSection cols={PRODUCT_GRID_COLUMNS}>
         {productList.map((card) => (
-          <Link key={card.id} to={`${URLS.CLIENT.PRODUCT}/${card.id}`}>
-            <ProductCard card={card} />
-          </Link>
+          <ProductCard key={card.id} card={card} />
         ))}
       </GridSection>
       <GridSection cols={1}>

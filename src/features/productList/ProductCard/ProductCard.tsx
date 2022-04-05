@@ -1,6 +1,8 @@
 import React, { memo } from 'react';
+import { Link } from 'react-router-dom';
 
 import { PriceLabel } from '@/components';
+import { URLS } from '@/constants';
 import { ProductCardResponse } from '@/types';
 
 import {
@@ -18,17 +20,19 @@ interface ProductCardProps {
 const ProductCard = ({ card }: ProductCardProps) => {
   return (
     <CardWrapper>
-      <header>
-        <CardImage src={card.thumbnail} />
-      </header>
-      <CardBody>
-        <CardTitle>{card.name}</CardTitle>
-        <PriceLabel
-          sellingPrice={card.sellingPrice}
-          retailPrice={card.retailPrice}
-        />
-      </CardBody>
-      <CardFooter></CardFooter>
+      <Link to={`${URLS.CLIENT.PRODUCT}/${card.id}`}>
+        <header>
+          <CardImage src={card.thumbnail || '/images/empty-product.png'} />
+        </header>
+        <CardBody>
+          <CardTitle>{card.name}</CardTitle>
+          <PriceLabel
+            sellingPrice={card.sellingPrice}
+            retailPrice={card.retailPrice}
+          />
+        </CardBody>
+        <CardFooter></CardFooter>
+      </Link>
     </CardWrapper>
   );
 };

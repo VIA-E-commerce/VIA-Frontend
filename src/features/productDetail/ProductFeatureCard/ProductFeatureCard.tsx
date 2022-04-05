@@ -1,4 +1,5 @@
 import React from 'react';
+import { useQueryClient } from 'react-query';
 import { MdShare } from 'react-icons/md';
 
 import {
@@ -27,7 +28,6 @@ import {
   ProductName,
   InfoFooter,
 } from './ProductFeatureCard.styles';
-import { useQueryClient } from 'react-query';
 
 interface ProductFeatureCardProps {
   product: ProductDetailResponse;
@@ -58,7 +58,10 @@ const ProductFeatureCard = ({ product }: ProductFeatureCardProps) => {
       </TopButtonGroup>
       <Wrapper>
         <ProductImages>
-          <img src={product.images[0]} alt="상품 대표 이미지" />
+          <img
+            src={product.images[0] || '/images/empty-product.png'}
+            alt="상품 대표 이미지"
+          />
         </ProductImages>
 
         <ProductDetailInfo>

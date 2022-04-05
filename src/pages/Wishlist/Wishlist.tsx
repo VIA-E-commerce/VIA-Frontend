@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router';
-import { Link, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 import { GridSection, Pagination } from '@/components';
 import { URLS } from '@/constants';
@@ -61,9 +61,7 @@ const Wishlist = () => {
       </GridSection>
       <GridSection cols={PRODUCT_GRID_COLUMNS}>
         {productList.map((card) => (
-          <Link key={card.id} to={`${URLS.CLIENT.PRODUCT}/${card.id}`}>
-            <ProductCard card={card} />
-          </Link>
+          <ProductCard key={card.id} card={card} />
         ))}
       </GridSection>
       <GridSection cols={1}>
