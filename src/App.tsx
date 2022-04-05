@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Layout } from '@/components';
+import { Layout, ScrollToTop } from '@/components';
 import { useLogout, useMe } from '@/features/auth';
 import { RootRouter } from '@/routes';
 
@@ -10,6 +10,7 @@ const App = () => {
 
   return (
     <Layout user={currentUser} onClickLogout={handleClickLogout}>
+      <ScrollToTop />
       <RootRouter />
     </Layout>
   );
