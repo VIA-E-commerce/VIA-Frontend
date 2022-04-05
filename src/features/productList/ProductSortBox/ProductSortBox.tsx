@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 
 import { URLS } from '@/constants';
@@ -36,30 +36,24 @@ interface SortButtonProps {
   label: string;
   sortMethod?: string;
   active: boolean;
-  defaultSearchParams: URLSearchParams;
 }
 
 const SortButton = function SortButton({
   label,
   sortMethod = '',
   active,
-  defaultSearchParams,
 }: SortButtonProps) {
-  const [search, setSearch] = useState(defaultSearchParams.toString());
+  const [searchParams] = useSearchParams();
 
-  useEffect(() => {
-    const searchParams = new URLSearchParams(defaultSearchParams);
-    if (sortMethod) {
-      searchParams.set(URLS.PARAM.SORT, sortMethod);
-    } else {
-      searchParams.delete(URLS.PARAM.SORT);
-    }
-    setSearch(searchParams.toString());
-  }, []);
+  if (sortMethod) {
+    searchParams.set(URLS.PARAM.SORT, sortMethod);
+  } else {
+    searchParams.delete(URLS.PARAM.SORT);
+  }
 
   return (
     <SortMenuItem active={active}>
-      <Link to={{ search }}>{label}</Link>
+      <Link to={{ search: searchParams.toString() }}>{label}</Link>
     </SortMenuItem>
   );
 };
@@ -77,7 +71,6 @@ const ProductSortBox = () => {
             label={method.label}
             sortMethod={method.sort}
             active={currentSort === method.sort}
-            defaultSearchParams={searchParams}
           />
         ))}
       </SortMenu>
