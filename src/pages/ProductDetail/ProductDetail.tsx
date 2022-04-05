@@ -2,7 +2,7 @@ import React, { useEffect, useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
 import { useParams } from 'react-router';
 
-import { GridSection, ImageModal } from '@/components';
+import { GridSection, ImageModal, PageTemplate } from '@/components';
 import { QUERY } from '@/constants';
 import {
   ProductDetailTab,
@@ -97,7 +97,7 @@ const ProductDetail = () => {
   if (!product) return <GridSection cols={1}>로딩 중</GridSection>;
 
   return (
-    <>
+    <PageTemplate>
       <ProductFeatureCard product={product} />
       <ContentsSection>
         <ProductDetailTabNav tabs={tabs} />
@@ -139,7 +139,7 @@ const ProductDetail = () => {
 
       <ImageModal />
       <QuestionEditorModal queryKey={QUERY.PRODUCT.QUESTIONS} />
-    </>
+    </PageTemplate>
   );
 };
 
