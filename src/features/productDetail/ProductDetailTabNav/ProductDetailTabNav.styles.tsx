@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import { styles, Theme } from '@/styles';
+import { mixins, styles, Theme } from '@/styles';
 
 const getBorderStyle = (theme: Theme) => css`
   li {
@@ -30,11 +30,9 @@ export const Wrapper = styled.nav`
 `;
 
 export const TabMenu = styled.ul`
+  ${mixins.innerWrapper()}
   margin: 0;
   padding: 0;
-
-  width: ${styles.maxWidth}rem;
-  padding: 0 ${styles.grid.gutter / 2}rem;
 
   list-style: none;
 
