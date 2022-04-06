@@ -10,3 +10,5 @@ export const Order = loadable(() => import('./Order'));
 export const Wishlist = loadable(() => import('./Wishlist'));
 export const MyPage = loadable(() => import('./MyPage'));
 export const Payment = loadable(() => import('./Payment'));
+
+export const NotFound = loadable(() => import('./NotFound'));

@@ -13,6 +13,7 @@ import {
   Wishlist,
   MyPage,
   Payment,
+  NotFound,
 } from '@/pages';
 
 import OAuthRedirect from './OAuthRedirect';
@@ -70,6 +71,8 @@ const RootRouter = () => {
           </ProtectedRoute>
         }
       />
+
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };

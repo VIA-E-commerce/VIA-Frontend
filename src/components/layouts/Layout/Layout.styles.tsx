@@ -8,6 +8,8 @@ export const Wrapper = styled.div`
 `;
 
 export const Main = styled.main`
-  margin-bottom: 16rem;
   flex-grow: 1;
+
+  display: flex;
+  flex-direction: column;
 `;

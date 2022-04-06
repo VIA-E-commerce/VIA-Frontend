@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Routes, useNavigate, useParams } from 'react-router';
 import { useRecoilValue } from 'recoil';
 
-import { GridSection, TabNav } from '@/components';
+import { GridSection, PageTemplate, TabNav } from '@/components';
 import { URLS } from '@/constants';
 import { CategoryTitle } from '@/features/productList';
 import { currentUserState } from '@/state';
@@ -35,7 +35,7 @@ const MyPage = () => {
   if (!me) return <GridSection cols={1}>로딩 중</GridSection>;
 
   return (
-    <>
+    <PageTemplate>
       <GridSection cols={1}>
         <CategoryTitle title="My Page" />
       </GridSection>
@@ -65,7 +65,7 @@ const MyPage = () => {
           />
         </Routes>
       </GridSection>
-    </>
+    </PageTemplate>
   );
 };
 

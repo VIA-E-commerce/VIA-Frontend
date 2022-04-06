@@ -3,7 +3,7 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router';
 
 import { URLS } from '@/constants';
-import { GridSection, Pagination } from '@/components';
+import { GridSection, PageTemplate, Pagination } from '@/components';
 import {
   CategoryTitle,
   ProductSortBox,
@@ -63,7 +63,7 @@ const Category = () => {
   const { list: productList } = pagination;
 
   return (
-    <>
+    <PageTemplate>
       <GridSection cols={1}>
         <CategoryTitle title={category} />
       </GridSection>
@@ -82,7 +82,7 @@ const Category = () => {
           onClickPageButton={handleClickPageButton}
         />
       </GridSection>
-    </>
+    </PageTemplate>
   );
 };
 
