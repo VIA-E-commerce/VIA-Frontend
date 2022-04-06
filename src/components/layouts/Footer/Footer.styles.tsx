@@ -3,7 +3,7 @@ import { mixins, styles } from '@/styles';
 
 export const StyledFooter = styled.footer`
   border-top: ${styles.border.level1}rem solid
-    ${({ theme }) => theme.color.font};
+    ${({ theme }) => theme.color.layoutBorderColor};
 `;
 
 const verticalPadding = 2.4;

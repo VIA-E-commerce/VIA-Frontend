@@ -5,12 +5,13 @@ import { mixins, styles } from '@/styles';
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2.4rem;
 `;
 
 export const Title = styled.h2`
   ${mixins.innerWrapper()}
   height: 7.2rem;
+
+  margin-bottom: 1.6rem;
 
   font-family: ${styles.fontFamily.eng};
 
@@ -41,6 +42,8 @@ export const Title = styled.h2`
 export const More = styled.div`
   display: flex;
   justify-content: center;
+
+  margin-top: 3.2rem;
 
   button {
     width: 10.4rem;

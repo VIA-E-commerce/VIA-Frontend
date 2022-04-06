@@ -8,7 +8,7 @@ interface Props {
 }
 
 const PageTemplate = ({ style, children }: Props) => {
-  return <Wrapper style={style}>{children}=</Wrapper>;
+  return <Wrapper style={style}>{children}</Wrapper>;
 };
 
 export default React.memo(PageTemplate);

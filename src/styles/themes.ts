@@ -36,6 +36,7 @@ export const theme = {
     lightGray: color.lightGray,
     white: color.white,
 
+    layoutBorderColor: color.gray,
     cartBorder: color.gray,
     inputBorder: color.lightGray,
     star: color.yellow,

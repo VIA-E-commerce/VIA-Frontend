@@ -4,7 +4,8 @@ import { css } from '@emotion/react';
 import { mixins, styles, Theme } from '@/styles';
 
 const borderStyle = (theme: Theme) => css`
-  border-bottom: ${styles.border.level1}rem solid ${theme.color.font};
+  border-bottom: ${styles.border.level1}rem solid
+    ${theme.color.layoutBorderColor};
 `;
 export const StyledHeader = styled.header`
   background: ${({ theme }) => theme.color.background};
