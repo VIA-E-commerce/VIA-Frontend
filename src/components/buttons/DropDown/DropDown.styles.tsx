@@ -15,11 +15,11 @@ export const Wrapper = styled.div`
   }
 
   ul {
-    padding: ${styles.space.level2}rem;
     list-style: none;
+    padding: 0;
 
     background: ${({ theme }) => theme.color.background};
-    width: 8rem;
+    width: 10rem;
     border: ${styles.border.level1}rem solid ${({ theme }) => theme.color.font};
 
     position: absolute;
@@ -28,6 +28,18 @@ export const Wrapper = styled.div`
 
     li {
       text-align: center;
+      padding: ${styles.space.level1}rem;
+
+      &:hover {
+        background: ${({ theme }) => theme.color.font};
+        color: ${({ theme }) => theme.color.fontReverse};
+
+        a {
+          color: inherit;
+        }
+      }
+
+      transition: background 0.2s linear;
     }
   }
 
