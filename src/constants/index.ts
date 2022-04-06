@@ -7,6 +7,8 @@ export * from './validation';
 export const APP = {
   SITE_NAME: 'VIA',
   COPYRIGHT: '© 2022 Kyeongho Yang. All rights reserved.',
+
+  KAKAO_JS_KEY: process.env.REACT_APP_KAKAO_JS_KEY,
 };
 
 export const BUSINESS = {
