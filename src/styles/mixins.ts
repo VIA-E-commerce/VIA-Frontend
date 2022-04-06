@@ -19,3 +19,9 @@ export const grid = (
   row-gap: ${rowGap}rem;
   column-gap: ${colGap}rem;
 `;
+
+export const limitVwLowerBound = (vw: number) => {
+  const rem = (styles.maxWidth * vw) / 100;
+
+  return `max(${rem}rem, ${vw}vw)`;
+};
