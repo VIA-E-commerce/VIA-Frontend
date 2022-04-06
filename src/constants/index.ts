@@ -32,6 +32,7 @@ export const QUERY = {
   ORDER: {
     INFO: 'order-info',
     ITEMS: 'order-items',
+    MINE: 'my-orders',
   },
   WISHLIST: 'wishlist',
   USER: {

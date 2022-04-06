@@ -26,6 +26,7 @@ export const URLS = {
     },
     ORDER: {
       CRUD: '/orders',
+      ME: '/orders/me',
     },
     PAYMENT: {
       REFUND: '/payments/refund',
