@@ -2,7 +2,13 @@ import React, { useEffect, useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
 import { useParams } from 'react-router';
 
-import { GridSection, ImageModal, Loading, PageTemplate } from '@/components';
+import {
+  DocumentTitle,
+  GridSection,
+  ImageModal,
+  Loading,
+  PageTemplate,
+} from '@/components';
 import { QUERY } from '@/constants';
 import {
   ProductDetailTab,
@@ -98,6 +104,8 @@ const ProductDetail = () => {
 
   return (
     <PageTemplate>
+      <DocumentTitle title={product.name} thumbnail={product.images[0]} />
+
       <ProductFeatureCard product={product} />
       <ContentsSection>
         <ProductDetailTabNav tabs={tabs} />

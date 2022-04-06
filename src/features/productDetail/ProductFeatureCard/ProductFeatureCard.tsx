@@ -1,13 +1,11 @@
 import React from 'react';
 import { useQueryClient } from 'react-query';
-import { MdShare } from 'react-icons/md';
 
 import {
   GridSection,
   LabelField,
   PriceLabel,
   SquareButton,
-  TransparentButton,
 } from '@/components';
 import { BUSINESS, QUERY } from '@/constants';
 import { useToggleWishlistMutation, WishlistButton } from '@/features/wishlist';
@@ -18,6 +16,7 @@ import {
   formatPrice,
 } from '@/utils';
 
+import { SnsShareButton } from '../SnsShareButton';
 import { ControlPanel } from './ControlPanel';
 import {
   Wrapper,
@@ -48,9 +47,7 @@ const ProductFeatureCard = ({ product }: ProductFeatureCardProps) => {
   return (
     <GridSection cols={1} rowGap={8}>
       <TopButtonGroup>
-        <TransparentButton>
-          <MdShare />
-        </TransparentButton>
+        <SnsShareButton thumbnail={product.images[0]} />
         <WishlistButton
           wished={product.wished}
           onClick={() => onToggleWishlist(product.id, product.wished)}
