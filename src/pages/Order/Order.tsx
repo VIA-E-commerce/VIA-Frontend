@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { useSearchParams, Navigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
-import { GridSection, PageTemplate } from '@/components';
+import { GridSection, Loading, PageTemplate } from '@/components';
 import { URLS } from '@/constants';
 import { AddressModal } from '@/features/address';
 import {
@@ -38,8 +38,7 @@ const Order = () => {
 
   const onSubmit = useMemo(() => handleSubmit(onSubmitOrderForm), [cartItems]);
 
-  if (!userData || !cartItems)
-    return <GridSection cols={1}>로딩 중</GridSection>;
+  if (!userData || !cartItems) return <Loading />;
 
   return (
     <PageTemplate>

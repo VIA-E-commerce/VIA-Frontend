@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 import { useSearchParams } from 'react-router-dom';
 
-import { GridSection, Pagination } from '@/components';
+import { Empty, GridSection, Loading, Pagination } from '@/components';
 import { URLS } from '@/constants';
 import { CategoryTitle, ProductCard } from '@/features/productList';
 import { useMyWishlist } from '@/features/wishlist';
@@ -50,7 +50,7 @@ const Wishlist = () => {
     }
   }, [location, pagination, page]);
 
-  if (!pagination) return <GridSection>로딩 중</GridSection>;
+  if (!pagination) return <Loading />;
 
   const { list: productList } = pagination;
 
@@ -59,11 +59,15 @@ const Wishlist = () => {
       <GridSection cols={1}>
         <CategoryTitle title="Wishlist" />
       </GridSection>
-      <GridSection cols={PRODUCT_GRID_COLUMNS}>
-        {productList.map((card) => (
-          <ProductCard key={card.id} card={card} />
-        ))}
-      </GridSection>
+      {productList.length === 0 ? (
+        <Empty text="관심있는 아이템을 추가해주세요" />
+      ) : (
+        <GridSection cols={PRODUCT_GRID_COLUMNS}>
+          {productList.map((card) => (
+            <ProductCard key={card.id} card={card} />
+          ))}
+        </GridSection>
+      )}
       <GridSection cols={1}>
         <Pagination
           currentPage={page}

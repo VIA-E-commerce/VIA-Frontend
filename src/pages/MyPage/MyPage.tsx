@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Routes, useNavigate, useParams } from 'react-router';
 import { useRecoilValue } from 'recoil';
 
-import { GridSection, PageTemplate, TabNav } from '@/components';
+import { GridSection, Loading, PageTemplate, TabNav } from '@/components';
 import { URLS } from '@/constants';
 import { CategoryTitle } from '@/features/productList';
 import { currentUserState } from '@/state';
@@ -12,6 +12,7 @@ import { MyInfo } from './MyInfo';
 import { MyOrders } from './MyOrders';
 import { MyReviews } from './MyReviews';
 import { MyQuestions } from './MyQuestions';
+import { TabRoute } from './MyPage.styles';
 
 const tabs: TabItem[] = [
   { id: URLS.CLIENT.MY_PAGE.TABS.PROFILE, label: '내 정보' },
@@ -32,7 +33,7 @@ const MyPage = () => {
     navigate({ pathname: tab.id });
   };
 
-  if (!me) return <GridSection cols={1}>로딩 중</GridSection>;
+  if (!me) return <Loading />;
 
   return (
     <PageTemplate>
@@ -45,25 +46,27 @@ const MyPage = () => {
           activeTabId={activeTabId}
           onClickTabButton={handleClickTabButton}
         />
-        <Routes>
-          <Route index element={<MyInfo me={me} />} />
-          <Route
-            path={URLS.CLIENT.MY_PAGE.TABS.PROFILE}
-            element={<MyInfo me={me} />}
-          />
-          <Route
-            path={URLS.CLIENT.MY_PAGE.TABS.ORDERS}
-            element={<MyOrders />}
-          />
-          <Route
-            path={URLS.CLIENT.MY_PAGE.TABS.REVIEWS}
-            element={<MyReviews />}
-          />
-          <Route
-            path={URLS.CLIENT.MY_PAGE.TABS.QUESTIONS}
-            element={<MyQuestions />}
-          />
-        </Routes>
+        <TabRoute>
+          <Routes>
+            <Route index element={<MyInfo me={me} />} />
+            <Route
+              path={URLS.CLIENT.MY_PAGE.TABS.PROFILE}
+              element={<MyInfo me={me} />}
+            />
+            <Route
+              path={URLS.CLIENT.MY_PAGE.TABS.ORDERS}
+              element={<MyOrders />}
+            />
+            <Route
+              path={URLS.CLIENT.MY_PAGE.TABS.REVIEWS}
+              element={<MyReviews />}
+            />
+            <Route
+              path={URLS.CLIENT.MY_PAGE.TABS.QUESTIONS}
+              element={<MyQuestions />}
+            />
+          </Routes>
+        </TabRoute>
       </GridSection>
     </PageTemplate>
   );

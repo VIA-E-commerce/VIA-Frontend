@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 
-import { GridSection, Pagination, Tab } from '@/components';
+import { Empty, Loading, Pagination, Tab } from '@/components';
 import { useMyOrders, MyOrderItem } from '@/features/order';
 
 import { MyOrderList } from './MyOrders.styles';
@@ -18,16 +18,18 @@ const MyOrders = () => {
     setPageNum(pageNum);
   }, []);
 
-  if (!pagination || !orders || orders.length === 0) {
-    return <GridSection cols={1}>로딩 중</GridSection>;
+  if (!pagination || !orders) {
+    return <Loading />;
   }
 
   return (
     <Tab>
       <MyOrderList>
-        {orders.map((order) => (
-          <MyOrderItem key={order.id} order={order} />
-        ))}
+        {orders.length === 0 ? (
+          <Empty text="주문 내역이 없습니다" />
+        ) : (
+          orders.map((order) => <MyOrderItem key={order.id} order={order} />)
+        )}
       </MyOrderList>
       <Pagination
         pageRange={PAGE_RANGE}

@@ -3,7 +3,7 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router';
 
 import { URLS } from '@/constants';
-import { GridSection, PageTemplate, Pagination } from '@/components';
+import { GridSection, Loading, PageTemplate, Pagination } from '@/components';
 import {
   CategoryTitle,
   ProductSortBox,
@@ -58,7 +58,7 @@ const Category = () => {
     }
   }, [location, pagination, page]);
 
-  if (!pagination) return <GridSection>로딩 중</GridSection>;
+  if (!pagination) return <Loading />;
 
   const { list: productList } = pagination;
 

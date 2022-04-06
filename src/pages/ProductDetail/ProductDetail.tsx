@@ -2,7 +2,7 @@ import React, { useEffect, useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
 import { useParams } from 'react-router';
 
-import { GridSection, ImageModal, PageTemplate } from '@/components';
+import { GridSection, ImageModal, Loading, PageTemplate } from '@/components';
 import { QUERY } from '@/constants';
 import {
   ProductDetailTab,
@@ -94,7 +94,7 @@ const ProductDetail = () => {
     }
   }, [currentUser]);
 
-  if (!product) return <GridSection cols={1}>로딩 중</GridSection>;
+  if (!product) return <Loading />;
 
   return (
     <PageTemplate>

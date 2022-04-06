@@ -5,7 +5,7 @@ import {
   QuestionItem,
   QuestionEditorModal,
 } from '@/features/question';
-import { GridSection, Pagination, Tab } from '@/components';
+import { Empty, Loading, Pagination, Tab } from '@/components';
 import { QUERY } from '@/constants';
 
 const PAGE_RANGE = 5;
@@ -33,24 +33,28 @@ const MyQuestions = () => {
   }, []);
 
   if (!pagination || !questions) {
-    return <GridSection cols={1}>로딩 중</GridSection>;
+    return <Loading />;
   }
 
   return (
     <>
       <Tab>
         <div>
-          {questions.map((question) => (
-            <QuestionItem
-              key={question.id}
-              question={question}
-              active={activeQuestionId === question.id}
-              owned
-              onClick={() => handleClickQuestion(question.id)}
-              queryKey={QUERY.USER.MY_QUESTIONS}
-              isForMyPage={true}
-            />
-          ))}
+          {questions.length === 0 ? (
+            <Empty text="문의 내역이 없습니다" />
+          ) : (
+            questions.map((question) => (
+              <QuestionItem
+                key={question.id}
+                question={question}
+                active={activeQuestionId === question.id}
+                owned
+                onClick={() => handleClickQuestion(question.id)}
+                queryKey={QUERY.USER.MY_QUESTIONS}
+                isForMyPage={true}
+              />
+            ))
+          )}
         </div>
         <Pagination
           pageRange={PAGE_RANGE}

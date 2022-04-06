@@ -7,13 +7,14 @@ import {
   LabelField,
   LabelSection,
   SquareButton,
+  Loading,
 } from '@/components';
 import { URLS } from '@/constants';
+import { CategoryTitle } from '@/features/productList';
 import { useFetchOrder } from '@/features/order';
 import { formatDate, formatPhone, formatPrice } from '@/utils';
 
 import { Wrapper, BottomMenu } from './Payment.styles';
-import { CategoryTitle } from '@/features/productList';
 
 const Payment = () => {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ const Payment = () => {
     navigate(URLS.CLIENT.HOME);
   }, []);
 
-  if (!order) return <GridSection cols={1}>로딩 중</GridSection>;
+  if (!order) return <Loading />;
 
   return (
     <Wrapper>
