@@ -1,3 +1,4 @@
+export * from './MyOrderItem';
 export * from './OrderAside';
 export * from './OrderFieldGroup';
 export * from './OrderForm';
