@@ -35,7 +35,7 @@ const ControlPanel = ({ product }: ControlPanelProps) => {
     if (variant) {
       mutate({ variantId: variant.id, quantity });
     }
-  }, [sizeId, variant]);
+  }, [sizeId, variant, quantity]);
 
   return (
     <>
