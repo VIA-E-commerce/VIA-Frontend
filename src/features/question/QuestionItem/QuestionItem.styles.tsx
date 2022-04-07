@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
 import { styles, Theme } from '@/styles';
-import { hexToRGB } from '@/utils';
 
 const getBorderStyle = (theme: Theme) => css`
   border-bottom: ${styles.border.level1}rem solid ${theme.color.gray};

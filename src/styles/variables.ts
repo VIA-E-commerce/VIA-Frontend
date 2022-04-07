@@ -88,6 +88,9 @@ export const component = {
     height: 5.6,
     topTransition: 'transition: top 0.3s ease;',
   },
+  footer: {
+    height: 8,
+  },
   tab: {
     navHeight: 5.6,
   },

@@ -9,7 +9,7 @@ export const StyledFooter = styled.footer`
 const verticalPadding = 2.4;
 export const FooterInner = styled.div`
   ${mixins.innerWrapper()}
-  height: 8rem;
+  height: ${styles.component.footer.height}rem;
 
   padding-top: ${verticalPadding}rem;
   padding-bottom: ${verticalPadding}rem;
