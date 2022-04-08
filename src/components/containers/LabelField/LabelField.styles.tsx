@@ -20,8 +20,13 @@ const getLabelFieldSize = (size: LabelFieldSize) => {
     return css`
       .label {
         min-height: ${height}rem;
+      }
+
+      .label,
+      .content {
         line-height: ${height}rem;
       }
+
       font-size: ${styles.fontSize.normal}rem;
     `;
   }
@@ -29,23 +34,27 @@ const getLabelFieldSize = (size: LabelFieldSize) => {
   return css`
     .label {
       min-height: ${height}rem;
+    }
+
+    .label,
+    .content {
       line-height: ${height}rem;
     }
+
     font-size: ${styles.fontSize.small}rem;
   `;
 };
 const getAlignment = (alignType: AlignType) => {
-  let align = 'flex-start';
+  let align = 'left';
 
   if (alignType === 'center') {
     align = 'center';
   } else if (alignType === 'right') {
-    align = 'flex-end';
+    align = 'right';
   }
 
   return css`
-    justify-content: ${align};
-    align-items: center;
+    text-align: ${align};
   `;
 };
 const getVerticalStyles = (vertical?: boolean) => {
@@ -79,7 +88,6 @@ export const Wrapper = styled.div<LabelFieldStyleProps>`
 
   .content {
     flex: 1;
-    display: flex;
     ${({ contentAlign }) => getAlignment(contentAlign)}
   }
 `;
