@@ -37,6 +37,9 @@ export const Label = styled.label<LabelStyleProps>`
     background: ${({ theme }) => hexToRGB(theme.color.darkGray, 0.5)};
     color: ${({ theme }) => theme.color.fontReverse};
 
+    width: 100%;
+    height: 100%;
+
     display: flex;
     justify-content: center;
     align-items: center;

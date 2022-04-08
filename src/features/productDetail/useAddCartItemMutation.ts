@@ -1,11 +1,12 @@
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import { useNavigate } from 'react-router';
 
 import { addCartItem } from '@/apis';
-import { URLS } from '@/constants';
+import { QUERY, URLS } from '@/constants';
 
-export const useAddCartItemMutation = () => {
+export const useAddCartItemMutation = (productId: number) => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   return useMutation(addCartItem, {
     retry: false,
@@ -14,6 +15,11 @@ export const useAddCartItemMutation = () => {
       if (confirm('장바구니로 이동하시겠습니까?')) {
         navigate(URLS.CLIENT.CART);
       }
+    },
+
+    onError: () => {
+      alert('장바구니에 상품을 담을 수 없습니다.');
+      queryClient.refetchQueries([QUERY.PRODUCT.DETAIL, productId]);
     },
   });
 };

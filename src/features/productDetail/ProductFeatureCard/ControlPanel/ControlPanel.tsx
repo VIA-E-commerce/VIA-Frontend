@@ -27,7 +27,7 @@ const ControlPanel = ({ product }: ControlPanelProps) => {
     numberInputProps,
   } = useProductControlPanel({ product });
 
-  const { mutate } = useAddCartItemMutation();
+  const { mutate } = useAddCartItemMutation(product.id);
 
   const handleClickCart = useCallback(() => {
     if (!sizeId) return alert('사이즈를 선택해주세요.');
