@@ -11,6 +11,7 @@ import {
 } from '@/components';
 import { QUERY } from '@/constants';
 import {
+  DeliveryGuide,
   ProductDetailTab,
   ProductDetailTabNav,
   ProductFeatureCard,
@@ -136,7 +137,7 @@ const ProductDetail = () => {
           </ProductDetailTab>
 
           <ProductDetailTab tab={deliveryTab}>
-            {deliveryTab.label}
+            <DeliveryGuide />
           </ProductDetailTab>
 
           <ProductDetailTab tab={exchangeTab}>

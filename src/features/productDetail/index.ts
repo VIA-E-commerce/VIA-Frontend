@@ -1,3 +1,4 @@
+export * from './DeliveryGuide';
 export * from './ProductDetailTab';
 export * from './ProductDetailTabNav';
 export * from './ProductFeatureCard';

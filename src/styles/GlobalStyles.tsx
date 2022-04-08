@@ -70,6 +70,11 @@ export const GlobalStyles = () => {
         h6 {
           font-size: ${styles.fontSize.h6}rem;
         }
+
+        small {
+          color: ${theme.color.darkGray};
+          font-size: ${styles.fontSize.small}rem;
+        }
       `}
     />
   );
