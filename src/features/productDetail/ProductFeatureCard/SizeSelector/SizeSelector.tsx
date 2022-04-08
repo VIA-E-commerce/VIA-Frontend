@@ -53,4 +53,4 @@ const SizeSelector = ({
   );
 };
 
-export default React.memo(SizeSelector);
+export default SizeSelector;
