@@ -2,23 +2,24 @@ import React, { memo } from 'react';
 import { MdPerson, MdSearch, MdShoppingCart } from 'react-icons/md';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
 
+import { currentUserState } from '@/state';
 import { URLS } from '@/constants';
 import { styles } from '@/styles';
-import { UserSummary } from '@/types';
 import { parseLocationToRedirect } from '@/utils';
 
 import { DropDown, TransparentButton } from '../../../buttons';
 import { Menu, MenuItem } from './UserMenu.styles';
 
 interface Props {
-  user?: UserSummary;
   onClickLogout: () => void;
 }
 
-const UserMenu = ({ user, onClickLogout }: Props) => {
+const UserMenu = ({ onClickLogout }: Props) => {
   const location = useLocation();
   const redirect = parseLocationToRedirect(location);
+  const user = useRecoilValue(currentUserState);
 
   return (
     <Menu>

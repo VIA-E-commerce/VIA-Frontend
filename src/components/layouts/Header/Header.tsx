@@ -6,7 +6,6 @@ import cx from 'classnames';
 import { URLS } from '@/constants';
 import { useDocumentScroll } from '@/hooks';
 import { headerBorderState, headerHideState } from '@/state';
-import { UserSummary } from '@/types';
 
 import { NavBar } from './NavBar';
 import { UserMenu } from './UserMenu';
@@ -17,7 +16,6 @@ import {
 } from './Header.styles';
 
 interface Props {
-  user?: UserSummary;
   onClickLogout: () => void;
 }
 
@@ -29,7 +27,7 @@ const Logo = memo(function Logo() {
   );
 });
 
-const Header = ({ user, onClickLogout }: Props) => {
+const Header = ({ onClickLogout }: Props) => {
   const [hide, setHide] = useRecoilState(headerHideState);
   const border = useRecoilValue(headerBorderState);
 
@@ -49,7 +47,7 @@ const Header = ({ user, onClickLogout }: Props) => {
           <Logo />
         </Link>
         <NavBar />
-        <UserMenu user={user} onClickLogout={onClickLogout} />
+        <UserMenu onClickLogout={onClickLogout} />
       </HeaderInner>
     </StyledHeader>
   );

@@ -9,3 +9,7 @@ export const login = async (loginForm: LoginForm) =>
   client.post(URLS.API.AUTH.LOGIN, loginForm);
 
 export const logout = async () => client.post(URLS.API.AUTH.LOGOUT);
+
+export const deleteAccount = async () => {
+  await client.delete(URLS.API.AUTH.LOCAL);
+};

@@ -5,6 +5,7 @@ export const URLS = {
       JOIN: '/auth/join',
       LOGIN: '/auth/login',
       LOGOUT: '/auth/logout',
+      LOCAL: '/auth/local',
       KAKAO: '/auth/kakao',
       NAVER: '/auth/naver',
       REFRESH: '/auth/refresh',

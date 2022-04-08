@@ -5,11 +5,11 @@ import { useLogout, useMe } from '@/features/auth';
 import { RootRouter } from '@/routes';
 
 const App = () => {
-  const { data: currentUser } = useMe();
+  useMe();
   const { handleClickLogout } = useLogout();
 
   return (
-    <Layout user={currentUser} onClickLogout={handleClickLogout}>
+    <Layout onClickLogout={handleClickLogout}>
       <ScrollToTop />
       <RootRouter />
     </Layout>

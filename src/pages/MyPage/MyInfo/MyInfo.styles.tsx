@@ -16,3 +16,21 @@ export const InnerWrapper = styled.div`
 export const FormFooter = styled.div`
   margin-top: 3.2rem;
 `;
+
+export const DeleteAccountButton = styled.button`
+  background: none;
+  border: none;
+  outline: none;
+
+  margin-top: 4rem;
+
+  color: ${({ theme }) => theme.color.error};
+  font-size: ${styles.fontSize.normal}rem;
+  text-decoration: underline;
+
+  cursor: pointer;
+
+  &:hover {
+    filter: brightness(0.8);
+  }
+`;

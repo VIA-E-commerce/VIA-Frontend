@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import {
   LabelField,
@@ -9,12 +9,18 @@ import {
   SquareButton,
 } from '@/components';
 import { DATE_FORMAT, INPUT_OPTIONS, LOGIN_PROVIDERS } from '@/constants';
+import { useDeleteAccount } from '@/features/auth';
+import { useEditMyInfoMutation } from '@/features/mypage';
 import { useForm } from '@/lib';
 import { RawMyInfoForm, SNSProvider, UserSummary } from '@/types';
 import { formatDate } from '@/utils';
 
-import { MyInfoForm, InnerWrapper, FormFooter } from './MyInfo.styles';
-import { useEditMyInfoMutation } from '@/features/mypage';
+import {
+  MyInfoForm,
+  InnerWrapper,
+  FormFooter,
+  DeleteAccountButton,
+} from './MyInfo.styles';
 
 const getSNSIcon = (myProvider?: SNSProvider): JSX.Element | undefined => {
   if (!myProvider) return;
@@ -34,18 +40,27 @@ interface Props {
 
 const MyInfo = ({ me }: Props) => {
   const useFormReturns = useForm<RawMyInfoForm>();
-  const { mutate } = useEditMyInfoMutation();
+  const { mutate: editMyInfoMutate } = useEditMyInfoMutation();
 
   const { register, errors, handleSubmit } = useFormReturns;
 
   const onSubmit = async (form: RawMyInfoForm) => {
     const { name, phone1, phone2 } = form;
 
-    mutate({
+    editMyInfoMutate({
       name,
       phone: phone1 + phone2,
     });
   };
+
+  const { mutate: deleteAccountMutate } = useDeleteAccount();
+  const handleDeleteAccount = useCallback((event: React.MouseEvent) => {
+    event.preventDefault();
+
+    if (confirm('정말 탈퇴하시겠습니까?')) {
+      deleteAccountMutate();
+    }
+  }, []);
 
   return (
     <Tab>
@@ -80,6 +95,10 @@ const MyInfo = ({ me }: Props) => {
           </LabelField>
           <FormFooter>
             <SquareButton wide>회원 정보 수정</SquareButton>
+
+            <DeleteAccountButton onClick={handleDeleteAccount}>
+              회원 탈퇴
+            </DeleteAccountButton>
           </FormFooter>
         </InnerWrapper>
       </MyInfoForm>

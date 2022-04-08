@@ -9,6 +9,7 @@ export const useProductDetail = (productId: number) => {
     {
       retry: false,
       refetchOnWindowFocus: false,
+      cacheTime: 0,
     },
   );
 

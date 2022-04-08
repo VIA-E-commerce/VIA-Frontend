@@ -4,16 +4,21 @@ import { useSetRecoilState } from 'recoil';
 import { logout, setBearerToken } from '@/apis';
 import { QUERY } from '@/constants';
 import { currentUserState } from '@/state';
+import { useCallback } from 'react';
 
 export const useLogout = () => {
   const queryClient = useQueryClient();
   const setCurrentUser = useSetRecoilState(currentUserState);
 
+  const resetUserAuthInfo = useCallback(() => {
+    setBearerToken('');
+    queryClient.setQueryData(QUERY.AUTH.ME, null);
+    setCurrentUser(undefined);
+  }, []);
+
   const { mutate } = useMutation(logout, {
     onSuccess: () => {
-      setBearerToken('');
-      queryClient.removeQueries(QUERY.AUTH.ME);
-      setCurrentUser(undefined);
+      resetUserAuthInfo();
     },
   });
 
@@ -23,5 +28,5 @@ export const useLogout = () => {
     }
   }
 
-  return { handleClickLogout };
+  return { mutate, resetUserAuthInfo, handleClickLogout };
 };
