@@ -11,6 +11,7 @@ import {
 } from '@/components';
 import { QUERY } from '@/constants';
 import {
+  ChangeRefundTable,
   DeliveryGuide,
   ProductDetailTab,
   ProductDetailTabNav,
@@ -141,7 +142,7 @@ const ProductDetail = () => {
           </ProductDetailTab>
 
           <ProductDetailTab tab={exchangeTab}>
-            {exchangeTab.label}
+            <ChangeRefundTable />
           </ProductDetailTab>
         </GridSection>
       </ContentsSection>

@@ -26,7 +26,7 @@ export const GlobalStyles = () => {
           min-height: 100vh;
         }
 
-        [class] {
+        * {
           &,
           &:before,
           &:after {
