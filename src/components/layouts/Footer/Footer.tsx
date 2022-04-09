@@ -1,11 +1,21 @@
 import React, { memo } from 'react';
+import { FaGithubSquare } from 'react-icons/fa';
+
 import { APP } from '@/constants';
-import { StyledFooter, FooterInner } from './Footer.styles';
+
+import { StyledFooter, FooterInner, RightMenu } from './Footer.styles';
 
 const Footer = () => {
   return (
     <StyledFooter>
-      <FooterInner>{APP.COPYRIGHT}</FooterInner>
+      <FooterInner>
+        <div>{APP.COPYRIGHT}</div>
+        <RightMenu>
+          <a target="_blank" href={APP.GITHUB_URL} rel="noreferrer noopener">
+            <FaGithubSquare />
+          </a>
+        </RightMenu>
+      </FooterInner>
     </StyledFooter>
   );
 };

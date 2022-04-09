@@ -7,6 +7,7 @@ export const StyledFooter = styled.footer`
 `;
 
 const verticalPadding = 2.4;
+
 export const FooterInner = styled.div`
   ${mixins.innerWrapper()}
   height: ${styles.component.footer.height}rem;
@@ -15,4 +16,21 @@ export const FooterInner = styled.div`
   padding-bottom: ${verticalPadding}rem;
 
   font-size: ${styles.fontSize.small}rem;
+
+  display: flex;
+
+  & > div {
+    display: flex;
+    align-items: center;
+  }
+`;
+
+const iconSize = 4;
+
+export const RightMenu = styled.div`
+  margin-left: auto;
+
+  svg {
+    font-size: ${iconSize}rem;
+  }
 `;

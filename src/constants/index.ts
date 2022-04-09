@@ -7,6 +7,7 @@ export * from './validation';
 export const APP = {
   SITE_NAME: 'VIA',
   COPYRIGHT: '© 2022 Kyeongho Yang. All rights reserved.',
+  GITHUB_URL: 'https://github.com/VIA-E-commerce',
 
   KAKAO_JS_KEY: process.env.REACT_APP_KAKAO_JS_KEY,
 };
