@@ -18,7 +18,11 @@ export const WishlistButton = ({ wished, onClick }: Props) => {
 
   return (
     <TransparentButton onClick={handleClick}>
-      {wished ? <MdFavorite /> : <MdFavoriteBorder />}
+      {wished ? (
+        <MdFavorite title="위시리스트에서 제거" />
+      ) : (
+        <MdFavoriteBorder title="위시리스트에 추가" />
+      )}
     </TransparentButton>
   );
 };

@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router';
 import { useSearchParams } from 'react-router-dom';
 
 import { Empty, GridSection, Loading, Pagination } from '@/components';
-import { URLS } from '@/constants';
+import { QUERY, URLS } from '@/constants';
 import { CategoryTitle, ProductCard } from '@/features/productList';
 import { useMyWishlist } from '@/features/wishlist';
 
@@ -22,6 +22,7 @@ const Wishlist = () => {
     pageSize: PAGE_SIZE,
   });
 
+  // 페이지네이션
   const handleClickPageButton = useCallback(
     (nextPage: number) => {
       const newSearchParams = new URLSearchParams(searchParams);
@@ -64,7 +65,7 @@ const Wishlist = () => {
       ) : (
         <GridSection cols={PRODUCT_GRID_COLUMNS}>
           {productList.map((card) => (
-            <ProductCard key={card.id} card={card} />
+            <ProductCard key={card.id} card={card} queryKey={QUERY.WISHLIST} />
           ))}
         </GridSection>
       )}

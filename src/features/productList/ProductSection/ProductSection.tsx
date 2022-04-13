@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { GridSection, SquareButton } from '@/components';
+import { QUERY } from '@/constants';
 import { PaginationResponse, ProductCardResponse } from '@/types';
 
 import { Wrapper, Title, More } from './ProductSection.styles';
@@ -33,7 +34,11 @@ const ProductSection = ({
       <GridSection cols={cols} rowGap={rowGap}>
         {pagination
           ? pagination.list?.map((product) => (
-              <ProductCard key={product.id} card={product} />
+              <ProductCard
+                key={product.id}
+                card={product}
+                queryKey={QUERY.PRODUCT.LIST}
+              />
             ))
           : children}
       </GridSection>

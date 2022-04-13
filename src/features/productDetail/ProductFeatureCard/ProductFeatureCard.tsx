@@ -1,5 +1,4 @@
 import React from 'react';
-import { useQueryClient } from 'react-query';
 
 import {
   GridSection,
@@ -33,16 +32,9 @@ interface ProductFeatureCardProps {
 }
 
 const ProductFeatureCard = ({ product }: ProductFeatureCardProps) => {
-  const queryClient = useQueryClient();
-  const wishlistButtoncallback = () => {
-    queryClient.fetchQuery([QUERY.PRODUCT.DETAIL, product.id]);
-  };
-
   const pointEarningRate = calcRoundedPercentage(BUSINESS.POINT_EARNING_RATE);
   const point = calcIntegerPercentage(product.sellingPrice, pointEarningRate);
-  const { onToggleWishlist } = useToggleWishlistMutation(
-    wishlistButtoncallback,
-  );
+  const { onToggleWishlist } = useToggleWishlistMutation(QUERY.PRODUCT.DETAIL);
 
   return (
     <GridSection cols={1} rowGap={8}>

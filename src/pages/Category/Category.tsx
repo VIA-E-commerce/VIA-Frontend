@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router';
 
-import { URLS } from '@/constants';
+import { QUERY, URLS } from '@/constants';
 import { GridSection, Loading, PageTemplate, Pagination } from '@/components';
 import {
   CategoryTitle,
@@ -72,7 +72,11 @@ const Category = () => {
       </GridSection>
       <GridSection cols={PRODUCT_GRID_COLUMNS}>
         {productList.map((card) => (
-          <ProductCard key={card.id} card={card} />
+          <ProductCard
+            key={card.id}
+            card={card}
+            queryKey={[QUERY.PRODUCT.LIST]}
+          />
         ))}
       </GridSection>
       <GridSection cols={1}>
