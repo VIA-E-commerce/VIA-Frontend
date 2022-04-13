@@ -21,6 +21,8 @@ export const CardImage = styled.img`
   width: 100%;
   aspect-ratio: 1;
   object-fit: cover;
+
+  display: block;
 `;
 
 export const CardHoverMenu = styled.div`
