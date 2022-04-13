@@ -12,8 +12,8 @@ export const useLogout = () => {
 
   const resetUserAuthInfo = useCallback(() => {
     setBearerToken('');
-    queryClient.setQueryData(QUERY.AUTH.ME, null);
     setCurrentUser(undefined);
+    queryClient.removeQueries(QUERY.AUTH.ME);
   }, []);
 
   const { mutate } = useMutation(logout, {
