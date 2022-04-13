@@ -1,12 +1,9 @@
 import { useQuery } from 'react-query';
+import { AxiosResponse } from 'axios';
 
 import { fetchProducts, FetchProductsProps } from '@/apis';
 import { QUERY } from '@/constants';
-import {
-  ResponseEntity,
-  PaginationResponse,
-  ProductCardResponse,
-} from '@/types';
+import { PaginationResponse, ProductCardResponse } from '@/types';
 import { getValidPagingQuery } from '@/utils';
 
 export const useProductList = (props: FetchProductsProps) => {
@@ -16,7 +13,7 @@ export const useProductList = (props: FetchProductsProps) => {
   });
 
   const { data, ...rest } = useQuery<
-    ResponseEntity<PaginationResponse<ProductCardResponse>>
+    AxiosResponse<PaginationResponse<ProductCardResponse>>
   >(
     [
       QUERY.PRODUCT.LIST,

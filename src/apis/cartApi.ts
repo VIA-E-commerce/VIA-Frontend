@@ -4,25 +4,17 @@ import {
   AddCartItemRequest,
   CartItemResponse,
   EditCartItemRequest,
-  ResponseEntity,
 } from '@/types';
 
-export const fetchCartItems = async (cartItems?: number[]) => {
-  const response = await client.get<ResponseEntity<CartItemResponse[]>>(
-    URLS.API.CART.ITEM,
-    {
-      params: {
-        id: cartItems?.join(','),
-      },
+export const fetchCartItems = async (cartItems?: number[]) =>
+  client.get<CartItemResponse[]>(URLS.API.CART.ITEM, {
+    params: {
+      id: cartItems?.join(','),
     },
-  );
-  return response.data;
-};
+  });
 
-export const addCartItem = async (request: AddCartItemRequest) => {
-  const response = await client.post(URLS.API.CART.ITEM, request);
-  return response.data;
-};
+export const addCartItem = async (request: AddCartItemRequest) =>
+  client.post<void>(URLS.API.CART.ITEM, request);
 
 interface EditCartItemProps {
   cartItemId: number;
@@ -31,15 +23,8 @@ interface EditCartItemProps {
 export const editCartItem = async ({
   cartItemId,
   request,
-}: EditCartItemProps) => {
-  const response = await client.patch(
-    `${URLS.API.CART.ITEM}/${cartItemId}`,
-    request,
-  );
+}: EditCartItemProps) =>
+  client.patch<void>(`${URLS.API.CART.ITEM}/${cartItemId}`, request);
 
-  return response.data;
-};
-
-export const removeCartItem = async (cartItemId: number) => {
-  await client.delete(`${URLS.API.CART.ITEM}/${cartItemId}`);
-};
+export const removeCartItem = async (cartItemId: number) =>
+  client.delete<void>(`${URLS.API.CART.ITEM}/${cartItemId}`);

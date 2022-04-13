@@ -1,9 +1,9 @@
-import { AxiosResponse } from 'axios';
+import { AxiosError, AxiosResponse } from 'axios';
 import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router';
 
 import { login, setBearerToken } from '@/apis';
-import { ResponseEntity, LoginResponse } from '@/types';
+import { LoginResponse, ErrorResponse, LoginForm } from '@/types';
 import { getRedirect } from '@/utils';
 
 import { useMe } from './useMe';
@@ -12,9 +12,13 @@ export const useLogin = () => {
   const navigate = useNavigate();
   const { refetch } = useMe();
 
-  const { mutate } = useMutation(login, {
-    onSuccess: (response: AxiosResponse<ResponseEntity<LoginResponse>>) => {
-      const { accessToken } = response.data.data;
+  const { mutate } = useMutation<
+    AxiosResponse<LoginResponse>,
+    AxiosError<ErrorResponse>,
+    LoginForm
+  >(login, {
+    onSuccess: (response) => {
+      const { accessToken } = response.data;
       setBearerToken(accessToken);
       refetch();
 
@@ -23,8 +27,9 @@ export const useLogin = () => {
       const redirect = getRedirect();
       navigate(redirect, { replace: true });
     },
-    onError: () => {
-      alert('로그인 중 오류가 발생했습니다.');
+    onError: (error) => {
+      const message = error.response?.data.message;
+      alert(message || '로그인 중 오류가 발생했습니다.');
     },
   });
 

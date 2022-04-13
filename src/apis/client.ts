@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 
 import { URLS } from '@/constants';
-import { LoginResponse, ResponseEntity } from '@/types';
+import { LoginResponse } from '@/types';
 
 const defaultAxiosConfig = {
   baseURL: URLS.API.PREFIX,
@@ -24,11 +24,11 @@ client.interceptors.response.use(
       config._retry = true;
 
       try {
-        const { data } = await axios.get<ResponseEntity<LoginResponse>>(
+        const { data } = await axios.get<LoginResponse>(
           URLS.API.AUTH.REFRESH,
           defaultAxiosConfig,
         );
-        const { accessToken } = data.data;
+        const { accessToken } = data;
 
         // Refresh 토큰으로 가져온 Access 토큰을
         // axios 인스턴스 (client) 에 집어넣습니다.

@@ -12,6 +12,9 @@ export const useEditCartItemMutation = () => {
   return useMutation(editCartItem, {
     onSuccess: (data, variables) => {
       queryClient.fetchQuery(QUERY.CART.MINE);
+
+      alert('수량이 변경되었습니다.');
+
       setSelectedCartItems((prev) => {
         const { cartItemId, quantity } = {
           cartItemId: variables.cartItemId,

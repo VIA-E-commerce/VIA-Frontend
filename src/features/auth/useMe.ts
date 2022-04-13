@@ -4,34 +4,30 @@ import { useSetRecoilState } from 'recoil';
 import { fetchMe } from '@/apis';
 import { QUERY } from '@/constants';
 import { currentUserState } from '@/state';
-import { ResponseEntity, UserSummary } from '@/types';
+import { UserSummary } from '@/types';
+
 export const useMe = () => {
   const setCurrentUser = useSetRecoilState(currentUserState);
 
-  const setMe = (response?: ResponseEntity<UserSummary>) => {
-    const userSummary = response?.data;
-
+  const setMe = (userSummary?: UserSummary) => {
     setCurrentUser(userSummary);
   };
 
-  const { data, refetch, ...rest } = useQuery<ResponseEntity<UserSummary>>(
-    QUERY.AUTH.ME,
-    fetchMe,
-    {
-      retry: false,
-      refetchOnMount: false,
-      refetchOnWindowFocus: false,
-      cacheTime: 0,
-      onSuccess: (response) => {
-        setMe(response);
-      },
+  const { data, refetch, ...rest } = useQuery(QUERY.AUTH.ME, fetchMe, {
+    retry: false,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    cacheTime: 0,
+    onSuccess: (response) => {
+      setMe(response.data);
     },
-  );
+  });
 
   const handleRefetch = () => {
     refetch()
-      .then((result) => {
-        setMe(result.data);
+      .then(({ data: response }) => {
+        const userSummary = response?.data;
+        setMe(userSummary);
       })
       .catch(() => {
         setCurrentUser(undefined);

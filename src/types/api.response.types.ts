@@ -1,9 +1,3 @@
-export interface ResponseEntity<T> {
-  success: boolean;
-  statusCode: number;
-  data: T;
-}
-
 export interface ErrorResponse {
   error: string;
   statusCode: number;

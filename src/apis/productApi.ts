@@ -2,7 +2,6 @@ import { client } from '@/apis';
 import { URLS } from '@/constants';
 import {
   ProductCardResponse,
-  ResponseEntity,
   PaginationResponse,
   ProductDetailResponse,
   ReviewResponse,
@@ -20,10 +19,8 @@ export const fetchProducts = async ({
   pageSize,
   category,
   sort,
-}: FetchProductsProps): Promise<
-  ResponseEntity<PaginationResponse<ProductCardResponse>>
-> => {
-  const response = await client.get(URLS.API.PRODUCT.CRUD, {
+}: FetchProductsProps) =>
+  client.get<PaginationResponse<ProductCardResponse>>(URLS.API.PRODUCT.CRUD, {
     params: {
       pageNum,
       pageSize,
@@ -32,18 +29,8 @@ export const fetchProducts = async ({
     },
   });
 
-  return response.data;
-};
-
-export const fetchProduct = async (
-  productId: number,
-): Promise<ResponseEntity<ProductDetailResponse>> => {
-  const response = await client.get<ResponseEntity<ProductDetailResponse>>(
-    `${URLS.API.PRODUCT.CRUD}/${productId}`,
-  );
-
-  return response.data;
-};
+export const fetchProduct = async (productId: number) =>
+  client.get<ProductDetailResponse>(`${URLS.API.PRODUCT.CRUD}/${productId}`);
 
 export interface FetchProductReviewsProps extends PagingQuery {
   productId: number;
@@ -54,24 +41,19 @@ export const fetchProductReviews = async ({
   pageSize,
   pageNum,
   sort,
-}: FetchProductReviewsProps): Promise<
-  ResponseEntity<PaginationResponse<ReviewResponse>>
-> => {
+}: FetchProductReviewsProps) => {
   const path = URLS.API.PRODUCT.REVIEWS.replace(
     ':productId',
     productId.toString(),
   );
-  const response = await client.get<
-    ResponseEntity<PaginationResponse<ReviewResponse>>
-  >(path, {
+
+  return client.get<PaginationResponse<ReviewResponse>>(path, {
     params: {
       pageNum,
       pageSize,
       sort,
     },
   });
-
-  return response.data;
 };
 
 export interface FetchProductQuestionsProps extends PagingQuery {
@@ -81,23 +63,18 @@ export const fetchProductQuestions = async ({
   productId,
   pageSize,
   pageNum,
-}: FetchProductQuestionsProps): Promise<
-  ResponseEntity<PaginationResponse<QuestionResponse>>
-> => {
+}: FetchProductQuestionsProps) => {
   const path = URLS.API.PRODUCT.QUESTIONS.replace(
     ':productId',
     productId.toString(),
   );
-  const response = await client.get<
-    ResponseEntity<PaginationResponse<QuestionResponse>>
-  >(path, {
+
+  return client.get<PaginationResponse<QuestionResponse>>(path, {
     params: {
       pageNum,
       pageSize,
     },
   });
-
-  return response.data;
 };
 
 export const addToWishlist = async (productId: number) => {
@@ -105,7 +82,7 @@ export const addToWishlist = async (productId: number) => {
     ':productId',
     productId.toString(),
   );
-  await client.post(path);
+  return client.post<void>(path);
 };
 
 export const removeFromWishlist = async (productId: number) => {
@@ -113,5 +90,6 @@ export const removeFromWishlist = async (productId: number) => {
     ':productId',
     productId.toString(),
   );
-  await client.delete(path);
+
+  return client.delete<void>(path);
 };

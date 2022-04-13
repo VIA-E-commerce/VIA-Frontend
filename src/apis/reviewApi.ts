@@ -6,15 +6,8 @@ interface EditReviewProps extends EditReviewRequest {
   reviewId: number;
 }
 
-export const editReview = async ({ reviewId, ...request }: EditReviewProps) => {
-  const response = await client.patch(
-    `${URLS.API.REVIEW.CRUD}/${reviewId}`,
-    request,
-  );
-  return response.data;
-};
+export const editReview = async ({ reviewId, ...request }: EditReviewProps) =>
+  client.patch<void>(`${URLS.API.REVIEW.CRUD}/${reviewId}`, request);
 
-export const removeReview = async (reviewId: number) => {
-  const response = await client.delete(`${URLS.API.REVIEW.CRUD}/${reviewId}`);
-  return response.data;
-};
+export const removeReview = async (reviewId: number) =>
+  client.delete<void>(`${URLS.API.REVIEW.CRUD}/${reviewId}`);
