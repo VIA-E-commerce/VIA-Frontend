@@ -4,6 +4,7 @@ export * from './OrderFieldGroup';
 export * from './OrderForm';
 export * from './OrderItemInfoTable';
 
+export * from './useCancelOrder';
 export * from './useCreateOrderMutation';
 export * from './useFetchOrder';
 export * from './useMyOrders';

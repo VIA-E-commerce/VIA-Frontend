@@ -20,3 +20,9 @@ export const fetchMyOrders = async ({ pageNum, pageSize }: PagingQuery) =>
       pageSize,
     },
   });
+
+export const cancelOrder = async (orderId: number) => {
+  const url = URLS.API.ORDER.CANCEL.replace(':orderId', orderId.toString());
+
+  return client.patch<PaginationResponse<OrderResponse>>(url);
+};
