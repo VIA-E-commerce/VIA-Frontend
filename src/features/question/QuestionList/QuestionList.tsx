@@ -3,7 +3,7 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 import { Pagination, SquareButton } from '@/components';
 import { QUERY } from '@/constants';
-import { useDetailTabPageButton } from '@/hooks';
+import { useDetailTabPageButton, useProtectedFunction } from '@/hooks';
 import {
   currentUserState,
   questionEditorState,
@@ -40,8 +40,12 @@ const QuestionList = ({
   const currentUser = useRecoilValue(currentUserState);
   const setQuestionEditorState = useSetRecoilState(questionEditorState);
 
+  const protectedFunction = useProtectedFunction();
+
   const handleClickWrite = () => {
-    setQuestionModal((prev) => ({ ...prev, show: true }));
+    protectedFunction(() =>
+      setQuestionModal((prev) => ({ ...prev, show: true })),
+    );
   };
 
   const handleClickPageButton = useDetailTabPageButton({
