@@ -1,10 +1,14 @@
 import { css, SerializedStyles } from '@emotion/react';
 import styled from '@emotion/styled';
+import { darken } from 'polished';
 
 import { styles, Theme } from '@/styles';
 
-type ButtonVariant = 'primary' | 'reverse' | 'outline';
+// 버튼 스타일링 Types
+type ButtonVariant = 'primary' | 'reverse' | 'outline' | 'error-outline';
+
 export type ButtonSize = 'xsmall' | 'small' | 'normal';
+
 type ButtonGrid = {
   colNum: number;
   span: number;
@@ -21,16 +25,13 @@ export interface SquareStyleProps {
 
 interface ButtonStyle {
   [x: string]: {
-    background: string;
-    fontColor: string;
-    borderColor: string;
+    normalStyle: SerializedStyles;
     activeStyle?: SerializedStyles;
     hoverStyle?: SerializedStyles;
-    activeBackground?: string;
-    activeBorderColor?: string;
   };
 }
 
+// 버튼 스타일링 함수
 const setButtonStyle = (
   theme: Theme,
   variant: ButtonVariant,
@@ -38,9 +39,11 @@ const setButtonStyle = (
 ) => {
   const buttonStyle: ButtonStyle = {
     primary: {
-      background: theme.color.font,
-      fontColor: theme.color.fontReverse,
-      borderColor: theme.color.font,
+      normalStyle: css`
+        background: ${theme.color.font};
+        color: ${theme.color.fontReverse};
+        border-color: ${theme.color.font};
+      `,
       activeStyle: css`
         background: ${theme.color.font};
       `,
@@ -50,9 +53,11 @@ const setButtonStyle = (
       `,
     },
     reverse: {
-      background: theme.color.fontReverse,
-      fontColor: theme.color.font,
-      borderColor: theme.color.fontReverse,
+      normalStyle: css`
+        background: ${theme.color.fontReverse};
+        color: ${theme.color.font};
+        border-color: ${theme.color.fontReverse};
+      `,
       activeStyle: css`
         background: ${theme.color.fontReverse};
       `,
@@ -62,9 +67,11 @@ const setButtonStyle = (
       `,
     },
     outline: {
-      background: theme.color.fontReverse,
-      fontColor: theme.color.font,
-      borderColor: theme.color.lightGray,
+      normalStyle: css`
+        background: ${theme.color.fontReverse};
+        color: ${theme.color.font};
+        border-color: ${theme.color.lightGray};
+      `,
       activeStyle: css`
         background: ${theme.color.fontReverse};
         border-color: ${theme.color.lightGray};
@@ -73,10 +80,31 @@ const setButtonStyle = (
         background: ${theme.color.buttonActiveReverse};
       `,
     },
+    ['error-outline']: {
+      normalStyle: css`
+        background: ${theme.color.white};
+        color: ${theme.color.error};
+        border-color: ${theme.color.error};
+
+        outline: ${theme.color.error};
+      `,
+      activeStyle: css`
+        background: ${darken(0.05, theme.color.error)};
+        color: ${theme.color.white};
+        border-color: ${darken(0.05, theme.color.error)};
+      `,
+      hoverStyle: css`
+        background: ${theme.color.error};
+        color: ${theme.color.white};
+        border-color: ${theme.color.error};
+      `,
+    },
     disabled: {
-      background: theme.color.lightGray,
-      fontColor: theme.color.white,
-      borderColor: theme.color.lightGray,
+      normalStyle: css`
+        background: ${theme.color.lightGray};
+        color: ${theme.color.white};
+        border-color: ${theme.color.lightGray};
+      `,
     },
   };
 
@@ -95,11 +123,8 @@ const setButtonStyle = (
   `;
 
   return css`
-    background: ${currentStyle.background};
-    color: ${currentStyle.fontColor};
-
     border-style: solid;
-    border-color: ${currentStyle.borderColor};
+    ${currentStyle.normalStyle}
 
     ${!disabled && activeStyle}
   `;
@@ -145,6 +170,8 @@ export const setButtonActiveStyle = (theme: Theme, variant: ButtonVariant) => {
   }
   return setButtonStyle(theme, 'primary');
 };
+
+// Emotion Styled 컴포넌트
 export const StyledButton = styled.button<SquareStyleProps>`
   ${({ theme, variant, disabled, active }) =>
     active
