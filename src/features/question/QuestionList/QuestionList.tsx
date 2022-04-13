@@ -43,9 +43,13 @@ const QuestionList = ({
   const protectedFunction = useProtectedFunction();
 
   const handleClickWrite = () => {
-    protectedFunction(() =>
-      setQuestionModal((prev) => ({ ...prev, show: true })),
-    );
+    protectedFunction(() => {
+      setQuestionEditorState((prev) => ({
+        ...prev,
+        productId: product.id,
+      }));
+      setQuestionModal((prev) => ({ ...prev, show: true }));
+    });
   };
 
   const handleClickPageButton = useDetailTabPageButton({
