@@ -39,7 +39,7 @@ export const ModalBody = styled.div`
 
     grid-template-columns: repeat(6, 1fr);
 
-    & > div:nth-child(1) {
+    & > div:nth-of-type(1) {
       grid-column: 1 / span 5;
     }
   }
