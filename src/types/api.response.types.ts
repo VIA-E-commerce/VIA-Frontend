@@ -177,7 +177,16 @@ export interface OrderResponse {
   shippingAddress: string;
   message?: string;
 
-  status: string;
+  status:
+    | '입금 대기'
+    | '입금 확인'
+    | '배송 준비중'
+    | '배송중'
+    | '배송 완료'
+    | '주문 취소'
+    | '교환'
+    | '환불'
+    | '주문 실패';
 
   paymentMethod: string;
 
