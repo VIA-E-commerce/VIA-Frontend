@@ -14,14 +14,16 @@ interface PhoneInputProps {
   errors: FieldErrors;
 }
 
+const networkCodes = ['010', '011', '016', '017', '018', '019'];
+
 const PhoneInput = ({
   name,
   defaultValue = '010',
   register,
   errors,
 }: PhoneInputProps) => {
-  const [default1, default2] = [
-    defaultValue?.substring(0, 2),
+  const [defaultPhone1, defaultPhone2] = [
+    defaultValue?.substring(0, 3),
     defaultValue?.substring(3),
   ];
 
@@ -37,17 +39,16 @@ const PhoneInput = ({
     <Wrapper>
       <div className="phone1">
         <Select
-          defaultValue={default1}
+          defaultValue={defaultPhone1}
           {...register({
             name: `${name}1`,
           })}
         >
-          <option value="010">010</option>
-          <option value="011">011</option>
-          <option value="016">016</option>
-          <option value="017">017</option>
-          <option value="018">018</option>
-          <option value="019">019</option>
+          {networkCodes.map((code) => (
+            <option key={code} value={code} selected={code === defaultPhone1}>
+              {code}
+            </option>
+          ))}
         </Select>
       </div>
       <div>
@@ -57,7 +58,7 @@ const PhoneInput = ({
           errorMessage={errors[`${name}2`]}
           {...register({
             name: `${name}2`,
-            defaultValue: default2,
+            defaultValue: defaultPhone2,
             validationRules: {
               required: true,
               minLength: VALIDATION.PHONE.MIN_LENGTH,
