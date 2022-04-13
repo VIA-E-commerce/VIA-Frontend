@@ -28,3 +28,18 @@ export const Header = styled.div`
     }
   }
 `;
+
+export const Body = styled.div`
+  display: flex;
+`;
+
+export const BodyRightMenu = styled.div`
+  margin-left: auto;
+
+  display: flex;
+  align-items: flex-end;
+
+  button {
+    width: 8rem;
+  }
+`;
