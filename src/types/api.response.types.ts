@@ -81,6 +81,7 @@ export interface VariantResponse {
 export interface ProductDetailResponse {
   id: number;
   name: string;
+  description: string;
   images: string[];
 
   retailPrice: number;
