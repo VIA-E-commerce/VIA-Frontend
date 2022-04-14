@@ -15,6 +15,7 @@ import {
   DeliveryGuide,
   ProductDetailTab,
   ProductDetailTabNav,
+  ProductDetailViewer,
   ProductFeatureCard,
   useProductDetail,
 } from '@/features/productDetail';
@@ -113,7 +114,7 @@ const ProductDetail = () => {
         <ProductDetailTabNav tabs={tabs} />
         <GridSection cols={1} rowGap={0}>
           <ProductDetailTab tab={productInfoTab} noTitle>
-            {productInfoTab.label}
+            <ProductDetailViewer description={product.description} />
           </ProductDetailTab>
 
           <ProductDetailTab tab={reviewTab}>
