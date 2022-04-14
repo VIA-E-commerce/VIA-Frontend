@@ -57,11 +57,11 @@ export const INPUT_OPTIONS: Dictionary<ValidationRules> = {
     required: '이름을 입력해주세요.',
     minLength: {
       value: VALIDATION.NAME.MIN_LENGTH,
-      message: `이름은 최소 ${VALIDATION.NAME.MIN_LENGTH}글자 이상이어야 합니다.`,
+      message: `이름은 ${VALIDATION.NAME.MIN_LENGTH}자 이상이어야 합니다.`,
     },
     maxLength: {
       value: VALIDATION.NAME.MAX_LENGTH,
-      message: `이름은 ${VALIDATION.NAME.MAX_LENGTH}글자 이하여야 합니다.`,
+      message: `이름은 ${VALIDATION.NAME.MAX_LENGTH}자 이하여야 합니다.`,
     },
     pattern: {
       value: /^[A-Za-z가-힣]+$/,
@@ -72,7 +72,7 @@ export const INPUT_OPTIONS: Dictionary<ValidationRules> = {
     required: '비밀번호를 입력해주세요.',
     minLength: {
       value: VALIDATION.PASSWORD.MIN_LENGTH,
-      message: `비밀번호는 최소 ${VALIDATION.PASSWORD.MIN_LENGTH}자 이상이어야 합니다.`,
+      message: `비밀번호는 ${VALIDATION.PASSWORD.MIN_LENGTH}자 이상이어야 합니다.`,
     },
     maxLength: {
       value: VALIDATION.PASSWORD.MAX_LENGTH,
