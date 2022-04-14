@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router';
 
-import { Input, SquareButton } from '@/components';
+import { Input, PhoneInput, SquareButton } from '@/components';
 import { INPUT_OPTIONS } from '@/constants';
 import {
   AuthCheckBox,
@@ -11,23 +11,24 @@ import {
   useJoin,
 } from '@/features/auth';
 import { useForm } from '@/lib';
-import { AuthType, JoinForm } from '@/types';
+import { AuthType, RawJoinForm } from '@/types';
 import { setRedirect } from '@/utils';
 
 const Join = () => {
   const location = useLocation();
   const { mutate } = useJoin();
 
-  const onValid = async (form: JoinForm) => {
-    const { email, name, password } = form;
+  const onValid = async (form: RawJoinForm) => {
+    const { email, name, password, phone1, phone2 } = form;
     mutate({
       email,
       name,
       password,
+      phone: phone1 + phone2,
     });
   };
 
-  const { register, handleSubmit, errors } = useForm<JoinForm>();
+  const { register, handleSubmit, errors } = useForm<RawJoinForm>();
   const authType: AuthType = 'join';
 
   useEffect(() => {
@@ -54,6 +55,14 @@ const Join = () => {
             placeholder: '이름',
             validationRules: INPUT_OPTIONS.NAME,
           })}
+        />
+        <PhoneInput
+          name="phone"
+          placeholder="연락처"
+          register={register}
+          validationRules={INPUT_OPTIONS.PHONE}
+          errors={errors}
+          wide
         />
         <Input
           type="password"
