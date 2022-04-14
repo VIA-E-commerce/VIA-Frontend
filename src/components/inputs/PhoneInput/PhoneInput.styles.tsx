@@ -2,8 +2,12 @@ import styled from '@emotion/styled';
 
 import { styles } from '@/styles';
 
-export const Wrapper = styled.div`
-  width: 28rem;
+interface StyleProps {
+  wide?: boolean;
+}
+
+export const Wrapper = styled.div<StyleProps>`
+  width: ${({ wide }) => (wide ? '100%' : '28rem')};
 
   display: flex;
   gap: ${styles.space.level3}rem;
