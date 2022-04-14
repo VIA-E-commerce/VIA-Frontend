@@ -68,6 +68,17 @@ export const INPUT_OPTIONS: Dictionary<ValidationRules> = {
       message: '이름에는 한글, 알파벳 외의 문자를 사용할 수 없습니다.',
     },
   },
+  PHONE: {
+    required: '연락처를 입력해주세요.',
+    minLength: {
+      value: VALIDATION.PHONE.MIN_LENGTH,
+      message: `연락처는 ${VALIDATION.PHONE.MIN_LENGTH}자 이상이어야 합니다.`,
+    },
+    maxLength: {
+      value: VALIDATION.PHONE.MAX_LENGTH,
+      message: `연락처는 ${VALIDATION.PHONE.MAX_LENGTH}자 이하여야 합니다.`,
+    },
+  },
   PASSWORD: {
     required: '비밀번호를 입력해주세요.',
     minLength: {
