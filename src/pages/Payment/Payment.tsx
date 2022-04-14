@@ -8,6 +8,7 @@ import {
   LabelSection,
   SquareButton,
   Loading,
+  DocumentTitle,
 } from '@/components';
 import { URLS } from '@/constants';
 import { CategoryTitle } from '@/features/productList';
@@ -32,6 +33,8 @@ const Payment = () => {
 
   return (
     <Wrapper>
+      <DocumentTitle title="주문/결제 정보" />
+
       <GridSection cols={1}>
         <CategoryTitle title="Receipt" />
       </GridSection>

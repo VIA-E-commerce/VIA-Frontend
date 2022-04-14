@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router';
 
-import { Input, SquareButton } from '@/components';
+import { DocumentTitle, Input, SquareButton } from '@/components';
 import { INPUT_OPTIONS } from '@/constants';
 import {
   AuthForm,
@@ -31,6 +31,8 @@ const Login = () => {
 
   return (
     <AuthSection>
+      <DocumentTitle title="Login" />
+
       <AuthForm title={authType} onSubmit={handleSubmit(onValid)}>
         <Input
           type="email"

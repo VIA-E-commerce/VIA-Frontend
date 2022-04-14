@@ -3,7 +3,13 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router';
 
 import { QUERY, URLS } from '@/constants';
-import { GridSection, Loading, PageTemplate, Pagination } from '@/components';
+import {
+  DocumentTitle,
+  GridSection,
+  Loading,
+  PageTemplate,
+  Pagination,
+} from '@/components';
 import {
   CategoryTitle,
   ProductSortBox,
@@ -64,6 +70,8 @@ const Category = () => {
 
   return (
     <PageTemplate>
+      <DocumentTitle title={category} />
+
       <GridSection cols={1}>
         <CategoryTitle title={category} />
       </GridSection>

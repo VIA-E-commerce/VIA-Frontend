@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { DocumentTitle } from '@/components';
 
 const Wrapper = styled.div`
   height: inherit;
@@ -11,7 +12,12 @@ const Wrapper = styled.div`
 `;
 
 const NotFound = () => {
-  return <Wrapper>페이지를 찾을 수 없습니다.</Wrapper>;
+  return (
+    <Wrapper>
+      <DocumentTitle title="404" />
+      페이지를 찾을 수 없습니다.
+    </Wrapper>
+  );
 };
 
 export default NotFound;

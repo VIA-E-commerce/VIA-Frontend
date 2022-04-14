@@ -2,7 +2,12 @@ import React, { useMemo } from 'react';
 import { useSearchParams, Navigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
-import { GridSection, Loading, PageTemplate } from '@/components';
+import {
+  DocumentTitle,
+  GridSection,
+  Loading,
+  PageTemplate,
+} from '@/components';
 import { URLS } from '@/constants';
 import { AddressModal } from '@/features/address';
 import {
@@ -42,6 +47,8 @@ const Order = () => {
 
   return (
     <PageTemplate>
+      <DocumentTitle title="주문/결제" />
+
       <GridSection>
         <OrderHeader>
           <h1>상품 정보</h1>

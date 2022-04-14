@@ -2,7 +2,12 @@ import React, { useCallback, useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 import { useNavigate } from 'react-router';
 
-import { GridSection, PageTemplate, SquareButton } from '@/components';
+import {
+  DocumentTitle,
+  GridSection,
+  PageTemplate,
+  SquareButton,
+} from '@/components';
 import { URLS } from '@/constants';
 import { CartBill, CartItemList, useMyCart } from '@/features/cart';
 import { selectedCartItemsState } from '@/state';
@@ -35,6 +40,8 @@ const Cart = () => {
 
   return (
     <PageTemplate>
+      <DocumentTitle title="장바구니" />
+
       <GridSection>
         <CartItemSection>
           {!cartItems || cartItems.length === 0 ? (

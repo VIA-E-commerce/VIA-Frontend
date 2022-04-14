@@ -2,7 +2,13 @@ import React, { useCallback, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 import { useSearchParams } from 'react-router-dom';
 
-import { Empty, GridSection, Loading, Pagination } from '@/components';
+import {
+  DocumentTitle,
+  Empty,
+  GridSection,
+  Loading,
+  Pagination,
+} from '@/components';
 import { QUERY, URLS } from '@/constants';
 import { CategoryTitle, ProductCard } from '@/features/productList';
 import { useMyWishlist } from '@/features/wishlist';
@@ -57,6 +63,7 @@ const Wishlist = () => {
 
   return (
     <>
+      <DocumentTitle title="위시리스트" />
       <GridSection cols={1}>
         <CategoryTitle title="Wishlist" />
       </GridSection>

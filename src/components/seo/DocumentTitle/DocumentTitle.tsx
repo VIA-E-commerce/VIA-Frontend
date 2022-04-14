@@ -1,16 +1,17 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { capitalize } from 'lodash';
 
 import { APP } from '@/constants';
 
 interface Props {
-  title: string;
+  title?: string;
   description?: string;
   thumbnail?: string;
 }
 
 const DocumentTitle = ({ title, description = '', thumbnail = '' }: Props) => {
-  const fullTitle = `${title} | ${APP.SITE_NAME}`;
+  const fullTitle = `${APP.SITE_NAME} ${title ? `| ${capitalize(title)}` : ''}`;
 
   return (
     <Helmet>

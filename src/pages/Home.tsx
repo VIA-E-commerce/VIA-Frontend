@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router';
 
-import { PageTemplate } from '@/components';
+import { DocumentTitle, PageTemplate } from '@/components';
 import { URLS } from '@/constants';
 import { ProductSection, useProductList } from '@/features/productList';
 import { FeatureCard, Slider, WideBanner } from '@/features/home';
@@ -64,6 +64,8 @@ const Home = () => {
 
   return (
     <PageTemplate style={{ marginTop: 0 }}>
+      <DocumentTitle />
+
       <Wrapper>
         <Slider images={slideBannerImages} />
 

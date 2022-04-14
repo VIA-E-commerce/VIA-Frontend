@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router';
 
-import { Input, PhoneInput, SquareButton } from '@/components';
+import { DocumentTitle, Input, PhoneInput, SquareButton } from '@/components';
 import { INPUT_OPTIONS } from '@/constants';
 import {
   AuthCheckBox,
@@ -37,6 +37,8 @@ const Join = () => {
 
   return (
     <AuthSection>
+      <DocumentTitle title="Join" />
+
       <AuthForm title={authType} onSubmit={handleSubmit(onValid)}>
         <Input
           type="email"

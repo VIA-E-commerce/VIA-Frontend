@@ -2,7 +2,13 @@ import React from 'react';
 import { Route, Routes, useNavigate, useParams } from 'react-router';
 import { useRecoilValue } from 'recoil';
 
-import { GridSection, Loading, PageTemplate, TabNav } from '@/components';
+import {
+  DocumentTitle,
+  GridSection,
+  Loading,
+  PageTemplate,
+  TabNav,
+} from '@/components';
 import { URLS } from '@/constants';
 import { CategoryTitle } from '@/features/productList';
 import { currentUserState } from '@/state';
@@ -37,6 +43,8 @@ const MyPage = () => {
 
   return (
     <PageTemplate>
+      <DocumentTitle title="마이페이지" />
+
       <GridSection cols={1}>
         <CategoryTitle title="My Page" />
       </GridSection>
