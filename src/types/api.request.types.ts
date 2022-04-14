@@ -3,6 +3,7 @@ export interface JoinForm {
   email: string;
   name: string;
   password: string;
+  phone: string;
 }
 
 export interface LoginForm {

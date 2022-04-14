@@ -1,4 +1,9 @@
-import { CreateOrderRequest } from './api.request.types';
+import { JoinForm, CreateOrderRequest } from './api.request.types';
+
+export interface RawJoinForm extends Omit<JoinForm, 'phone'> {
+  phone1: string;
+  phone2: string;
+}
 
 export interface RawOrderForm
   extends Omit<
