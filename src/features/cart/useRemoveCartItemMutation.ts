@@ -9,6 +9,7 @@ export const useRemoveCartItemMutation = () => {
   return useMutation(removeCartItem, {
     onSuccess: () => {
       queryClient.refetchQueries(QUERY.CART.MINE);
+      queryClient.refetchQueries(QUERY.CART.COUNT);
     },
   });
 };

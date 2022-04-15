@@ -30,5 +30,5 @@ export const editCartItem = async ({
 export const removeCartItem = async (cartItemId: number) =>
   client.delete<void>(`${URLS.API.CART.ITEM}/${cartItemId}`);
 
-export const fetchCartCount = async () =>
+export const fetchCartItemCount = async () =>
   client.get<number>(URLS.API.CART.COUNT);

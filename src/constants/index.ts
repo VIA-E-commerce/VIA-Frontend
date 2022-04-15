@@ -31,6 +31,7 @@ export const QUERY = {
   },
   CART: {
     MINE: 'my-cart',
+    COUNT: 'my-cart-item-count',
   },
   ORDER: {
     INFO: 'order-info',

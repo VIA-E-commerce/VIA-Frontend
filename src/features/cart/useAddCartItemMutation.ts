@@ -12,7 +12,7 @@ export const useAddCartItemMutation = (productId: number) => {
     retry: false,
 
     onSuccess: (response) => {
-      let { message } = response.data;
+      let message = response.data.message || '';
 
       if (message) message += ' ';
 
@@ -21,6 +21,8 @@ export const useAddCartItemMutation = (productId: number) => {
       if (confirm(message)) {
         navigate(URLS.CLIENT.CART);
       }
+
+      queryClient.refetchQueries(QUERY.CART.COUNT);
     },
 
     onError: () => {

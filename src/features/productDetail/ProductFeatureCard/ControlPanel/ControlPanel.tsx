@@ -3,6 +3,7 @@ import { UseMutateFunction } from 'react-query';
 import { AxiosResponse } from 'axios';
 
 import { LabelField, SquareButton, NumberInput } from '@/components';
+import { useAddCartItemMutation } from '@/features/cart';
 import {
   AddCartItemRequest,
   AddCartItemResponse,
@@ -10,7 +11,6 @@ import {
 } from '@/types';
 import { formatPrice } from '@/utils';
 
-import { useAddCartItemMutation } from '../../useAddCartItemMutation';
 import { useDirectBuyMutation } from '../../useDirectBuyMutation';
 import { useProductControlPanel } from '../../useProductControlPanel';
 import { ColorSelector } from '../ColorSelector';

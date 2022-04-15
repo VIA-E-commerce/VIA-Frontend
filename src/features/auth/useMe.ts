@@ -1,14 +1,15 @@
 import { useQuery } from 'react-query';
 import { useSetRecoilState } from 'recoil';
 
-import { fetchCartCount as fetchCartItemCount, fetchMe } from '@/apis';
+import { fetchMe } from '@/apis';
 import { QUERY } from '@/constants';
-import { cartItemCountState, currentUserState } from '@/state';
+import { useCartItemCount } from '@/features/cart';
+import { currentUserState } from '@/state';
 import { UserSummary } from '@/types';
 
 export const useMe = () => {
   const setCurrentUser = useSetRecoilState(currentUserState);
-  const setCartCount = useSetRecoilState(cartItemCountState);
+  const { refetch: refetchCartItemCount } = useCartItemCount();
 
   const setMe = (userSummary?: UserSummary) => {
     setCurrentUser(userSummary);
@@ -21,9 +22,7 @@ export const useMe = () => {
     cacheTime: 0,
     onSuccess: async (response) => {
       setMe(response.data);
-
-      const cartItemCount = (await fetchCartItemCount()).data;
-      setCartCount(cartItemCount);
+      refetchCartItemCount();
     },
   });
 
