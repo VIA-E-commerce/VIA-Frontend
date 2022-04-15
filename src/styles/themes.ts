@@ -8,14 +8,19 @@ const color = {
   lightGray: '#BDBDBD',
   dimGray: '#EDEDEF',
   dimBeige: '#F9F9F7',
+
   red: '#ff0000',
   green: '#1C9C6C',
   blue: '#2FA4FF',
   yellow: '#FFD700',
+
+  coral: '#f55353',
 };
 
 export const theme = {
   color: {
+    primary: color.coral,
+
     font: color.black,
     fontReverse: color.white,
     success: color.green,
