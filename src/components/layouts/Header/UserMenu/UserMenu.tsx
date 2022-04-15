@@ -4,13 +4,14 @@ import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
-import { currentUserState } from '@/state';
+import { Badge } from '@/components';
 import { URLS } from '@/constants';
+import { cartItemCountState, currentUserState } from '@/state';
 import { styles } from '@/styles';
 import { parseLocationToRedirect } from '@/utils';
 
 import { DropDown, TransparentButton } from '../../../buttons';
-import { Menu, MenuItem } from './UserMenu.styles';
+import { Menu, MenuItem, CartButtonBox } from './UserMenu.styles';
 
 interface Props {
   onClickLogout: () => void;
@@ -20,6 +21,7 @@ const UserMenu = ({ onClickLogout }: Props) => {
   const location = useLocation();
   const redirect = parseLocationToRedirect(location);
   const user = useRecoilValue(currentUserState);
+  const cartItemCount = useRecoilValue(cartItemCountState);
 
   return (
     <Menu>
@@ -77,16 +79,23 @@ const UserMenu = ({ onClickLogout }: Props) => {
       )}
 
       <MenuItem>
-        <Link
-          to={URLS.CLIENT.CART}
-          state={{
-            redirect: {
-              pathname: URLS.CLIENT.CART,
-            },
-          }}
-        >
-          <MdShoppingCart />
-        </Link>
+        <CartButtonBox>
+          <Link
+            to={URLS.CLIENT.CART}
+            state={{
+              redirect: {
+                pathname: URLS.CLIENT.CART,
+              },
+            }}
+          >
+            <MdShoppingCart />
+            {!!cartItemCount && (
+              <div className="badge">
+                <Badge label={cartItemCount} />
+              </div>
+            )}
+          </Link>
+        </CartButtonBox>
       </MenuItem>
     </Menu>
   );

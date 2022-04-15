@@ -10,19 +10,22 @@ export const Menu = styled.ul`
   display: flex;
   justify-content: flex-end;
   align-items: wrap;
-  gap: 0.8rem;
 
   font-size: ${styles.fontSize.xsmall}rem;
 `;
 
 export const MenuItem = styled.li`
+  min-width: 5.6rem;
   flex-shrink: 0;
 
   cursor: pointer;
   text-transform: uppercase;
 
   &:hover {
-    text-decoration: underline;
+    button {
+      text-decoration: underline;
+    }
+
     svg {
       transform: scale(1.1);
     }
@@ -41,5 +44,17 @@ export const MenuItem = styled.li`
   svg {
     font-size: 2.4rem;
     transition: all 0.1s ease-out;
+  }
+`;
+
+export const CartButtonBox = styled.div`
+  height: 100%;
+
+  position: relative;
+
+  .badge {
+    position: absolute;
+    top: 0.8rem;
+    right: 0;
   }
 `;
