@@ -2,6 +2,7 @@ import { client } from '@/apis';
 import { URLS } from '@/constants';
 import {
   AddCartItemRequest,
+  AddCartItemResponse,
   CartItemResponse,
   EditCartItemRequest,
 } from '@/types';
@@ -14,7 +15,7 @@ export const fetchCartItems = async (cartItems?: number[]) =>
   });
 
 export const addCartItem = async (request: AddCartItemRequest) =>
-  client.post<void>(URLS.API.CART.ITEM, request);
+  client.post<AddCartItemResponse>(URLS.API.CART.ITEM, request);
 
 interface EditCartItemProps {
   cartItemId: number;

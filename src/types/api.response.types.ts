@@ -141,6 +141,12 @@ export interface MyQuestionResponse extends QuestionResponse {
   thumbnail: string;
 }
 
+// 장바구니
+export interface AddCartItemResponse {
+  id: number;
+  message?: string;
+}
+
 export interface CartItemResponse {
   id: number;
   productName: string;
