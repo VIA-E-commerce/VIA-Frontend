@@ -11,8 +11,14 @@ export const useAddCartItemMutation = (productId: number) => {
   return useMutation(addCartItem, {
     retry: false,
 
-    onSuccess: () => {
-      if (confirm('장바구니로 이동하시겠습니까?')) {
+    onSuccess: (response) => {
+      let { message } = response.data;
+
+      if (message) message += ' ';
+
+      message += '장바구니로 이동하시겠습니까?';
+
+      if (confirm(message)) {
         navigate(URLS.CLIENT.CART);
       }
     },
