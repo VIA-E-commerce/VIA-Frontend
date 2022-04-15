@@ -24,6 +24,7 @@ export const URLS = {
     },
     CART: {
       ITEM: '/cart-items',
+      COUNT: '/cart-items/count',
     },
     ORDER: {
       CRUD: '/orders',
