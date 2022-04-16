@@ -35,9 +35,6 @@ export const Wrapper = styled.div`
     }
 
     li {
-      text-align: center;
-      padding: ${styles.space.level2}rem ${styles.space.level1}rem;
-
       &:hover {
         color: ${({ theme }) => theme.color.fontReverse};
 
@@ -47,6 +44,11 @@ export const Wrapper = styled.div`
       }
 
       transition: background 0.2s linear;
+
+      a {
+        padding: ${styles.space.level2}rem ${styles.space.level1}rem;
+        text-align: center;
+      }
     }
   }
 
