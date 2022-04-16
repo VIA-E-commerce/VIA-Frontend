@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 
 import { styles } from '@/styles';
 
@@ -21,6 +21,21 @@ const TextArea = ({
   value,
   ...rest
 }: Props) => {
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
+
+  const setHeight = useCallback(
+    (target: EventTarget & HTMLTextAreaElement) => {
+      if (autoHeight) {
+        // auto-height 로직
+        target.style.height = 'auto'; // 줄어든 내용에 맞춰 높이 축소
+        const newHeight =
+          target.scrollHeight + styles.border.level1 * styles.remToPx;
+        target.style.height = newHeight + 'px'; // 늘어난 내용에 맞춰 높이 확장
+      }
+    },
+    [autoHeight],
+  );
+
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = event.target;
 
@@ -28,20 +43,17 @@ const TextArea = ({
       if (maxLength !== undefined && maxLength < value.length) return;
       onChange(event);
     }
-
-    if (autoHeight) {
-      // auto-height 로직
-      const { target } = event;
-
-      target.style.height = 'auto'; // 줄어든 내용에 맞춰 높이 축소
-      const newHeight =
-        target.scrollHeight + styles.border.level1 * styles.remToPx;
-      target.style.height = newHeight + 'px'; // 늘어난 내용에 맞춰 높이 확장
-    }
   };
+
+  useEffect(() => {
+    if (textAreaRef.current) {
+      setHeight(textAreaRef.current);
+    }
+  }, [value]);
 
   return (
     <StyledTextArea
+      ref={textAreaRef}
       maxLength={maxLength}
       onChange={handleChange}
       value={value}
