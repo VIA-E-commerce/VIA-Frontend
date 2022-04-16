@@ -68,9 +68,11 @@ const MyReviewItem = ({ review }: Props) => {
           </div>
           <div className="content">{review.content}</div>
         </ContentBox>
-        <ImageBox>
-          <img src={review.imageUrl} />
-        </ImageBox>
+        {review.imageUrl && (
+          <ImageBox>
+            <img src={review.imageUrl} />
+          </ImageBox>
+        )}
       </Body>
     </Wrapper>
   );
