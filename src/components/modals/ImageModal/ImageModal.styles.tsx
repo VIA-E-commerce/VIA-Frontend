@@ -1,6 +1,10 @@
 import styled from '@emotion/styled';
 
 export const ImageCard = styled.div`
-  max-width: 120rem;
-  max-height: 64rem;
+  margin: 0 auto;
+
+  img {
+    max-width: 120rem;
+    max-height: 64rem;
+  }
 `;

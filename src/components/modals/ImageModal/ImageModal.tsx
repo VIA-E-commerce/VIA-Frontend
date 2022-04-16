@@ -9,13 +9,14 @@ import { ImageCard } from './ImageModal.styles';
 const ImageModal = () => {
   const [{ show, imageUrl }, setImageModalState] =
     useRecoilState(ImageModalStateAtom);
+
   const handleMouseDown = () =>
     setImageModalState((prev) => ({ ...prev, show: false }));
 
   return (
     <Modal show={show} onMouseDown={handleMouseDown}>
-      <ImageCard onMouseDown={(event) => event.stopPropagation()}>
-        <img src={imageUrl} />
+      <ImageCard>
+        <img src={imageUrl} onMouseDown={(event) => event.stopPropagation()} />
       </ImageCard>
     </Modal>
   );
