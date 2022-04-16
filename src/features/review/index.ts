@@ -1,4 +1,5 @@
 export * from './ProductReviewViewer';
+export * from './ReviewableProductCard';
 export * from './ReviewModal';
 
 export * from './useCreateReviewMutation';

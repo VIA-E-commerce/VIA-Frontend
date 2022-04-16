@@ -11,7 +11,7 @@ export type ReviewEditorMode = 'add' | 'edit';
 interface ReviewEditorState {
   reviewId?: number;
   rating: number;
-  content: string;
+  content?: string;
   imageUrl?: string;
   productId?: number;
   productName?: string;
