@@ -19,6 +19,7 @@ import {
   Payment,
   NotFound,
   MyReviewListPage,
+  MyReviewToWrite,
 } from '@/pages';
 
 import OAuthRedirect from './OAuthRedirect';
@@ -85,6 +86,10 @@ const RootRouter = () => {
           <Route
             path={URLS.CLIENT.MY_PAGE.REVIEW_TABS.LIST}
             element={<MyReviewListPage />}
+          />
+          <Route
+            path={URLS.CLIENT.MY_PAGE.REVIEW_TABS.WRITE}
+            element={<MyReviewToWrite />}
           />
         </Route>
         <Route

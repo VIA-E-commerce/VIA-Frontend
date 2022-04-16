@@ -20,6 +20,11 @@ const MyReviews = () => {
                   내가 작성한 후기
                 </NavLink>
               </li>
+              <li>
+                <NavLink to={URLS.CLIENT.MY_PAGE.REVIEW_TABS.WRITE}>
+                  후기 작성
+                </NavLink>
+              </li>
             </ul>
           </ReviewTabNav>
           <Outlet />
