@@ -1,14 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Input } from '../../Input';
 import { Wrapper, URLButton } from './ImagePicker.styles';
 
 interface Props {
-  onClickUrlButton: (newUrl: string) => void;
+  defaultValue?: string;
+  onClickUrlButton: (
+    event: React.MouseEvent<HTMLButtonElement>,
+    newUrl?: string,
+  ) => void;
 }
 
-const ImagePicker = ({ onClickUrlButton }: Props) => {
-  const [url, setUrl] = useState('');
+const ImagePicker = ({ defaultValue, onClickUrlButton }: Props) => {
+  const [url, setUrl] = useState<string | undefined>('');
+
+  useEffect(() => {
+    setUrl(defaultValue);
+  }, [defaultValue]);
 
   return (
     <Wrapper>
@@ -17,7 +25,9 @@ const ImagePicker = ({ onClickUrlButton }: Props) => {
         value={url}
         onChange={(e) => setUrl(e.target.value)}
       />
-      <URLButton onClick={() => onClickUrlButton(url)}>URL 등록</URLButton>
+      <URLButton onClick={(event) => onClickUrlButton(event, url)}>
+        URL 등록
+      </URLButton>
     </Wrapper>
   );
 };

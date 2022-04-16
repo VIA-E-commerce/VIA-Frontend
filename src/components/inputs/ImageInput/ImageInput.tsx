@@ -6,13 +6,16 @@ import { Wrapper } from './ImageInput.styles';
 
 interface Props {
   url?: string;
-  onClickUrlButton: (newUrl: string) => void;
+  onClickUrlButton: (
+    event: React.MouseEvent<HTMLButtonElement>,
+    newUrl?: string,
+  ) => void;
 }
 
 const ImageInput = ({ url, onClickUrlButton }: Props) => {
   return (
     <Wrapper>
-      <ImagePicker onClickUrlButton={onClickUrlButton} />
+      <ImagePicker defaultValue={url} onClickUrlButton={onClickUrlButton} />
       <ImageViewer url={url} />
     </Wrapper>
   );
