@@ -50,7 +50,7 @@ const UserMenu = ({ onClickLogout }: Props) => {
               }}
             >
               <li>
-                <Link to={URLS.CLIENT.MY_PAGE.INDEX}>마이페이지</Link>
+                <Link to={URLS.CLIENT.MY_PAGE.PROFILE_TAB}>마이페이지</Link>
               </li>
               <li>
                 <Link to={URLS.CLIENT.WISHLIST}>위시리스트</Link>
