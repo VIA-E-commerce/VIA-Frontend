@@ -11,7 +11,7 @@ import {
 } from '@/components';
 
 import { useReviewEditor } from './useReviewEditor';
-import { Scroll, Wrapper, Header, Body, Footer } from './ReviewModal.styles';
+import { Wrapper, Header, Body, Section, Footer } from './ReviewModal.styles';
 
 interface Props {
   queryKey: QueryKey;
@@ -31,32 +31,32 @@ const ReviewModal = ({ queryKey }: Props) => {
     onClickUrlButton,
     onSubmit,
 
-    modalScrollRef,
     mode,
   } = useReviewEditor(queryKey);
 
   return (
     <Modal show={show} onMouseDown={onMouseDown}>
-      <Scroll ref={modalScrollRef}>
-        <Wrapper onMouseDown={(event) => event.stopPropagation()}>
-          <Header>
-            <h5>상품 후기 {mode === 'add' ? '작성' : '수정'}</h5>
-            <div>
-              <div>{productName}</div>
-            </div>
-          </Header>
-          <Body>
+      <Wrapper onMouseDown={(event) => event.stopPropagation()}>
+        <Header>
+          <h5>상품 후기 {mode === 'add' ? '작성' : '수정'}</h5>
+          <div>
+            <div>{productName}</div>
+          </div>
+        </Header>
+        <Body>
+          <Section>
             <LabelField label="별점" vertical>
               <StarRating rating={rating} onChangeRating={onChangeRating} />
             </LabelField>
             <LabelField label="내용" vertical>
               <TextArea
                 name="content"
-                autoHeight
                 value={content}
                 onChange={onChangeContent}
               />
             </LabelField>
+          </Section>
+          <Section>
             <LabelField label="사진" vertical>
               <ImageInput
                 url={imageUrl}
@@ -64,14 +64,14 @@ const ReviewModal = ({ queryKey }: Props) => {
                 onClickUrlButton={onClickUrlButton}
               />
             </LabelField>
-          </Body>
-          <Footer>
-            <SquareButton wide onClick={onSubmit}>
-              후기 등록
-            </SquareButton>
-          </Footer>
-        </Wrapper>
-      </Scroll>
+          </Section>
+        </Body>
+        <Footer>
+          <SquareButton wide onClick={onSubmit}>
+            후기 {mode === 'add' ? '등록' : '수정'}
+          </SquareButton>
+        </Footer>
+      </Wrapper>
     </Modal>
   );
 };

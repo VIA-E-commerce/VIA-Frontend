@@ -1,23 +1,21 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback } from 'react';
 import { useRecoilState, useResetRecoilState } from 'recoil';
 import { QueryKey } from 'react-query';
 
+import { useCreateReviewMutation } from '@/features/review';
 import { reviewEditorState, reviewModalState } from '@/state';
 
 import { useEditReviewMutation } from '../useEditReviewMutation';
 
 export const useReviewEditor = (queryKey: QueryKey) => {
   const [{ show }, setReviewModal] = useRecoilState(reviewModalState);
-  const modalScrollRef = useRef<HTMLDivElement>(null);
-
-  if (show) {
-    modalScrollRef.current?.scrollTo({ top: 0 });
-  }
 
   const [
     { reviewId, rating, content, imageUrl, productId, productName, mode },
     setReviewEditor,
   ] = useRecoilState(reviewEditorState);
+
+  const { mutate: createMutate } = useCreateReviewMutation();
   const { mutate: editMutate } = useEditReviewMutation(queryKey);
   const resetReviewForm = useResetRecoilState(reviewEditorState);
 
@@ -36,6 +34,8 @@ export const useReviewEditor = (queryKey: QueryKey) => {
 
   const onChangeRating = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
+      event.preventDefault();
+
       const { value } = event.target;
       setReviewEditor((prev) => ({
         ...prev,
@@ -47,6 +47,8 @@ export const useReviewEditor = (queryKey: QueryKey) => {
 
   const onChangeContent = useCallback(
     (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+      event.preventDefault();
+
       const { value } = event.target;
       setReviewEditor((prev) => ({
         ...prev,
@@ -56,12 +58,17 @@ export const useReviewEditor = (queryKey: QueryKey) => {
     [],
   );
 
-  const onClickUrlButton = useCallback((newUrl: string) => {
-    setReviewEditor((prev) => ({
-      ...prev,
-      imageUrl: newUrl,
-    }));
-  }, []);
+  const onClickUrlButton = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>, newUrl?: string) => {
+      event.preventDefault();
+
+      setReviewEditor((prev) => ({
+        ...prev,
+        imageUrl: newUrl,
+      }));
+    },
+    [],
+  );
 
   const onSubmit = () => {
     if (!content) {
@@ -75,7 +82,12 @@ export const useReviewEditor = (queryKey: QueryKey) => {
     }
 
     if (mode === 'add') {
-      console.log('애드');
+      createMutate({
+        rating,
+        content,
+        imageUrl,
+        productId,
+      });
     } else if (reviewId) {
       editMutate({
         reviewId,
@@ -99,7 +111,6 @@ export const useReviewEditor = (queryKey: QueryKey) => {
     onClickUrlButton,
     onSubmit,
 
-    modalScrollRef,
     mode,
   };
 };
