@@ -75,6 +75,8 @@ export interface EditUserRequest {
   phone: string;
 }
 
+export type PurchasedProductFilter = 'reviewable';
+
 // 문의
 export interface CreateQuestionRequest {
   title: string;

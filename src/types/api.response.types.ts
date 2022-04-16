@@ -36,6 +36,7 @@ export interface CategoryResponse {
   code: string;
 }
 
+// 상품
 export interface ProductCardResponse {
   id: number;
   name: string;
@@ -114,12 +115,6 @@ export interface ReviewResponse {
   author: string;
 }
 
-export interface MyReviewResponse extends ReviewResponse {
-  productId: number;
-  productName: string;
-  productThumbnail: string;
-}
-
 export interface QuestionResponse {
   id: number;
 
@@ -135,6 +130,23 @@ export interface QuestionResponse {
 
   createdAt: Date;
   updatedAt: Date;
+}
+
+// 마이페이지
+export interface MyReviewResponse extends ReviewResponse {
+  productId: number;
+  productName: string;
+  productThumbnail: string;
+}
+
+export interface PurchasedProductResponse {
+  id: number;
+
+  name: string;
+  thumbnail: string;
+
+  display: boolean;
+  onSale: boolean;
 }
 
 export interface MyQuestionResponse extends QuestionResponse {

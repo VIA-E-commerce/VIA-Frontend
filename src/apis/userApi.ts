@@ -8,6 +8,8 @@ import {
   EditUserRequest,
   MyReviewResponse,
   UserSummary,
+  PurchasedProductFilter,
+  PurchasedProductResponse,
 } from '@/types';
 
 export const fetchMe = async () => client.get<UserSummary>(URLS.API.USER.ME);
@@ -44,3 +46,23 @@ export const fetchMyReviews = async ({ pageNum, pageSize }: PagingQuery) =>
       pageSize,
     },
   });
+
+export interface PurchasedProductsQuery extends PagingQuery {
+  filter: PurchasedProductFilter;
+}
+
+export const fetchPurchasedProducts = async ({
+  pageNum,
+  pageSize,
+  filter,
+}: PurchasedProductsQuery) =>
+  client.get<PaginationResponse<PurchasedProductResponse>>(
+    URLS.API.USER.PURCHASED_PRODUCTS,
+    {
+      params: {
+        pageNum,
+        pageSize,
+        filter,
+      },
+    },
+  );

@@ -21,6 +21,7 @@ export const URLS = {
       MY_WISHLIST: '/users/me/wishlist',
       MY_QUESTIONS: '/users/me/questions',
       MY_REVIEWS: '/users/me/reviews',
+      PURCHASED_PRODUCTS: '/users/me/products',
     },
     CART: {
       ITEM: '/cart-items',

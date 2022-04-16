@@ -42,6 +42,7 @@ export const QUERY = {
   USER: {
     MY_QUESTIONS: 'my-questions',
     MY_REVIEWS: 'my-reviews',
+    PURCHASED_PRODUCTS: 'purchased-products',
   },
 };
 
