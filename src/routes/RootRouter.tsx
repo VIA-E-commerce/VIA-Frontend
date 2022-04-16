@@ -18,6 +18,7 @@ import {
   MyPage,
   Payment,
   NotFound,
+  MyReviewListPage,
 } from '@/pages';
 
 import OAuthRedirect from './OAuthRedirect';
@@ -74,10 +75,18 @@ const RootRouter = () => {
         />
         <Route path={URLS.CLIENT.MY_PAGE.TABS.PROFILE} element={<MyInfo />} />
         <Route path={URLS.CLIENT.MY_PAGE.TABS.ORDERS} element={<MyOrders />} />
-        <Route
-          path={URLS.CLIENT.MY_PAGE.TABS.REVIEWS}
-          element={<MyReviews />}
-        />
+        <Route path={URLS.CLIENT.MY_PAGE.TABS.REVIEWS} element={<MyReviews />}>
+          <Route
+            index
+            element={
+              <Navigate to={URLS.CLIENT.MY_PAGE.REVIEW_TABS.LIST} replace />
+            }
+          />
+          <Route
+            path={URLS.CLIENT.MY_PAGE.REVIEW_TABS.LIST}
+            element={<MyReviewListPage />}
+          />
+        </Route>
         <Route
           path={URLS.CLIENT.MY_PAGE.TABS.QUESTIONS}
           element={<MyQuestions />}

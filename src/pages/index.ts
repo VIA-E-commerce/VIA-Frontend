@@ -11,6 +11,9 @@ export const Wishlist = loadable(() => import('./Wishlist'));
 
 export const MyInfo = loadable(() => import('./MyPage/MyInfo'));
 export const MyOrders = loadable(() => import('./MyPage/MyOrders'));
+export const MyReviewListPage = loadable(
+  () => import('./MyPage/MyReviews/MyReviewListPage'),
+);
 export const MyReviews = loadable(() => import('./MyPage/MyReviews'));
 export const MyQuestions = loadable(() => import('./MyPage/MyQuestions'));
 export const MyPage = loadable(() => import('./MyPage'));
