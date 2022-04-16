@@ -19,6 +19,13 @@ export interface PagingQuery {
 // 후기
 export type ReviewSortMethod = '' | 'rating-desc' | 'rating-asc';
 
+export interface CreateReviewRequest {
+  content: string;
+  imageUrl?: string;
+  rating: number;
+  productId: number;
+}
+
 export interface EditReviewRequest {
   content: string;
   imageUrl?: string;
