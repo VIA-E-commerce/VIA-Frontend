@@ -5,7 +5,12 @@ import { darken } from 'polished';
 import { styles, Theme } from '@/styles';
 
 // 버튼 스타일링 Types
-type ButtonVariant = 'primary' | 'reverse' | 'outline' | 'error-outline';
+type ButtonVariant =
+  | 'normal'
+  | 'reverse'
+  | 'outline'
+  | 'primary-outline'
+  | 'error-outline';
 
 export type ButtonSize = 'xsmall' | 'small' | 'normal';
 
@@ -38,7 +43,7 @@ const setButtonStyle = (
   disabled = false,
 ) => {
   const buttonStyle: ButtonStyle = {
-    primary: {
+    normal: {
       normalStyle: css`
         background: ${theme.color.font};
         color: ${theme.color.fontReverse};
@@ -78,6 +83,22 @@ const setButtonStyle = (
       `,
       hoverStyle: css`
         background: ${theme.color.buttonActiveReverse};
+      `,
+    },
+    ['primary-outline']: {
+      normalStyle: css`
+        background: ${theme.color.white};
+        color: ${theme.color.primary};
+        border-color: ${theme.color.primary};
+      `,
+      activeStyle: css`
+        background: ${darken(0.08, theme.color.primary)};
+        color: ${theme.color.white};
+        border-color: ${darken(0.08, theme.color.primary)};
+      `,
+      hoverStyle: css`
+        background: ${theme.color.primary};
+        color: ${theme.color.white};
       `,
     },
     ['error-outline']: {
@@ -165,10 +186,10 @@ function setButtonSize(size: ButtonSize) {
 }
 
 export const setButtonActiveStyle = (theme: Theme, variant: ButtonVariant) => {
-  if (variant === 'primary') {
+  if (variant === 'normal') {
     return setButtonStyle(theme, 'outline');
   }
-  return setButtonStyle(theme, 'primary');
+  return setButtonStyle(theme, 'normal');
 };
 
 // Emotion Styled 컴포넌트

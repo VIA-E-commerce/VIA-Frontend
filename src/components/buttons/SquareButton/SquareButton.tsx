@@ -31,7 +31,7 @@ const SquareButton = ({
 };
 
 SquareButton.defaultProps = {
-  variant: 'primary',
+  variant: 'normal',
   size: 'normal',
 };
 
