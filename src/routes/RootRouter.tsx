@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes } from 'react-router';
+import { Navigate, Route, Routes } from 'react-router';
 
 import { URLS } from '@/constants';
 import {
@@ -11,6 +11,10 @@ import {
   Cart,
   Order,
   Wishlist,
+  MyInfo,
+  MyOrders,
+  MyReviews,
+  MyQuestions,
   MyPage,
   Payment,
   NotFound,
@@ -55,14 +59,31 @@ const RootRouter = () => {
           </ProtectedRoute>
         }
       />
+
       <Route
-        path={`${URLS.CLIENT.MY_PAGE.INDEX}/*`}
+        path={URLS.CLIENT.MY_PAGE.INDEX}
         element={
           <ProtectedRoute>
             <MyPage />
           </ProtectedRoute>
         }
-      />
+      >
+        <Route
+          index
+          element={<Navigate to={URLS.CLIENT.MY_PAGE.PROFILE_TAB} replace />}
+        />
+        <Route path={URLS.CLIENT.MY_PAGE.TABS.PROFILE} element={<MyInfo />} />
+        <Route path={URLS.CLIENT.MY_PAGE.TABS.ORDERS} element={<MyOrders />} />
+        <Route
+          path={URLS.CLIENT.MY_PAGE.TABS.REVIEWS}
+          element={<MyReviews />}
+        />
+        <Route
+          path={URLS.CLIENT.MY_PAGE.TABS.QUESTIONS}
+          element={<MyQuestions />}
+        />
+      </Route>
+
       <Route
         path={URLS.CLIENT.PAYMENT}
         element={

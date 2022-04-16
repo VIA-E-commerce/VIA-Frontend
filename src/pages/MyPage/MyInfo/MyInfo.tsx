@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import { useRecoilValue } from 'recoil';
 
 import {
   LabelField,
@@ -7,12 +8,14 @@ import {
   PhoneInput,
   SNSProviderIcon,
   SquareButton,
+  Loading,
 } from '@/components';
 import { DATE_FORMAT, INPUT_OPTIONS, LOGIN_PROVIDERS } from '@/constants';
 import { useDeleteAccount } from '@/features/auth';
 import { useEditMyInfoMutation } from '@/features/mypage';
 import { useForm } from '@/lib';
-import { RawMyInfoForm, SNSProvider, UserSummary } from '@/types';
+import { currentUserState } from '@/state';
+import { RawMyInfoForm, SNSProvider } from '@/types';
 import { formatDate } from '@/utils';
 
 import {
@@ -34,11 +37,9 @@ const getSNSIcon = (myProvider?: SNSProvider): JSX.Element | undefined => {
   }
 };
 
-interface Props {
-  me: UserSummary;
-}
+const MyInfo = () => {
+  const me = useRecoilValue(currentUserState);
 
-const MyInfo = ({ me }: Props) => {
   const useFormReturns = useForm<RawMyInfoForm>();
   const { mutate: editMyInfoMutate } = useEditMyInfoMutation();
 
@@ -61,6 +62,8 @@ const MyInfo = ({ me }: Props) => {
       deleteAccountMutate();
     }
   }, []);
+
+  if (!me) return <Loading />;
 
   return (
     <Tab>

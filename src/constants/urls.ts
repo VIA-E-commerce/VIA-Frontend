@@ -61,6 +61,13 @@ export const URLS = {
         REVIEWS: 'reviews',
         QUESTIONS: 'questions',
       },
+      REVIEW_TABS: {
+        LIST: 'list',
+        WRITE: 'write',
+      },
+      get PROFILE_TAB() {
+        return `${this.INDEX}/${this.TABS.PROFILE}`;
+      },
     },
   },
   PARAM: {

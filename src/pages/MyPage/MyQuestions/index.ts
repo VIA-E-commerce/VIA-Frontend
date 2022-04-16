@@ -1,1 +1,1 @@
-export { default as MyQuestions } from './MyQuestions';
+export { default } from './MyQuestions';

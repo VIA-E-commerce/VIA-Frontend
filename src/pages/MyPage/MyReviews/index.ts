@@ -1,1 +1,1 @@
-export { default as MyReviews } from './MyReviews';
+export { default } from './MyReviews';

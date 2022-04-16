@@ -28,28 +28,26 @@ export const TabMenu = styled.ul`
   }
 `;
 
-interface TabButtonStyleProps {
-  active: boolean;
-}
 const activeStyle = (theme: Theme) => css`
   background: ${theme.color.font};
   color: ${theme.color.fontReverse};
 `;
-export const TabButton = styled.li<TabButtonStyleProps>`
+export const TabButton = styled.li`
   flex: 1 0;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  a {
+    width: 100%;
+    height: 100%;
 
-  cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  &:hover,
-  &.active {
-    ${({ theme }) => activeStyle(theme)}
+    &:hover,
+    &.active {
+      ${({ theme }) => activeStyle(theme)}
+    }
   }
-
-  ${({ active, theme }) => active && activeStyle(theme)}
 
   ${styles.transition.button}
 `;
