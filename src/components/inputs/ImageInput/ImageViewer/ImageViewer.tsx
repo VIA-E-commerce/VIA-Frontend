@@ -1,14 +1,17 @@
 import React from 'react';
 
+import { ObjectFitType } from '@/styles';
+
 import { Wrapper, EmptyImage } from './ImageViewer.styles';
 
 interface Props {
   url?: string;
+  objectFit?: ObjectFitType;
 }
 
-const ImageViewer = ({ url }: Props) => {
+const ImageViewer = ({ url, objectFit = 'cover' }: Props) => {
   return (
-    <Wrapper>
+    <Wrapper objectFit={objectFit}>
       {url ? (
         <img src={url} alt="이미지" />
       ) : (

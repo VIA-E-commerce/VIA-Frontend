@@ -1,20 +1,24 @@
 import styled from '@emotion/styled';
 
-import { styles } from '@/styles';
+import { styles, ObjectFitType } from '@/styles';
 
-export const Wrapper = styled.div`
+interface StyleProps {
+  objectFit: ObjectFitType;
+}
+
+export const Wrapper = styled.div<StyleProps>`
   height: inherit;
 
   img {
     width: 100%;
-    object-fit: cover;
+    object-fit: ${({ objectFit }) => objectFit};
   }
 `;
 
 export const EmptyImage = styled.div`
   border: 0.4rem dotted ${({ theme }) => theme.color.lightGray};
 
-  min-height: 16rem;
+  height: 100%;
 
   display: flex;
   justify-content: center;

@@ -58,7 +58,11 @@ const ReviewModal = ({ queryKey }: Props) => {
               />
             </LabelField>
             <LabelField label="사진" vertical>
-              <ImageInput url={imageUrl} onClickUrlButton={onClickUrlButton} />
+              <ImageInput
+                url={imageUrl}
+                objectFit="contain"
+                onClickUrlButton={onClickUrlButton}
+              />
             </LabelField>
           </Body>
           <Footer>

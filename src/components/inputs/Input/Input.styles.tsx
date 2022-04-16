@@ -38,6 +38,8 @@ export const StyledInput = styled.input<InputStyleProps>`
   ${({ inputSize }) => getInputSize(inputSize)};
   padding: 0.6rem 1.2rem;
 
+  display: block;
+
   font-size: ${styles.fontSize.small}rem;
 
   border: ${styles.border.level1}rem solid
