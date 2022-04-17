@@ -52,6 +52,7 @@ export interface ProductCardResponse {
   display: boolean;
   onSale: boolean;
   wished: boolean;
+  isSoldOut: boolean;
 
   createdAt: Date;
   updatedAt: Date;
@@ -95,6 +96,7 @@ export interface ProductDetailResponse {
   display: boolean;
   onSale: boolean;
   wished: boolean;
+  isSoldOut: boolean;
 
   variants: VariantResponse[];
   colors: ColorResponse[];
