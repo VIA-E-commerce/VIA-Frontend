@@ -3,7 +3,7 @@ export * from './DeliveryGuide';
 export * from './ProductDetailTab';
 export * from './ProductDetailTabNav';
 export * from './ProductDetailViewer';
-export * from './ProductFeatureCard';
+export * from './ProductOrderMenu';
 export * from './SnsShareButton';
 
 export * from './useDirectBuyMutation';

@@ -16,7 +16,7 @@ import {
   ProductDetailTab,
   ProductDetailTabNav,
   ProductDetailViewer,
-  ProductFeatureCard,
+  ProductOrderMenu,
   useProductDetail,
 } from '@/features/productDetail';
 import {
@@ -109,7 +109,7 @@ const ProductDetail = () => {
     <PageTemplate>
       <DocumentTitle title={product.name} thumbnail={product.images[0]} />
 
-      <ProductFeatureCard product={product} />
+      <ProductOrderMenu product={product} />
       <ContentsSection>
         <ProductDetailTabNav tabs={tabs} />
         <GridSection cols={1} rowGap={0}>
