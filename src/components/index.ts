@@ -2,6 +2,7 @@ export * from './Badge';
 export * from './Pagination';
 export * from './PriceLabel';
 export * from './SNSProviderIcon';
+export * from './SoldOut';
 
 export * from './buttons';
 export * from './containers';
