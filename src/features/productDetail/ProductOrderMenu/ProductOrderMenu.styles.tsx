@@ -25,6 +25,10 @@ export const TopButtonGroup = styled.div`
 
 export const ProductImages = styled.section`
   grid-column: 1 / span 6;
+`;
+
+export const LargeImage = styled.div`
+  position: relative;
 
   img {
     width: 100%;

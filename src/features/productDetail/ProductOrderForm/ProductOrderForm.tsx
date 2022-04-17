@@ -133,11 +133,13 @@ const ProductOrderForm = ({ product }: ProductOrderFormProps) => {
             <SquareButton
               variant="outline"
               onClick={() => handleClickAddCart(addCartItemMutate)}
+              disabled={product.isSoldOut}
             >
               장바구니
             </SquareButton>
             <SquareButton
               onClick={() => handleClickAddCart(directBuyMutate)}
+              disabled={product.isSoldOut}
             >
               바로구매
             </SquareButton>
