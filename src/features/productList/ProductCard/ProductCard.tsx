@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MdLibraryAdd } from 'react-icons/md';
 import { QueryKey } from 'react-query';
@@ -17,6 +17,7 @@ import {
   CardTitle,
   CardFooter,
 } from './ProductCard.styles';
+import SoldOut from '@/components/SoldOut/SoldOut';
 
 interface ProductCardProps {
   card: ProductCardResponse;
@@ -24,6 +25,9 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ card, queryKey }: ProductCardProps) => {
+  const cardRef = useRef<HTMLElement>(null);
+  const [width, setWidth] = useState(0);
+
   const { onToggleWishlist } = useToggleWishlistMutation(queryKey);
 
   const handleClickWish = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -31,11 +35,18 @@ const ProductCard = ({ card, queryKey }: ProductCardProps) => {
     onToggleWishlist(card.id, card.wished);
   };
 
+  useEffect(() => {
+    if (cardRef.current) {
+      setWidth(cardRef.current.offsetWidth);
+    }
+  }, [cardRef.current]);
+
   return (
-    <CardWrapper>
+    <CardWrapper ref={cardRef}>
       <CardHeader>
         <Link to={`${URLS.CLIENT.PRODUCT}/${card.id}`}>
           <CardImage src={card.thumbnail || '/images/empty-product.png'} />
+          {card.isSoldOut && <SoldOut width={width} />}
         </Link>
         <CardHoverMenu
           onClick={(event) => {

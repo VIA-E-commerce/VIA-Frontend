@@ -5,18 +5,6 @@ import { hexToRGB } from '@/utils';
 
 export const CardWrapper = styled.article``;
 
-const HOVER_MENU_HEIGHT = 4.8;
-
-export const CardHeader = styled.header`
-  position: relative;
-
-  &:hover {
-    div {
-      height: ${HOVER_MENU_HEIGHT}rem;
-    }
-  }
-`;
-
 export const CardImage = styled.img`
   width: 100%;
   aspect-ratio: 1;
@@ -53,6 +41,18 @@ export const CardHoverMenu = styled.div`
 
     &:hover {
       color: ${({ theme }) => theme.color.star};
+    }
+  }
+`;
+
+const HOVER_MENU_HEIGHT = 4.8;
+
+export const CardHeader = styled.header`
+  position: relative;
+
+  &:hover {
+    ${CardHoverMenu} {
+      height: ${HOVER_MENU_HEIGHT}rem;
     }
   }
 `;
