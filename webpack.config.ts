@@ -1,13 +1,15 @@
-import webpack, { Configuration as WebpackConfig } from 'webpack';
 import path from 'path';
 import dotenv from 'dotenv';
-
-import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import webpack, { Configuration as WebpackConfig } from 'webpack';
 import { Configuration as DevServerConfig } from 'webpack-dev-server';
+
+// 플러그인
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import LodashModuleReplacementPlugin from 'lodash-webpack-plugin';
 
 dotenv.config();
 
@@ -94,6 +96,7 @@ const config: Configuration = {
       template: `./${PUBLIC_DIR}/index.html`,
     }),
     new CleanWebpackPlugin(),
+    new LodashModuleReplacementPlugin({ shorthands: true }) as any,
   ],
   output: {
     path: path.join(__dirname, OUTPUT_DIR),
@@ -126,7 +129,7 @@ if (isDevMode) {
       }),
     );
     config.plugins.push(
-      new BundleAnalyzerPlugin({ analyzerMode: 'server', openAnalyzer: false }),
+      new BundleAnalyzerPlugin({ analyzerMode: 'server', openAnalyzer: true }),
     );
   }
 } else {
