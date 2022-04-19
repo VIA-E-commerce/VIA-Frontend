@@ -1,5 +1,4 @@
 import React, { memo } from 'react';
-import { FaGithubSquare } from 'react-icons/fa';
 
 import { APP } from '@/constants';
 
@@ -12,7 +11,7 @@ const Footer = () => {
         <div>{APP.COPYRIGHT}</div>
         <RightMenu>
           <a target="_blank" href={APP.GITHUB_URL} rel="noreferrer noopener">
-            <FaGithubSquare />
+            <img src="/images/github-icon.png" alt="VIA GitHub" />
           </a>
         </RightMenu>
       </FooterInner>

@@ -30,7 +30,10 @@ const iconSize = 4;
 export const RightMenu = styled.div`
   margin-left: auto;
 
-  svg {
-    font-size: ${iconSize}rem;
+  img {
+    width: ${iconSize}rem;
+    height: ${iconSize}rem;
+
+    display: block;
   }
 `;
