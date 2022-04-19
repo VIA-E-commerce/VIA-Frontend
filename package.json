@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" webpack serve --env development",
     "build": "cross-env NODE_ENV=production TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cross-env NODE_ENV=production TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" webpack start"
   },
   "repository": {
     "type": "git",
@@ -37,7 +38,7 @@
     "react-daum-postcode": "^3.0.1",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
-    "react-icons": "^4.3.1",
+    "react-icons": "3.11.0",
     "react-query": "^3.34.16",
     "react-router": "^6.2.1",
     "react-router-dom": "^6.2.1",
