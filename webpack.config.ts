@@ -68,13 +68,13 @@ const config: Configuration = {
             '@babel/preset-typescript',
           ],
           env: {
-            development: {
+            [DEV_ENV]: {
               plugins: [
                 ['@emotion/babel-plugin', { sourceMap: true }],
                 require.resolve('react-refresh/babel'),
               ],
             },
-            production: {
+            [PROD_ENV]: {
               plugins: ['@emotion/babel-plugin'],
             },
           },
@@ -116,6 +116,9 @@ const config: Configuration = {
       },
     },
   },
+  optimization: {
+    usedExports: true,
+  },
 };
 
 if (isDevMode) {
@@ -129,7 +132,7 @@ if (isDevMode) {
       }),
     );
     config.plugins.push(
-      new BundleAnalyzerPlugin({ analyzerMode: 'server', openAnalyzer: true }),
+      new BundleAnalyzerPlugin({ analyzerMode: 'server', openAnalyzer: false }),
     );
   }
 } else {
