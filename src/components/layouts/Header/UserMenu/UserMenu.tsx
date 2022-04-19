@@ -25,11 +25,11 @@ const UserMenu = ({ onClickLogout }: Props) => {
 
   return (
     <Menu>
-      <MenuItem>
+      {/* <MenuItem>
         <TransparentButton>
           <MdSearch />
         </TransparentButton>
-      </MenuItem>
+      </MenuItem> */}
 
       {user ? (
         <>

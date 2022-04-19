@@ -147,11 +147,11 @@ const ProductOrderForm = ({ product }: ProductOrderFormProps) => {
         </section>
       </Body>
 
-      <Footer>
+      {/* <Footer>
         <SquareButton variant="outline" wide>
           상품 입고 알림 신청
         </SquareButton>
-      </Footer>
+      </Footer> */}
     </FormSection>
   );
 };
