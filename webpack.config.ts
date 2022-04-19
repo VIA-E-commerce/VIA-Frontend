@@ -24,6 +24,7 @@ const isDevMode = process.env.NODE_ENV !== PROD_ENV;
 const SOURCE_DIR = 'src';
 const PUBLIC_DIR = 'public';
 const OUTPUT_DIR = 'dist';
+const STATIC_PREFIX = 'static';
 
 interface Configuration extends WebpackConfig {
   devServer?: DevServerConfig;
@@ -106,7 +107,10 @@ const config: Configuration = {
   devServer: {
     historyApiFallback: true,
     port: PORT,
-    static: { directory: path.resolve(__dirname, PUBLIC_DIR) },
+    static: {
+      directory: path.resolve(__dirname, PUBLIC_DIR),
+      publicPath: STATIC_PREFIX,
+    },
     open: true,
     proxy: {
       [API_PREFIX]: {
