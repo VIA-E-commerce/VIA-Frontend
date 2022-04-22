@@ -13,7 +13,7 @@ import LodashModuleReplacementPlugin from 'lodash-webpack-plugin';
 
 dotenv.config();
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+const API_BASE_URL = `${process.env.REACT_APP_HOST}:${process.env.REACT_APP_API_PORT}`;
 const API_PREFIX: string = process.env.REACT_APP_API_PREFIX || '/';
 const PORT = process.env.REACT_APP_PORT;
 
