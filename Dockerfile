@@ -6,12 +6,8 @@ LABEL maintainer="88yangkh@gmail.com"
 LABEL version="1.0.0"
 LABEL description="VIA 프론트엔드 애플리케이션"
 
-# 환경변수 설정
-ARG NODE_ENV=prodction
-ENV NODE_ENV=${NODE_ENV}
-
 # 작업 디렉토리 지정
-WORKDIR /app
+WORKDIR /usr/src/app
 
 # 프로젝트 의존성 추가
 COPY ./package.json ./
@@ -27,11 +23,14 @@ RUN yarn build
 ##########    Running    ##########
 FROM nginx:1.19.10-alpine
 
+# 환경변수 설정
+ARG NODE_ENV=prodction
+ENV NODE_ENV=${NODE_ENV}
 
 # 프론트엔드에 3000번 포트 할당
 EXPOSE 3000
 
 # 배포 모드로 실행
 COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY --from=builder /app/dist /usr/share/nginx/html
-COPY --from=builder /app/public /usr/share/nginx/html/public
+COPY --from=builder /usr/src/app/dist /usr/share/nginx/html
+COPY --from=builder /usr/src/app/public /usr/share/nginx/html/public
