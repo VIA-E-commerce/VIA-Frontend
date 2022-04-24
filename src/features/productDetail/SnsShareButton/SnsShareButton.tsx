@@ -89,13 +89,7 @@ const SnsShareButton = ({ description, thumbnail }: Props) => {
           >
             <RiKakaoTalkFill />
           </ShareButton>
-          <ShareButton
-            onClick={() =>
-              handleShareFaceBook(
-                'https://lnsideout.tistory.com/entry/jQuery-windowopen-%ED%8C%9D%EC%97%85-%EC%99%84%EB%B2%BD%EA%B0%9C%EB%85%90%EC%A0%95%EB%A6%AC',
-              )
-            }
-          >
+          <ShareButton onClick={() => handleShareFaceBook(url)}>
             <RiFacebookFill />
           </ShareButton>
         </Positioner>
