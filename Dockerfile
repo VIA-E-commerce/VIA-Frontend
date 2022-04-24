@@ -1,5 +1,5 @@
 ##########    Builder    ##########
-FROM node:14.17.0-alpine3.13 AS builder
+FROM node:14.17.0-alpine3.13 as builder
 
 # 정보
 LABEL maintainer="88yangkh@gmail.com"
