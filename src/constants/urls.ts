@@ -1,6 +1,6 @@
 export const URLS = {
   API: {
-    PREFIX: process.env.REACT_APP_API_PREFIX || '/',
+    PREFIX: '/api',
     AUTH: {
       JOIN: '/auth/join',
       LOGIN: '/auth/login',

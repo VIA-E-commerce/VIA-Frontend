@@ -41,6 +41,9 @@ jobs:
           builder: ${{ steps.buildx.outputs.name }}
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.APPLICATION_NAME }}
+          build-args: |
+            REACT_APP_IMP_MERCHANT_ID=${{ secrets.REACT_APP_IMP_MERCHANT_ID }}
+            REACT_APP_KAKAO_JS_KEY=${{ secrets.REACT_APP_KAKAO_JS_KEY }}
 
   deploy:
     needs: build

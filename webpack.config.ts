@@ -13,13 +13,12 @@ import LodashModuleReplacementPlugin from 'lodash-webpack-plugin';
 
 dotenv.config();
 
-const API_BASE_URL = `${process.env.REACT_APP_HOST}:${process.env.REACT_APP_API_PORT}`;
-const API_PREFIX: string = process.env.REACT_APP_API_PREFIX || '/';
-const PORT = process.env.REACT_APP_PORT;
-
 const DEV_ENV = 'development';
 const PROD_ENV = 'production';
 const isDevMode = process.env.NODE_ENV !== PROD_ENV;
+
+const API_PREFIX = '/api';
+const API_BASE_URL = isDevMode ? 'http://localhost:5000' : API_PREFIX;
 
 const SOURCE_DIR = 'src';
 const PUBLIC_DIR = 'public';
@@ -28,20 +27,11 @@ const OUTPUT_DIR = 'dist';
 interface Configuration extends WebpackConfig {
   devServer?: DevServerConfig;
 }
-const ENV: { [x: string]: string } = {
-  NODE_ENV: isDevMode ? DEV_ENV : PROD_ENV,
-};
-
-for (const key in process.env) {
-  if (key && key.startsWith('REACT_APP_')) {
-    ENV[key] = process.env[key] || '';
-  }
-}
 
 const config: Configuration = {
   name: 'via-frontend',
   mode: isDevMode ? DEV_ENV : PROD_ENV,
-  devtool: isDevMode ? 'inline-source-map' : 'hidden-source-map',
+  devtool: isDevMode ? 'inline-source-map' : 'inline-source-map',
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
     alias: {
@@ -91,12 +81,23 @@ const config: Configuration = {
     new ForkTsCheckerWebpackPlugin({
       async: false,
     }),
-    new webpack.EnvironmentPlugin(ENV),
     new HtmlWebpackPlugin({
       template: `./${PUBLIC_DIR}/index.html`,
     }),
     new CleanWebpackPlugin(),
     new LodashModuleReplacementPlugin({ shorthands: true }) as any,
+    new webpack.ProvidePlugin({
+      process: 'process/browser',
+    }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(isDevMode ? DEV_ENV : PROD_ENV),
+      'process.env.REACT_APP_KAKAO_JS_KEY': JSON.stringify(
+        process.env.REACT_APP_KAKAO_JS_KEY,
+      ),
+      'process.env.REACT_APP_IMP_MERCHANT_ID': JSON.stringify(
+        process.env.REACT_APP_IMP_MERCHANT_ID,
+      ),
+    }),
   ],
   output: {
     path: path.join(__dirname, OUTPUT_DIR),
@@ -105,7 +106,7 @@ const config: Configuration = {
   },
   devServer: {
     historyApiFallback: true,
-    port: PORT,
+    port: 3000,
     static: {
       directory: path.resolve(__dirname, PUBLIC_DIR),
     },
