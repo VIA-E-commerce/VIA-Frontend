@@ -76,14 +76,21 @@ export const useCreateOrderMutation = ({ cartItems }: Props) => {
 
 function getCreateOrderRequest(form: RawOrderForm): CreateOrderRequest {
   const {
+    purchaser,
+    purchaserEmail,
+    purchaserPhone1,
+    purchaserPhone2,
+
+    recipient,
     recipientAddressPostalCode,
     recipientAddress,
     recipientAddressDetail,
     recipientPhone1,
     recipientPhone2,
-    purchaserPhone1,
-    purchaserPhone2,
-    ...rest
+
+    message,
+    impUID,
+    cartItemIds,
   } = form;
 
   const shippingAddress = `${recipientAddress} ${recipientAddressDetail}`;
@@ -91,10 +98,15 @@ function getCreateOrderRequest(form: RawOrderForm): CreateOrderRequest {
   const recipientPhone = recipientPhone1 + recipientPhone2;
 
   return {
-    ...rest,
+    purchaser,
+    purchaserEmail,
     purchaserPhone,
+    recipientPhone,
+    recipient,
     postalCode: recipientAddressPostalCode,
     shippingAddress,
-    recipientPhone,
+    message,
+    impUID,
+    cartItemIds,
   };
 }
