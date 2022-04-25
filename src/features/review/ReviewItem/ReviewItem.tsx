@@ -50,10 +50,10 @@ const ReviewItem = ({ review }: ReviewItemProps) => {
           )}
         </ReviewImage>
       </ReviewBody>
-      <ReviewFooter>
+      {/* <ReviewFooter>
         이 후기가 도움이 되셨나요?
         <SquareButton variant="outline">네</SquareButton>
-      </ReviewFooter>
+      </ReviewFooter> */}
     </Wrapper>
   );
 };
