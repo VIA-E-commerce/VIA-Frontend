@@ -14,6 +14,7 @@ export const useLogout = () => {
     setBearerToken('');
     setCurrentUser(undefined);
     queryClient.removeQueries(QUERY.AUTH.ME);
+    queryClient.removeQueries(QUERY.CART.COUNT);
   }, []);
 
   const { mutate } = useMutation(logout, {
