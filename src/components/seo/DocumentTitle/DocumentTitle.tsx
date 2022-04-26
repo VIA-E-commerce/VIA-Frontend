@@ -14,8 +14,17 @@ const DocumentTitle = ({ title, description = '', thumbnail = '' }: Props) => {
   const fullTitle = `${APP.SITE_NAME} ${title ? `| ${capitalize(title)}` : ''}`;
 
   return (
-    <Helmet>
+    <Helmet
+      link={[
+        {
+          rel: 'icon',
+          type: 'image/png',
+          href: '/images/favicon.ico',
+        },
+      ]}
+    >
       <title>{fullTitle}</title>
+
       <meta property="og:site_name" content={APP.SITE_NAME} />
       <meta property="og:title" content={title} />
       <meta
