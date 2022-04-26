@@ -33,7 +33,7 @@ const ProductOrderMenu = ({ product }: ProductOrderMenuProps) => {
   return (
     <GridSection cols={1} rowGap={8}>
       <TopButtonGroup>
-        <SnsShareButton thumbnail={product.images[0]} />
+        <SnsShareButton product={product} />
         <WishlistButton
           wished={product.wished}
           onClick={() => onToggleWishlist(product.id, product.wished)}

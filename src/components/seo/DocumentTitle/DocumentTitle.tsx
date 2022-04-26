@@ -18,7 +18,10 @@ const DocumentTitle = ({ title, description = '', thumbnail = '' }: Props) => {
       <title>{fullTitle}</title>
       <meta property="og:site_name" content={APP.SITE_NAME} />
       <meta property="og:title" content={title} />
-      <meta property="og:image" content={thumbnail} />
+      <meta
+        property="og:image"
+        content={thumbnail || '/images/logo-square.png'}
+      />
       <meta property="og:description" content={description} />
       <meta property="og:type" content="website" />
       <meta property="og:url" content={window.location.href} />

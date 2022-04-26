@@ -6,6 +6,7 @@ import { RiKakaoTalkFill, RiFacebookFill } from 'react-icons/ri';
 
 import { useScript } from '@/hooks';
 import { shareKakao } from '@/lib/kakao';
+import { ProductDetailResponse } from '@/types';
 
 import {
   Wrapper,
@@ -15,11 +16,11 @@ import {
 } from './SnsShareButton.styles';
 
 interface Props {
+  product: ProductDetailResponse;
   description?: string;
-  thumbnail: string;
 }
 
-const SnsShareButton = ({ description, thumbnail }: Props) => {
+const SnsShareButton = ({ product, description }: Props) => {
   const [show, setShow] = useState(false);
   const positionerRef = useRef<HTMLDivElement>(null);
 
@@ -85,7 +86,7 @@ const SnsShareButton = ({ description, thumbnail }: Props) => {
             </ShareButton>
           </CopyToClipboard>
           <ShareButton
-            onClick={() => shareKakao({ url, description, thumbnail })}
+            onClick={() => shareKakao({ url, description, product })}
           >
             <RiKakaoTalkFill />
           </ShareButton>
