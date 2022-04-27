@@ -11,11 +11,11 @@ import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import LodashModuleReplacementPlugin from 'lodash-webpack-plugin';
 
-dotenv.config();
-
 const DEV_ENV = 'development';
 const PROD_ENV = 'production';
 const isDevMode = process.env.NODE_ENV !== PROD_ENV;
+
+dotenv.config({ path: isDevMode ? '.env.development' : '.env.production' });
 
 const API_PREFIX = '/api';
 const API_BASE_URL = isDevMode ? 'http://localhost:5000' : API_PREFIX;
