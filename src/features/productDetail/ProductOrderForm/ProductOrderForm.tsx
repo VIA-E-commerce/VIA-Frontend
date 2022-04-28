@@ -10,6 +10,7 @@ import {
 } from '@/components';
 import { BUSINESS } from '@/constants';
 import { useAddCartItemMutation } from '@/features/cart';
+import { useProtectedFunction } from '@/hooks';
 import {
   AddCartItemRequest,
   AddCartItemResponse,
@@ -51,6 +52,7 @@ const ProductOrderForm = ({ product }: ProductOrderFormProps) => {
     variantsFilteredByColor,
     numberInputProps,
   } = useProductControlPanel({ product });
+  const protectedFunction = useProtectedFunction();
 
   const { mutate: addCartItemMutate } = useAddCartItemMutation(product.id);
   const { mutate: directBuyMutate } = useDirectBuyMutation(product.id);
@@ -68,11 +70,13 @@ const ProductOrderForm = ({ product }: ProductOrderFormProps) => {
         unknown
       >,
     ) => {
-      if (!sizeId) return alert('사이즈를 선택해주세요.');
+      protectedFunction(() => {
+        if (!sizeId) return alert('사이즈를 선택해주세요.');
 
-      if (variant) {
-        mutate({ variantId: variant.id, quantity });
-      }
+        if (variant) {
+          mutate({ variantId: variant.id, quantity });
+        }
+      });
     },
     [sizeId, variant, quantity],
   );
