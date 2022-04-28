@@ -10,7 +10,7 @@ import {
 export const fetchCartItems = async (cartItems?: number[]) =>
   client.get<CartItemResponse[]>(URLS.API.CART.ITEM, {
     params: {
-      id: cartItems?.join(','),
+      ids: cartItems?.join(','),
     },
   });
 
