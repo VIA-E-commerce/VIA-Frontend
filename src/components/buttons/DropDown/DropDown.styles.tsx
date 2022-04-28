@@ -14,14 +14,21 @@ export const Wrapper = styled.div`
     align-items: center;
   }
 
+  &:hover ul {
+    display: block;
+  }
+
   ul {
     list-style: none;
     padding: 0;
+    left: 50%;
 
     width: 10rem;
     border: ${styles.border.level1}rem solid ${({ theme }) => theme.color.font};
 
     position: absolute;
+    transform: translateX(-50%);
+
     display: none;
 
     &,
@@ -35,14 +42,6 @@ export const Wrapper = styled.div`
     }
 
     li {
-      &:hover {
-        color: ${({ theme }) => theme.color.fontReverse};
-
-        a {
-          color: inherit;
-        }
-      }
-
       transition: background 0.2s linear;
 
       a {
@@ -50,9 +49,13 @@ export const Wrapper = styled.div`
         text-align: center;
       }
     }
-  }
 
-  &:hover ul {
-    display: block;
+    li:hover {
+      color: ${({ theme }) => theme.color.fontReverse};
+
+      a {
+        color: inherit;
+      }
+    }
   }
 `;

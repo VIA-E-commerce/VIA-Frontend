@@ -7,7 +7,6 @@ import { useRecoilValue } from 'recoil';
 import { Badge } from '@/components';
 import { URLS } from '@/constants';
 import { cartItemCountState, currentUserState } from '@/state';
-import { styles } from '@/styles';
 import { parseLocationToRedirect } from '@/utils';
 
 import { DropDown, TransparentButton } from '../../../buttons';
@@ -45,9 +44,6 @@ const UserMenu = ({ onClickLogout }: Props) => {
                   <MdPerson />
                 </Link>
               }
-              style={{
-                transform: `translate(-3.2rem, -${styles.border.level1}rem)`,
-              }}
             >
               <li>
                 <Link to={URLS.CLIENT.MY_PAGE.PROFILE_TAB}>마이페이지</Link>
