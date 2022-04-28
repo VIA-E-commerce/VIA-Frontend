@@ -21,6 +21,7 @@ export interface UserSummary {
   email: string;
   name: string;
   phone: string;
+  point: number;
   role: string;
   provider: SNSProvider;
   snsId?: string;
@@ -185,6 +186,7 @@ export interface OrderResponse {
 
   totalPrice: number;
   paymentReal: number;
+  point: number;
 
   purchaser: string;
   purchaserPhone?: string;

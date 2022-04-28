@@ -68,6 +68,9 @@ const Payment = () => {
         >
           {formatPrice(order.paymentReal, { unit: true })}
         </LabelField>
+        <LabelField label="총 적립 포인트" contentAlign="right">
+          {formatPrice(order.point, { unit: true })}
+        </LabelField>
         <LabelField label="결제수단" contentAlign="right">
           {order.paymentMethod}
         </LabelField>

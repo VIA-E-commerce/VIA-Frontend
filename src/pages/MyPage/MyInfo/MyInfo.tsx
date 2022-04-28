@@ -16,7 +16,7 @@ import { useEditMyInfoMutation } from '@/features/mypage';
 import { useForm } from '@/lib';
 import { currentUserState } from '@/state';
 import { RawMyInfoForm, SNSProvider } from '@/types';
-import { formatDate } from '@/utils';
+import { formatDate, formatPrice } from '@/utils';
 
 import {
   MyInfoForm,
@@ -96,6 +96,7 @@ const MyInfo = () => {
           <LabelField label="가입일">
             {formatDate(me.createdAt, DATE_FORMAT.KOR_DATE_TIME)}
           </LabelField>
+          <LabelField label="포인트">{formatPrice(me.point)} 점</LabelField>
           <FormFooter>
             <SquareButton wide>회원 정보 수정</SquareButton>
 
