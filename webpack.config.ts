@@ -31,7 +31,7 @@ interface Configuration extends WebpackConfig {
 const config: Configuration = {
   name: 'via-frontend',
   mode: isDevMode ? DEV_ENV : PROD_ENV,
-  devtool: isDevMode ? 'inline-source-map' : 'inline-source-map',
+  devtool: isDevMode ? 'inline-source-map' : 'hidden-source-map',
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
     alias: {
