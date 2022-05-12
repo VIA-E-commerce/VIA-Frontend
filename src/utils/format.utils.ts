@@ -1,6 +1,8 @@
 import dayjs from 'dayjs';
 
-export function formatPrice(price: number, option?: { unit?: boolean }) {
+export function formatPrice(price: number | null, option?: { unit?: boolean }) {
+  if (!price) return 0;
+
   let priceWithComma = price.toLocaleString('ko-kr');
   if (option?.unit) {
     priceWithComma = `${priceWithComma}원`;
