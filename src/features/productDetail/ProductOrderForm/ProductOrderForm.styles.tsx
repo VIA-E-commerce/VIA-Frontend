@@ -52,15 +52,18 @@ export const ProductName = styled.h4`
 `;
 
 export const TotalPrice = styled.div`
+  width: 43.2rem;
   height: 100%;
 
-  flex: 1;
+  flex-grow: 0;
   display: flex;
   justify-content: flex-end;
   align-items: center;
 
   font-size: ${styles.fontSize.h4}rem;
   font-weight: ${styles.fontWeight.bold};
+
+  overflow: hidden;
 `;
 
 export const BuyButtonGroup = styled(ButtonGroup)`

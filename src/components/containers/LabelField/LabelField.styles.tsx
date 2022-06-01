@@ -49,6 +49,11 @@ const getAlignment = (alignType: AlignType) => {
 
   if (alignType === 'center') {
     align = 'center';
+    return css`
+      flex-grow: 1;
+      justify-content: center;
+      text-align: center;
+    `;
   } else if (alignType === 'right') {
     align = 'right';
   }
@@ -83,6 +88,7 @@ export const Wrapper = styled.div<LabelFieldStyleProps>`
     ${({ bold }) => bold && `font-weight: ${styles.fontWeight.bold};`}
 
     display: flex;
+    flex-shrink: 0;
     ${({ labelAlign }) => getAlignment(labelAlign)}
   }
 

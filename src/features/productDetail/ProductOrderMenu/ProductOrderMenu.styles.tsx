@@ -3,12 +3,9 @@ import styled from '@emotion/styled';
 import { styles } from '@/styles';
 
 export const Wrapper = styled.article`
-  display: flex;
-  gap: ${styles.grid.gutter}rem;
-
-  & > section {
-    flex: 1;
-  }
+  display: grid;
+  grid-auto-columns: 1fr 1fr;
+  column-gap: ${styles.grid.gutter}rem;
 `;
 
 export const TopButtonGroup = styled.div`
